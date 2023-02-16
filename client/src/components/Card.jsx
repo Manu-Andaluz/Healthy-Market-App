@@ -6,7 +6,7 @@ function Card({ status, name, price, image, details }) {
       <div className="card__image-container">
       <div className="card__info">
         <h2 className="card__name">{name}</h2>
-      <p className={`card__status card__status--${status.toLowerCase()}`}>{status}</p>
+        <p className={`card__status card__status--${status.toLowerCase()}`}>{status}</p>
         <img src={image} alt={name} className="card__image" />
       </div>
       
