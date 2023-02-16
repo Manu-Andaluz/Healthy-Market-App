@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const mainRouter = require("./routes/index");
 
 const app = express();
 
@@ -36,3 +37,5 @@ mongoose
   })
   .then(() => console.log("MongoDB connection established..."))
   .catch((error) => console.error("MongoDB connection failed:", error.message));
+
+app.use(mainRouter);
