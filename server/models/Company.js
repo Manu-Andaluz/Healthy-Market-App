@@ -13,7 +13,7 @@ const companySchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    // user: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
+    user: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
 });
 
 const Company = mongoose.model("Company", companySchema);
