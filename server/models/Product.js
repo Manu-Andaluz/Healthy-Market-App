@@ -5,6 +5,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    companyOwner: {
+        type: String,
+        require: true,
+    },
     price: {
         type: Number,
         require: true,
@@ -14,7 +18,7 @@ const productSchema = new mongoose.Schema({
         require: true,
     },
     image: {
-        type: String,
+        type: Object,
         require: true,
     },
     details: {
@@ -33,4 +37,4 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model("Product", productSchema);
 
-module.exports = Product;
+module.exports = { Product };

@@ -1,6 +1,6 @@
-const mongoose = require("moongoose");
+const mongoose = require("mongoose");
 
-const userSchema = new mongoose.schema(
+const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, minlength: 3, maxlength: 30 },
     surname: { type: String, required: true, minlength: 3, maxlength: 30 },
@@ -15,7 +15,7 @@ const userSchema = new mongoose.schema(
       maxlength: 50,
       unique: true,
     },
-    password: { String, required: true, minlength: 3, maxlength: 1024 },
+    password: { type: String, required: true, minlength: 3, maxlength: 1024 },
     admin: { type: Boolean, default: false },
   },
   { timestamps: true }
