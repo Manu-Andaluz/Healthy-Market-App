@@ -3,105 +3,148 @@ const { Product } = require("../models/Product.js");
 // get product
 
 const getProduct = async (name) => {
-    let products;
+  let products;
 
-    if (name) {
-        products = await Product.find({
-            name: name,
-        });
-    } else {
-        products = await Product.find();
+  if (name) {
+    products = await Product.find({
+      name: name,
+    });
+  } else {
+    products = await Product.find();
+  }
+
+  return products;
+};
+
+// filter
+
+const getProductsFiltered = async (filterBy, categoryValue) => {
+  const allProduct = await Product.find();
+  switch (filterBy) {
+    case "alfabetic-A-Z": {
+      const products = allProduct.sort((a, b) => a.name.localeCompare(b.name));
+      return products;
     }
-
-    return products
-}
+    case "alfabetic-Z-A": {
+      const products = allProduct.sort((a, b) => b.name.localeCompare(a.name));
+      return products;
+    }
+    case "cheapper-products": {
+      const products = allProduct.sort((a, b) => a.price - b.price);
+      return products;
+    }
+    case "expensive-products": {
+      const products = allProduct.sort((a, b) => b.price - a.price);
+      return products;
+    }
+    case "category": {
+      const products = allProduct.filter(
+        (product) => product.category === categoryValue
+      );
+      return products;
+    }
+    default: {
+      return "Invalid Filter";
+    }
+  }
+};
 
 // create product
 
-const createProduct = async (name, price, image, details, stock, category, companyOwner) => {
+const createProduct = async (
+  name,
+  price,
+  image,
+  details,
+  stock,
+  category,
+  companyOwner
+) => {
+  if (name && price && image && details && stock && category && companyOwner) {
+    const newProduct = new Product({
+      name,
+      category,
+      details,
+      price,
+      stock,
+      image,
+      companyOwner,
+    });
 
-    if (name && price && image && details && stock && category && companyOwner) {
-        const newProduct = new Product({
-            name,
-            category,
-            details,
-            price,
-            stock,
-            image,
-            companyOwner
-        })
+    const savedProduct = await newProduct.save();
 
-        const savedProduct = await newProduct.save();
-
-        return savedProduct
-    }
-
-    else {
-        return 'Missing data'
-    }
+    return savedProduct;
+  } else {
+    return "Missing data";
+  }
 };
 
 // edit product
 
 const editProduct = async (productImage, productId, product) => {
-    if (productImage) {
-        const destroyResponse = await cloudinary.uploader.destroy(
-            product.image.public_id
-        )
+  if (productImage) {
+    const destroyResponse = await cloudinary.uploader.destroy(
+      product.image.public_id
+    );
 
-        if (destroyResponse) {
-            const uploadedResponse = await cloudinary.uploader.upload(productImage, {
-                upload_preset: "online-shop",
-            });
+    if (destroyResponse) {
+      const uploadedResponse = await cloudinary.uploader.upload(productImage, {
+        upload_preset: "online-shop",
+      });
 
-            if (uploadedResponse) {
-                const updatedProduct = await Product.findByIdAndUpdate(
-                    productId,
-                    {
-                        $set: {
-                            ...product,
-                            image: uploadedResponse,
-                        }
-                    }, { new: true }
-                )
-                return updatedProduct
-            }
-        }
-
-    }
-
-    else {
+      if (uploadedResponse) {
         const updatedProduct = await Product.findByIdAndUpdate(
-            productId,
-            {
-                $set: {
-                    ...product,
-                }
-            }, { new: true }
-        )
-        return updatedProduct
+          productId,
+          {
+            $set: {
+              ...product,
+              image: uploadedResponse,
+            },
+          },
+          { new: true }
+        );
+        return updatedProduct;
+      }
     }
-}
+  } else {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      {
+        $set: {
+          ...product,
+        },
+      },
+      { new: true }
+    );
+    return updatedProduct;
+  }
+};
 
 // delete product
 
 const deleteProduct = async (productId) => {
-    const product = await Product.findById(productId);
+  const product = await Product.findById(productId);
 
-    if (!product) return "Product not found... "
+  if (!product) return "Product not found... ";
 
-    if (product.image.public_id) {
-        const destroyResponse = await cloudinary.uploader.destroy(
-            product.image.public_id
-        );
-        if (destroyResponse) {
-            const deletedProduct = await Product.findByIdAndDelete(productId);
+  if (product.image.public_id) {
+    const destroyResponse = await cloudinary.uploader.destroy(
+      product.image.public_id
+    );
+    if (destroyResponse) {
+      const deletedProduct = await Product.findByIdAndDelete(productId);
 
-            return deletedProduct
-        }
-    } else {
-        console.log("Action terminated. Failed to deleted product image ... ");
+      return deletedProduct;
     }
-}
+  } else {
+    console.log("Action terminated. Failed to deleted product image ... ");
+  }
+};
 
-module.exports = { getProduct, createProduct, editProduct, deleteProduct };
+module.exports = {
+  getProduct,
+  getProductsFiltered,
+  createProduct,
+  editProduct,
+  deleteProduct,
+};

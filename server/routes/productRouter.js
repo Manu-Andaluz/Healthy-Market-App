@@ -1,9 +1,19 @@
 const productRouter = require("express").Router();
-const { getProductController, createProductController, editProductController, deleteProductController } = require('../controllers/productController.js')
+const {
+  getProductController,
+  getProductsFilteredController,
+  createProductController,
+  editProductController,
+  deleteProductController,
+} = require("../controllers/productController.js");
 
 // GET ALL PRODUCTS
 
 productRouter.get("/", getProductController);
+
+// FILTER PRODUCTS
+
+productRouter.get("/filterby", getProductsFilteredController);
 
 // CREATE PRODUCT
 
