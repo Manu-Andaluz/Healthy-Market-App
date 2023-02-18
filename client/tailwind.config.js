@@ -12,6 +12,8 @@ module.exports = {
         'crema': '#FEFAE0',
         'beige': '#DDA15E',
         'rosa': '#FAA275',
+        'grisLetter': '#333333',
+        
       },
       fontFamily:{
          "continuo":["Continuo Regular","sans-serif"] ,
