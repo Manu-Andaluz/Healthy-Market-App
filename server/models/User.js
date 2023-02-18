@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema(
     birthday: {
       type: String,
       required: true,
-      get: (dateString) => new Date(dateString),
     },
     age: { type: Number, required: true },
     nationality: { type: String, required: true },
