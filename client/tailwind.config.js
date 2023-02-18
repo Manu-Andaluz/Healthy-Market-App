@@ -14,7 +14,7 @@ module.exports = {
         'rosa': '#FAA275',
       },
       fontFamily:{
-         "continuo":["Continuo Regular","sans-serif"] ,
+         "continuo big":["Continuo Regular","sans-serif"] ,
           "bree":["Thin","sans-serif"],
       },
   },
