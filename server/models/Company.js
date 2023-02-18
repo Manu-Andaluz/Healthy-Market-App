@@ -1,20 +1,22 @@
 const mongoose = require("mongoose");
 
-const companySchema = new mongoose.Schema({
+const companySchema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        require: true,
+      type: String,
+      require: true,
     },
     logo: {
-        type: String,
-        require: true,
+      type: String,
+      require: true,
     },
     description: {
-        type: String,
-        require: true,
+      type: String,
+      require: true,
     },
-    user: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
-});
+  },
+  { timestamps: true }
+);
 
 const Company = mongoose.model("Company", companySchema);
 
