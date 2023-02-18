@@ -35,30 +35,20 @@ const getProductsFilteredController = async (req, res) => {
 // create product
 
 const createProductController = async (req, res) => {
-  const { name, price, image, details, stock, category, companyOwner } =
-    req.body;
+  const { name, price, image, details, stock, category } = req.body;
   try {
-    if (
-      name &&
-      price &&
-      image &&
-      details &&
-      stock &&
-      category &&
-      companyOwner
-    ) {
+    if (name && price && image && details && stock && category) {
       const savedProduct = await createProduct(
         name,
         price,
         image,
         details,
         stock,
-        category,
-        companyOwner
+        category
       );
-      res.status(200).send(savedProduct);
+      res.status(201).send(savedProduct);
     } else {
-      res.status(200).send("Missing data");
+      res.status(404).send("Missing data");
     }
   } catch (error) {
     console.log(error);
