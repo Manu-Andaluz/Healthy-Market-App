@@ -1,4 +1,5 @@
 const { Product } = require("../models/Product.js");
+const cloudinary = require("../utils/cloudinarySetup.js");
 
 // get product
 
@@ -51,24 +52,19 @@ const getProductsFiltered = async (filterBy, categoryValue) => {
 
 // create product
 
-const createProduct = async (
-  name,
-  price,
-  image,
-  details,
-  stock,
-  category,
-  companyOwner
-) => {
-  if (name && price && image && details && stock && category && companyOwner) {
+const createProduct = async (name, price, image, details, stock, category) => {
+  if (name && price && image && details && stock && category) {
+    const uploadedResponse = await cloudinary.uploader.upload(image, {
+      upload_preset: "healthy-market",
+    });
+
     const newProduct = new Product({
       name,
       category,
       details,
       price,
       stock,
-      image,
-      companyOwner,
+      image: uploadedResponse,
     });
 
     const savedProduct = await newProduct.save();

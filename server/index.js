@@ -3,10 +3,12 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const mainRouter = require("./routes/index");
+const morgan = require("morgan");
 
 const app = express();
 
 app.use(express.json());
+app.use(morgan("tiny"));
 app.use(cors());
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
