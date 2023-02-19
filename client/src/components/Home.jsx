@@ -1,9 +1,12 @@
 import React from "react";
+import {useState} from "react";
 import { productsFetch } from "../actions/productActions";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
+import Carousel from "./Carousel";
 import Cards from "./Cards";
 import Card from "./Card";
 import logo from "../pictures/logo2.png";
@@ -12,6 +15,7 @@ import carr2 from "../pictures/carr2.jpg";
 import carr3 from "../pictures/carr3.jpg";
 
 const Home = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const products = useSelector ((state) => state.allProducts)
@@ -177,55 +181,11 @@ const Home = () => {
       <br></br>
       <br></br>
       {/* <Cards/> */}
+     <Carousel/>
 
-      <div className="">
-        <div className="carousel flex flex-row">
-          <div id="slide1" className="carousel-item h-full h-96 ">
-            <img src={carr1} className="flex-none h-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide4" className="btn btn-circle">
-                ❮
-              </a>
-              <a href="#slide2" className="btn btn-circle">
-                ❯
-              </a>
-            </div>
-          </div>
-          <div id="slide2" className="carousel-item relative ">
-            <img src={carr2} className="flex-none h-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide1" className="btn btn-circle">
-                ❮
-              </a>
-              <a href="#slide3" className="btn btn-circle">
-                ❯
-              </a>
-            </div>
-          </div>
-          <div id="slide3" className="carousel-item relative">
-            <img src={carr3} className=" flex-none h-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide2" className="btn btn-circle">
-                ❮
-              </a>
-              <a href="#slide4" className="btn btn-circle">
-                ❯
-              </a>
-            </div>
-          </div>
-          <div id="slide4" className="carousel-item relative w-full">
-            <img src={carr2} className="flex-none h-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide3" className="btn btn-circle">
-                ❮
-              </a>
-              <a href="#slide1" className="btn btn-circle">
-                ❯
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
+      
 
       <footer className="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
