@@ -176,9 +176,9 @@ const Home = () => {
       <br></br>
       <br></br>
       <br></br>
-      {/* <Cards/> */}
+       <Cards/>
 
-      <div className="">
+      {/* <div className="">
         <div className="carousel flex flex-row">
           <div id="slide1" className="carousel-item h-full h-96 ">
             <img src={carr1} className="flex-none h-full" />
@@ -225,7 +225,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <footer className="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">

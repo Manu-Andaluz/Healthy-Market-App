@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../pictures/logo2.png"
 
 const LandingPage = () => {
   return (
@@ -34,7 +35,7 @@ const LandingPage = () => {
             </svg>
           </button>
           <a className="navbar-brand text-grisLetter" href="#!">
-            <img src="https://tse3.mm.bing.net/th?id=OIP.wlcw_FBzjN2zwxNEsm4uDQHaHa&pid=Api&P=0" alt= "logo" className="h-12 w-12 scale-20"/>
+            <img src={logo} alt= "logo" className="h-12 w-12 scale-20"/>
           </a>
         </div>
         <div className="navbar-collapse collapse grow items-center" id="navbarSupportedContentY">
