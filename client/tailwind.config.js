@@ -15,8 +15,9 @@ module.exports = {
     },
     fontFamily: {
       continuo: ["Continuo", "sans-serif"],
-      bree: ["Thin", "sans-serif"],
+      bree: ["bree", "sans-serif"],
     },
-  },
+   
   plugins: [require("flowbite/plugin")],
-};
+}
+}

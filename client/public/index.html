@@ -27,6 +27,7 @@
     <title>React App</title>
     <link href="/dist/output.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.typekit.net/pat7auo.css">
+    <link href="../src/index.css" rel="stylesheet" />
     
   </head>
   <body>
@@ -43,5 +44,16 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <script> 
+    $('#carouselv').jsCarousel({
+        onthumbnailclick: function(src) {
+            alert(src);
+        },
+        autoscroll: true,
+        masked: false,
+        itemstodisplay: 3,
+        orientation: 'v'
+    });
+    </script>
   </body>
 </html>
