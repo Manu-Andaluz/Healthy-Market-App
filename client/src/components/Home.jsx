@@ -8,11 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Carousel from "./Carousel";
 import Cards from "./Cards";
-import Card from "./Card";
+
 import logo from "../pictures/logo2.png";
-import carr1 from "../pictures/carr1.jpg";
-import carr2 from "../pictures/carr2.jpg";
-import carr3 from "../pictures/carr3.jpg";
 
 const Home = () => {
 
@@ -180,12 +177,10 @@ const Home = () => {
       <br></br>
       <br></br>
       <br></br>
-      {/* <Cards/> */}
+
      <Carousel/>
 
-
-
-      
+       <Cards/>
 
       <footer className="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
