@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Carousel from "./Carousel";
 import Cards from "./Cards";
-import Card from "./Card";
+
 import logo from "../pictures/logo2.png";
 
 const Home = () => {
