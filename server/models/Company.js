@@ -7,7 +7,7 @@ const companySchema = new mongoose.Schema(
       require: true,
     },
     logo: {
-      type: String,
+      type: Object,
       require: true,
     },
     description: {
@@ -20,4 +20,4 @@ const companySchema = new mongoose.Schema(
 
 const Company = mongoose.model("Company", companySchema);
 
-module.exports = Company;
+module.exports = { Company };
