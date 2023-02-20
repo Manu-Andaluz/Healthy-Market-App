@@ -1,5 +1,5 @@
 import React from "react";
-import {useState} from "react";
+import { useState } from "react";
 import { productsFetch } from "../actions/productActions";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -12,7 +12,6 @@ import Cards from "./Cards";
 import logo from "../pictures/logo2.png";
 
 const Home = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const products = useSelector ((state) => state.allProducts)
@@ -167,11 +166,11 @@ const Home = () => {
         </nav>
       </div>
       {/* <Cards/> */}
-     <Carousel/>      
-    <br/>
-     <Cards/>
-     <br></br>
-     <br></br>
+      <Carousel />
+      <br />
+      <Cards />
+      <br></br>
+      <br></br>
       <footer className="p-4 bg-amarillo rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span className="text-xs text-gray-500 sm:text-center dark:text-gray-400">
           © 2023{" "}
@@ -188,7 +187,7 @@ const Home = () => {
           </li>
           <li>
             <a href="/about" className="mr-4 hover:underline md:mr-6">
-             Sobre Nosotros
+              Sobre Nosotros
             </a>
           </li>
           <li>

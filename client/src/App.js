@@ -5,6 +5,7 @@ import LandingPage from "./components/LandingPage";
 import Home from "./components/Home";
 import About from "./components/About";
 import RegisterForm from "./components/RegisterForm";
+import LoginForm from "./components/LoginForm";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<RegisterForm />} />
+          <Route path="/login" element={<LoginForm />} />
         </Routes>
       </BrowserRouter>
     </div>
