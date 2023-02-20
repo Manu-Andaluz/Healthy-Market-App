@@ -10,7 +10,7 @@ const {
 // get product
 
 const getProductController = async (req, res) => {
-  const { productName } = req.body;
+  const { productName } = req.query;
   try {
     const savedProduct = await getProduct(productName);
     res.status(200).send(savedProduct);
