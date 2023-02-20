@@ -12,6 +12,7 @@ module.exports = {
       crema: "#FEFAE0",
       beige: "#DDA15E",
       rosa: "#FAA275",
+      amarillo:"#F9E79F",
     },
     fontFamily: {
       continuo: ["Continuo", "sans-serif"],

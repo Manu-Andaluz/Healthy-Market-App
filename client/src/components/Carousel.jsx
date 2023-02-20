@@ -2,7 +2,6 @@ import React from "react";
 import {useState} from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
-import carousel1 from "../pictures/carousel1.jpg";
 
 
 

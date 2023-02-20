@@ -29,10 +29,10 @@ const Home = () => {
             <a href="https://flowbite.com/" className="flex items-center">
               <img
                 src={logo}
-                className="h-14 pr-4 text-4xl"
+                className="h-16 pr-6 text-6xl"
                 alt="Flowbite Logo"
               />
-              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white font-continuo">
+              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white font-continuo">
                 Healthy market app
               </span>
             </a>
@@ -103,7 +103,7 @@ const Home = () => {
               <button
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
-                className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="inline-flex items-center p-2 ml-1 text-xl text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 aria-controls="mobile-menu-2"
                 aria-expanded="false"
               >
@@ -127,7 +127,7 @@ const Home = () => {
               className="bg-green2 important! items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
               id="mobile-menu-2"
             >
-              <ul className="bg-green2 flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <ul className="backgroundgreen2 flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
                   <a
                     href="#"
@@ -174,18 +174,16 @@ const Home = () => {
           </div>
         </nav>
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
-
-     <Carousel/>
-
-       <Cards/>
-
-      <footer className="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
-        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+      {/* <Cards/> */}
+     <Carousel/>      
+    <br/>
+     <Cards/>
+     <br></br>
+     <br></br>
+      <footer className="p-4 bg-amarillo rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
+        <span className="text-xs text-gray-500 sm:text-center dark:text-gray-400">
           © 2023{" "}
-          <a href="https://flowbite.com/" className="hover:underline">
+          <a href="https://flowbite.com/" className="hover:underline ">
             Healthy Market App™
           </a>
           . All Rights Reserved.
