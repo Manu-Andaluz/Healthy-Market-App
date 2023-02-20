@@ -5,6 +5,7 @@ const {
   createProductController,
   editProductController,
   deleteProductController,
+  getProductByIdController,
 } = require("../controllers/productController.js");
 
 // GET ALL PRODUCTS
@@ -26,5 +27,9 @@ productRouter.put("/editProduct/:productId", editProductController);
 // DELETE PRODUCT
 
 productRouter.delete("/:id", deleteProductController);
+
+// GET BY ID
+
+productRouter.get("getProductById/:productId", getProductByIdController);
 
 module.exports = productRouter;

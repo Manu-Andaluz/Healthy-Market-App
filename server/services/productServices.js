@@ -137,10 +137,18 @@ const deleteProduct = async (productId) => {
   }
 };
 
+// get by id
+
+const getProductById = async (id) => {
+  const product = await Product.findyById(id);
+  return product;
+};
+
 module.exports = {
   getProduct,
   getProductsFiltered,
   createProduct,
   editProduct,
   deleteProduct,
+  getProductById,
 };
