@@ -14,3 +14,11 @@ export const productsFetch = createAsyncThunk(
     }
     
   );
+
+export const searchProducts = createAsyncThunk(
+    'products/search',
+    async (query) => {
+      const response = await axios.get("https://healthy-market-app-production.up.railway.app/products?productName=" + query);
+      return response.data;
+    }
+  ); 
