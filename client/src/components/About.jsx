@@ -1,10 +1,10 @@
 import React from "react";
-import  NavBar from "./NavBar";
+import NavBar from "./NavBar";
 
 const About = () => {
   return (
     <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">
-      <NavBar/>
+      <NavBar />
       <div className="flex flex-col lg:flex-row justify-between gap-8">
         <div className="w-full lg:w-5/12 flex flex-col justify-center">
           <h1 className="text-3xl lg:text-4xl font-continuo leading-9 text-green1 pb-4 ">
@@ -39,10 +39,10 @@ const About = () => {
             Nuestra historia
           </h1>
           <p className="font-bree text-base leading-6 text-gray-600 ">
-            Somos un grupo de desarrolladores que hemos
-            sobrevivido a un bootcamp de más de 800 horas de código, y
-            estamos trabajando en nuestro proyecto final esperando que disfruten
-            del resultado tanto como nosotros disfrutamos del proceso.
+            Somos un grupo de desarrolladores que hemos sobrevivido a un
+            bootcamp de más de 800 horas de código, y estamos trabajando en
+            nuestro proyecto final esperando que disfruten del resultado tanto
+            como nosotros disfrutamos del proceso.
           </p>
         </div>
         <div className=" flex w-full lg:w-7/12 lg:pt-8">
@@ -111,12 +111,12 @@ const About = () => {
             <div className="p-4 pb-6 flex justify-center flex-col items-center">
               <img
                 className="md:block hidden rounded-full"
-                src=""
+                src="https://avatars.githubusercontent.com/u/90361432?v=4"
                 alt="Juan featured img"
               />
               <img
                 className="md:hidden block rounded-full p-12"
-                src=""
+                src="https://avatars.githubusercontent.com/u/90361432?v=4"
                 alt="Juan featured img"
               />
               <p className="font-bree text-xl leading-5 text-green1 mt-4">
@@ -126,12 +126,12 @@ const About = () => {
             <div className="p-4 pb-6 flex justify-center flex-col items-center">
               <img
                 className="md:block hidden rounded-full"
-                src=""
+                src="https://avatars.githubusercontent.com/u/93899648?v=4"
                 alt="Nau featured img"
               />
               <img
                 className="md:hidden block rounded-full p-12"
-                src=""
+                src="https://avatars.githubusercontent.com/u/93899648?v=4"
                 alt="Nau featured img"
               />
               <p className="font-bree text-xl leading-5 text-green1 mt-4">
@@ -141,12 +141,12 @@ const About = () => {
             <div className="p-4 pb-6 flex justify-center flex-col items-center">
               <img
                 className="md:block hidden rounded-full"
-                src=""
+                src="https://avatars.githubusercontent.com/u/100233822?v=4"
                 alt="Cristo featured img"
               />
               <img
                 className="md:hidden block rounded-full p-12"
-                src=""
+                src="https://avatars.githubusercontent.com/u/100233822?v=4"
                 alt="Cristo featured img"
               />
               <p className="font-bree text-xl leading-5 text-green1 mt-4">
