@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { url } from "./apiSlice";
-import { productsFetch } from "../actions/productActions";
+import { productsFetch , searchProducts} from "../actions/productActions";
 
 const initialState = {
   allProducts: [],
@@ -26,8 +26,16 @@ const productSlice = createSlice({
     [productsFetch.rejected]: (state, action) => {
       state.status = "rejected";
     },
-    
-
+    [searchProducts.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [searchProducts.fulfilled]: (state, action) => {
+      state.allProducts = action.payload;
+      state.status = "success";
+    },
+    [searchProducts.rejected]: (state, action) => {
+      state.status = "rejected";
+    }
   },
 });
 
