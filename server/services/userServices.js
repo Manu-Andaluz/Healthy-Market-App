@@ -1,4 +1,6 @@
 const { User } = require("../models/User");
+const bcrypt = require("bcrypt");
+const generateAuthToken = require("../utils/generateAuthToken");
 
 const getAllUsers = async () => {
   const user = await User.find();
@@ -9,7 +11,6 @@ const createUser = async (
   name,
   surname,
   birthday,
-  age,
   nationality,
   adress,
   email,
@@ -19,7 +20,6 @@ const createUser = async (
     !name ||
     !surname ||
     !birthday ||
-    !age ||
     !nationality ||
     !adress ||
     !email ||
@@ -34,15 +34,39 @@ const createUser = async (
     name,
     surname,
     birthday,
-    age,
     nationality,
     adress,
     email,
     password,
   });
 
+  user.password = await bcrypt.hash(user.password, 10);
+
   await user.save();
-  return "User has been created!";
+
+  const token = generateAuthToken(user);
+
+  user.password = null;
+
+  return { message: "User has been created!", accessToken: token, user: user };
 };
 
-module.exports = { getAllUsers, createUser };
+const loginUser = async (email, password) => {
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return "User is not registered";
+  }
+
+  const validatePassword = await bcrypt.compare(password, user.password);
+
+  if (!validatePassword) {
+    return "User or Password is incorrect";
+  }
+
+  const token = generateAuthToken(user);
+
+  return { message: "User has been logged!", accessToken: token, user: user };
+};
+
+module.exports = { getAllUsers, createUser, loginUser };

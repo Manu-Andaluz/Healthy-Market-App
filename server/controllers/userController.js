@@ -1,4 +1,8 @@
-const { getAllUsers, createUser } = require("../services/userServices");
+const {
+  getAllUsers,
+  createUser,
+  loginUser,
+} = require("../services/userServices");
 
 const getUsersController = async (req, res) => {
   try {
@@ -9,15 +13,14 @@ const getUsersController = async (req, res) => {
   }
 };
 
-const postUsersController = async (req, res) => {
-  const { name, surname, birthday, age, nationality, adress, email, password } =
+const registerController = async (req, res) => {
+  const { name, surname, birthday, nationality, adress, email, password } =
     req.body;
   try {
     const message = await createUser(
       name,
       surname,
       birthday,
-      age,
       nationality,
       adress,
       email,
@@ -29,4 +32,14 @@ const postUsersController = async (req, res) => {
   }
 };
 
-module.exports = { getUsersController, postUsersController };
+const loginController = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await loginUser(email, password);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = { getUsersController, registerController, loginController };
