@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchProducts } from '../actions/productActions';
+import lupa from '../pictures/lupa.png'
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -24,13 +25,15 @@ export default function SearchBar() {
   return (
     <div>
       <form className="form" onSubmit={onSubmit}>
-        <input
+        <input className='w-60 mx--10 border-1 h-5 border-black rounded-lg'
           type="text"
           placeholder="Nombre del producto..."
           onChange={onInputChange}
           value={search}
         />
-        <input className="btn" type="submit" value="Buscar" />
+        <button className='mr-12  w-10 '>
+                <img className="" type="submit" src={lupa} ></img>
+            </button>
       </form>
     </div>
   );
