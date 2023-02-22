@@ -140,7 +140,7 @@ const deleteProduct = async (productId) => {
 // get by id
 
 const getProductById = async (id) => {
-  const product = await Product.findyById(id);
+  const product = await Product.findById(id);
   return product;
 };
 
