@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loadUser } from "./slices/userSlice";
 import CardDetail from "./components/CardDetail";
-import Error404 from "./components/Error404";
+import Error from "./components/Error";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ function App() {
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path='/detail/:productId' element ={<CardDetail/>}/>
-          <Route path="*" element={<Error404/>} />
+          <Route path="*" element={<Error/>} />
         </Routes>
       </BrowserRouter>
     </div>

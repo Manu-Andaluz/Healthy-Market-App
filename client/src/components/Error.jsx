@@ -2,7 +2,7 @@ import React from 'react'
 import sad from "../pictures/triste.png"
 
 
-export default function Error404(){
+export default function Error(){
     return(
         <div>
             <h3 className='text-9xl text-center'>404</h3>
