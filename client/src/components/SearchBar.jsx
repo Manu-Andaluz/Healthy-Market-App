@@ -27,7 +27,7 @@ export default function SearchBar() {
       <form className="form" onSubmit={onSubmit}>
         <input className='w-60 mx--10 border-1 h-5 border-black rounded-lg'
           type="text"
-          placeholder="Nombre del producto..."
+          placeholder="Buscar productos..."
           onChange={onInputChange}
           value={search}
         />
