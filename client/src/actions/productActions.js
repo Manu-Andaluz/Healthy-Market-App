@@ -22,3 +22,13 @@ export const searchProducts = createAsyncThunk(
       return response.data;
     }
   ); 
+
+  export const findProductById = createAsyncThunk(
+    'products/findProductById',
+    async(productId) =>{
+      const response = await axios.get(`https://healthy-market-app-production.up.railway.app/products/getProductById/${productId}`);
+      console.log(response.data, "consolog de data");
+      return response.data;
+      
+    }
+  )

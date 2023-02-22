@@ -9,6 +9,7 @@ import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import Carousel from "./Carousel";
 import Cards from "./Cards";
+import CardDetail from "./CardDetail";
 
 import logo from "../pictures/logo2.png";
 import Footer from "./Footer";
@@ -34,6 +35,7 @@ const Home = () => {
       <Carousel />
       <Cards />
       <Footer />
+      <CardDetail/>
     </>
   );
 };

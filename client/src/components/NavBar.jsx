@@ -14,7 +14,7 @@ export default function NavBar() {
     dispatch(logoutUser());
   };
   return (
-    <nav className="relative px-4 py-5 flex justify-between items-center dark:bg-gray-800">
+    <nav className="relative px-4 py-5 flex justify-between items-center bg-gray-800">
       <NavLink to="/">
         <p
           className="text-2xl text-white font-bold leading-none flex items-center"
