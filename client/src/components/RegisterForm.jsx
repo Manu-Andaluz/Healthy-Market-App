@@ -8,13 +8,13 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({
-    name: "manu",
-    surname: "perez",
-    birthday: "2023-02-10",
-    nationality: "México",
-    adress: { zip: "5501", city: "Mendocity", adress: "Rafael Obligado" },
-    email: "manupeandaluz@gmail.com",
-    password: "manuel123",
+    name: "",
+    surname: "",
+    birthday: "",
+    nationality: "",
+    adress: { zip: "", city: "", adress: "" },
+    email: "",
+    password: "",
   });
 
   useEffect(() => {
