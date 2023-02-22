@@ -1,14 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
   const user = useSelector((state) => state.user);
+  let activeStyle = {
+    color: "#03C988",
+  };
   return (
-    <nav className="relative px-4 py-5 flex justify-between items-center bg-green2">
-      <p className="text-2xl font-bold leading-none flex items-center" href="#">
-        Healthy Market 🌿
-      </p>
+    <nav className="relative px-4 py-5 flex justify-between items-center dark:bg-gray-800">
+      <NavLink to="/">
+        <p
+          className="text-2xl text-white font-bold leading-none flex items-center"
+          href="#"
+        >
+          Healthy Market 🌿
+        </p>
+      </NavLink>
       <div className="lg:hidden">
         <button className="navbar-burger flex items-center text-blue-600 p-3">
           <svg
@@ -21,13 +29,14 @@ export default function NavBar() {
           </svg>
         </button>
       </div>
-      <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+      <ul className="hidden absolute top-1/2 left-1/2 text-white transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
         <li>
-          <Link to="/">
-            <p className="text-lg font-bold text-gray-400 hover:text-gray-500">
-              Home
-            </p>
-          </Link>
+          <NavLink
+            to="/home"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            <p className="text-lg font-bold ">Home</p>
+          </NavLink>
         </li>
         <li className="text-gray-300">
           <svg
@@ -46,11 +55,9 @@ export default function NavBar() {
           </svg>
         </li>
         <li>
-          <Link to="/">
-            <p className="text-lg font-bold text-gray-400 hover:text-gray-500">
-              Productos
-            </p>
-          </Link>
+          <NavLink to="/products">
+            <p className="text-lg font-bold ">Productos</p>
+          </NavLink>
         </li>
         <li className="text-gray-300">
           <svg
@@ -69,11 +76,9 @@ export default function NavBar() {
           </svg>
         </li>
         <li>
-          <Link to="/">
-            <p className="text-lg font-bold text-gray-400 hover:text-gray-500">
-              Sobre Nosotros
-            </p>
-          </Link>
+          <NavLink to="/about">
+            <p className="text-lg font-bold ">Sobre Nosotros</p>
+          </NavLink>
         </li>
         <li className="text-gray-300">
           <svg
@@ -92,25 +97,23 @@ export default function NavBar() {
           </svg>
         </li>
         <li>
-          <Link to="/">
-            <p className="text-lg font-bold text-gray-400 hover:text-gray-500">
-              Contacto
-            </p>
-          </Link>
+          <NavLink to="/contact">
+            <p className="text-lg font-bold ">Contacto</p>
+          </NavLink>
         </li>
       </ul>
       {user.email ? (
-        <Link to="/login">
+        <NavLink to="/login">
           <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-lg  text-gray-900 font-bold  rounded-xl transition duration-200">
             Logout
           </p>
-        </Link>
+        </NavLink>
       ) : (
-        <Link to="/login">
+        <NavLink to="/login">
           <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-lg  text-gray-900 font-bold  rounded-xl transition duration-200">
             Sign In
           </p>
-        </Link>
+        </NavLink>
       )}
     </nav>
   );
