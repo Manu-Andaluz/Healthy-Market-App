@@ -48,7 +48,7 @@ const createUser = async (
 
   user.password = null;
 
-  return { message: "User has been created!", accessToken: token, user: user };
+  return token;
 };
 
 const loginUser = async (email, password) => {
@@ -66,7 +66,7 @@ const loginUser = async (email, password) => {
 
   const token = generateAuthToken(user);
 
-  return { message: "User has been logged!", accessToken: token, user: user };
+  return { message: "User has been logged!", accessToken: token };
 };
 
 module.exports = { getAllUsers, createUser, loginUser };
