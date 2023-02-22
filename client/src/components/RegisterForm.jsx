@@ -1,21 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { registerUser } from "../actions/userActions";
+import { useDispatch } from "react-redux";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+
   const [form, setForm] = useState({
-    name: "",
-    surname: "",
-    birthday: "",
-    nationality: "",
-    adress: { zip: "", city: "", adress: "" },
-    email: "",
-    password: "",
+    name: "manu",
+    surname: "perez",
+    birthday: "2023-02-10",
+    nationality: "México",
+    adress: { zip: "5501", city: "Mendocity", adress: "Rafael Obligado" },
+    email: "manupeandaluz@gmail.com",
+    password: "manuel123",
   });
 
   useEffect(() => {
-    console.log(form);
-  }, [form]);
+    //console.log(form);
+  }, []);
 
   const changeHandler = (e) => {
     if (
@@ -36,6 +40,7 @@ const RegisterForm = () => {
 
   const handleOnClick = (e) => {
     e.preventDefault();
+    dispatch(registerUser(form));
   };
 
   return (
@@ -223,7 +228,7 @@ const RegisterForm = () => {
           <div className="flex m-auto justify-center items-center py-5 gap-4">
             <Link to="/login">Iniciar Sessión</Link>
             <button
-              onClick={changeHandler}
+              onClick={handleOnClick}
               className=" bg-green1 hover:bg-hoverGreen1 text-white font-bold py-2 px-4 rounded"
             >
               Registrarse

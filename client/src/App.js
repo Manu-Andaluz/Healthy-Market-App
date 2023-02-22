@@ -6,8 +6,17 @@ import Home from "./components/Home";
 import About from "./components/About";
 import RegisterForm from "./components/RegisterForm";
 import LoginForm from "./components/LoginForm";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadUser } from "./slices/userSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser(null));
+  }, [dispatch]);
+
   return (
     <div className="App">
       <BrowserRouter>
