@@ -8,6 +8,7 @@ import LoginForm from "./components/LoginForm";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loadUser } from "./slices/userSlice";
+import CardDetail from "./components/CardDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
+          <Route path='/detail/:productId' element ={<CardDetail/>}/>
         </Routes>
       </BrowserRouter>
     </div>
