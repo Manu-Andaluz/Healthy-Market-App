@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { url } from "./apiSlice";
-import { productsFetch , searchProducts} from "../actions/productActions";
+import { productsFetch, searchProducts } from "../actions/productActions";
 
 const initialState = {
   allProducts: [],
@@ -35,9 +35,8 @@ const productSlice = createSlice({
     },
     [searchProducts.rejected]: (state, action) => {
       state.status = "rejected";
-    }
+    },
   },
 });
-
 
 export default productSlice.reducer;
