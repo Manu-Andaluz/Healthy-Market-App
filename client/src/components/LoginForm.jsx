@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import NavBar from "./NavBar";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../actions/userActions";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,6 +18,7 @@ const LoginForm = () => {
 
   const handleOnClick = (e) => {
     e.preventDefault();
+    dispatch(loginUser(form));
   };
 
   return (
@@ -69,7 +69,7 @@ const LoginForm = () => {
               <Link to="/register">Crear Cuenta</Link>
               <button
                 className=" bg-green1 hover:bg-hoverGreen1 text-white font-bold py-2 px-4 rounded"
-                onSubmit={handleOnClick}
+                onClick={handleOnClick}
               >
                 Iniciar Sessión
               </button>

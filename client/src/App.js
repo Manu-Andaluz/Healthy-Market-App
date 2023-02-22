@@ -13,7 +13,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadUser(null));
+    dispatch(loadUser());
   }, [dispatch]);
 
   return (

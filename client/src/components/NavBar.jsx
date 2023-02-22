@@ -1,11 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { logoutUser } from "../slices/userSlice";
 
 export default function NavBar() {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   let activeStyle = {
     color: "#03C988",
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
   };
   return (
     <nav className="relative px-4 py-5 flex justify-between items-center dark:bg-gray-800">
@@ -117,11 +123,11 @@ export default function NavBar() {
         </li>
       </ul>
       {user.email ? (
-        <NavLink to="/login">
+        <button onClick={handleLogout}>
           <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-lg  text-gray-900 font-bold  rounded-xl transition duration-200">
             Logout
           </p>
-        </NavLink>
+        </button>
       ) : (
         <NavLink to="/login">
           <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-lg  text-gray-900 font-bold  rounded-xl transition duration-200">
