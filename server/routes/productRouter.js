@@ -30,6 +30,6 @@ productRouter.delete("/:id", deleteProductController);
 
 // GET BY ID
 
-productRouter.get("getProductById/:productId", getProductByIdController);
+productRouter.get("/getProductById/:productId", getProductByIdController);
 
 module.exports = productRouter;

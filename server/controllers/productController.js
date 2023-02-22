@@ -96,11 +96,12 @@ const deleteProductController = async (req, res) => {
 
 const getProductByIdController = async (req, res) => {
   const { productId } = req.params;
+
   try {
     const product = await getProductById(productId);
     res.status(200).send(product);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(400).send(error);
   }
 };
 
