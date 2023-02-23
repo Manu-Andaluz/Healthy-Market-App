@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
-import { registerUser } from "../actions/userActions";
+import { registerUser, loginUser } from "../actions/userActions";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -30,6 +30,17 @@ const userSlice = createSlice({
         };
       } else return { ...state };
     },
+    logoutUser(state, action) {
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        token: "",
+        name: "",
+        email: "",
+        _id: "",
+        isAdmin: false,
+      };
+    },
   },
   extraReducers: {
     [registerUser.pending]: (state, action) => {
@@ -49,9 +60,26 @@ const userSlice = createSlice({
     [registerUser.rejected]: (state, action) => {
       state.status = "rejected";
     },
+    [loginUser.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [loginUser.fulfilled]: (state, action) => {
+      const user = jwtDecode(state.token);
+      return {
+        ...state,
+        token: action.payload,
+        name: user.name,
+        email: user.email,
+        _id: user._id,
+        isAdmin: user.isAdmin,
+      };
+    },
+    [loginUser.rejected]: (state, action) => {
+      state.status = "rejected";
+    },
   },
 });
 
-export const { loadUser } = userSlice.actions;
+export const { loadUser, logoutUser } = userSlice.actions;
 
 export default userSlice.reducer;

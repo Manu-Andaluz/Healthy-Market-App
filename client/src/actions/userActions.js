@@ -18,3 +18,16 @@ export const registerUser = createAsyncThunk("user/userFetch", async (user) => {
 
   return token.data;
 });
+
+export const loginUser = createAsyncThunk("user/userFetch", async (user) => {
+  const token = await axios.post(
+    "https://healthy-market-app-production.up.railway.app/users/loggin",
+    {
+      email: user.email,
+      password: user.password,
+    }
+  );
+  localStorage.setItem("token", token.data.accessToken);
+
+  return token.data.accessToken;
+});
