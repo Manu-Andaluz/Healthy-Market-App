@@ -3,7 +3,7 @@ import { productsFetch } from "../actions/productActions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Cards = () => {
       {products &&
         products.allProducts.map((product) => {
           return (
-            <a href="/details" className="group">
+            <Link to={`/detail/${product._id}`}>
               <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                 <img
                   src={product.image.url}
@@ -35,7 +35,7 @@ const Cards = () => {
               <p className="mt-1 text-lg font-continuo text-gray-900">
                 ${product.price}
               </p>
-            </a>
+            </Link>
           );
         })}
     </div>

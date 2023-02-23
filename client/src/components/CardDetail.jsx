@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { findProductById } from "../actions/productActions";
+import { addToCart } from '../slices/cartSlice';
+import { useNavigate } from "react-router-dom";
 
 const CardDetail = () =>{
     const { productId } = useParams();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const productDet = useSelector((state) => state.productDetail);
 
@@ -15,7 +17,11 @@ const CardDetail = () =>{
         dispatch(findProductById(productId));
       }, []);
 
-
+      const handleOnClick =(item)=>{
+        dispatch(addToCart(item))
+        navigate("/cart");
+        console.log('handleSubmit')
+      }
       return (
         <div>
             {/* <!-- component --> */}
@@ -40,9 +46,8 @@ const CardDetail = () =>{
                         {/* <span class="text-2xl leading-none align-baseline">.99</span> */}
                     </div>
                     <div class="inline-block align-bottom">
-                        <button class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold"><i class="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO </button>
+                        <button onClick={()=>handleOnClick(productDet.productDetail)} class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold"><i class="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO </button>
                     </div>
-                    
                 </div>
             </div>
         </div>
