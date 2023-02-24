@@ -8,10 +8,8 @@ export default function SearchBar() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-
     dispatch(searchProducts(search));
   }, [search]);
-
 
   function onInputChange(e) {
     setSearch(e.target.value);

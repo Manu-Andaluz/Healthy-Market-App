@@ -6,11 +6,10 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart } from "../slices/cartSlice";
 
-const Cards = (currentProduct) => {
+const CardHome = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //const products = useSelector((state) => state.allProducts);
-  //const currentPage = useSelector((state) => state.allProducts.currentPage);
+  const products = useSelector((state) => state.allProducts);
 
   useEffect(() => {
     dispatch(productsFetch());
@@ -24,8 +23,8 @@ const Cards = (currentProduct) => {
 
   return (
     <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 px-5 mt-3">
-      {currentProduct.currentProduct &&
-        currentProduct.currentProduct.map((product) => {
+      {products &&
+        products.allProducts.map((product) => {
           return (
             <div className="grid place-content-center text-center">
               <Link to={`/detail/${product._id}`}>
@@ -57,4 +56,4 @@ const Cards = (currentProduct) => {
   );
 };
 
-export default Cards;
+export default CardHome;
