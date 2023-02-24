@@ -4,17 +4,20 @@ const cloudinary = require("../utils/cloudinarySetup.js");
 // get product
 
 const getProduct = async (name) => {
-  let products;
+  let allData = await Product.find();
 
   if (name) {
-    products = await Product.find({
-      name: name,
-    });
-  } else {
-    products = await Product.find();
+    const products = allData.filter((a) =>
+      a.name.toLowerCase().includes(name.toLowerCase())
+    ); // I bring everything that matches
+    if (products.length > 0) {
+      return products;
+    } else {
+      return [];
+    }
   }
 
-  return products;
+  return allData;
 };
 
 // filter
