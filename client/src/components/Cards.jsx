@@ -6,14 +6,17 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart } from "../slices/cartSlice";
 
-const Cards = () => {
+const Cards = (currentProduct) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const products = useSelector((state) => state.allProducts);
-
+  // const products = useSelector((state) => state.allProducts);
+  const currentPage = useSelector((state) => state.allProducts.currentPage)
+  
+  console.log(currentPage + "Holaaa")
   useEffect(() => {
     dispatch(productsFetch());
   }, []);
+
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
@@ -21,10 +24,11 @@ const Cards = () => {
     console.log("handleSubmit");
   };
 
+
   return (
     <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 px-5 mt-3">
-      {products &&
-        products.allProducts.map((product) => {
+      {
+        currentProduct.currentProduct && currentProduct.currentProduct.map((product) => {
           return (
             <div className="grid place-content-center text-center">
               <Link to={`/detail/${product._id}`}>
