@@ -15,7 +15,7 @@ const Filter = () => {
 
   return (
     <div>
-      <button onClick={() => handleFilter("alfabetic-A-Z")}>Alfabetic A-Z</button> 
+      <button onClick={() => handleFilter("alfabetic-A-Z")}>Alfabetic A-Z</button>
       <br/>
       <button onClick={() => handleFilter("alfabetic-Z-A")}>Alfabetic Z-A</button>
       <br/>

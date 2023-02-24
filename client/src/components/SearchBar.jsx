@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { searchProducts } from '../actions/productActions';
-import lupa from '../pictures/lupa.png'
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { searchProducts } from "../actions/productActions";
+import lupa from "../pictures/lupa.png";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
+<<<<<<< HEAD
     dispatch(searchProducts(search))
   }, [search]);
 
@@ -15,6 +16,10 @@ export default function SearchBar() {
     e.preventDefault();
     
   }
+=======
+    dispatch(searchProducts(search));
+  }, [search]);
+>>>>>>> main
 
   function onInputChange(e) {
     setSearch(e.target.value);
@@ -22,16 +27,17 @@ export default function SearchBar() {
 
   return (
     <div>
-      <form className="form" onSubmit={onSubmit}>
-        <input className='w-60 mx--10 border-1 h-5 border-black rounded-lg'
+      <form className="form">
+        <input
+          className="w-60 mx--10 border-1 h-5 border-black rounded-lg"
           type="text"
           placeholder="Buscar productos..."
           onChange={onInputChange}
           value={search}
         />
-        <button className='mr-12  w-10 '>
-                <img className="" type="submit" src={lupa} ></img>
-            </button>
+        <button className="mr-12  w-10 ">
+          <img className="" type="submit" src={lupa} alt="lupita" />
+        </button>
       </form>
     </div>
   );

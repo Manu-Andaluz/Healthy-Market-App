@@ -7,6 +7,7 @@ const initialState = {
   allProducts: [],
   products: [],
   favouritesProducts: [],
+  currentPage : 1,
   status: null,
   errors: null,
 };
@@ -14,7 +15,11 @@ const initialState = {
 const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    changePage : (state, action)=> {
+      state.currentPage = action.payload
+    }
+  },
   extraReducers: {
     [productsFetch.pending]: (state, action) => {
       state.status = "pending";
@@ -38,5 +43,7 @@ const productSlice = createSlice({
     },
   },
 });
+
+export const {changePage} = productSlice.actions;
 
 export default productSlice.reducer;
