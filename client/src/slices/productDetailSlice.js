@@ -11,7 +11,9 @@ const initialState = {
 const productDetailSlice = createSlice({
     name: "productDetail",
     initialState,
-    reducers: {},
+    reducers: {
+      
+      },
     extraReducers: {
         [findProductById.pending]: (state, action) => {
             state.status = "pending";
@@ -26,5 +28,6 @@ const productDetailSlice = createSlice({
           },
     }})
 
+    
 
     export default productDetailSlice.reducer;
