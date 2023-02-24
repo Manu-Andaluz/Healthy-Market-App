@@ -10,7 +10,6 @@ const Cards = (currentProduct) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   //const products = useSelector((state) => state.allProducts);
-  //const currentPage = useSelector((state) => state.allProducts.currentPage);
 
   useEffect(() => {
     dispatch(productsFetch());
