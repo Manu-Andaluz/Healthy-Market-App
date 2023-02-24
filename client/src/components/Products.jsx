@@ -1,11 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { productsFetch } from "../actions/productActions";
-import { fetchFilteredProducts } from "../actions/filterActions"; // importamos fetchFilteredProducts
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import Cards from "./Cards";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
@@ -37,19 +35,6 @@ const Products = () => {
   useEffect(() => {
     dispatch(productsFetch()).then(() => setLoad(false));
   }, [dispatch]);
-
-  const handleFilter = async (filterBy, categoryValue) => {
-    // convertimos la función en asíncrona
-    setFilters({ filterBy, categoryValue });
-    try {
-      const filteredProducts = await dispatch(
-        fetchFilteredProducts({ filterBy, categoryValue })
-      ); // llamamos a fetchFilteredProducts con los filtros correspondientes
-      console.log(filteredProducts); // imprimimos los productos filtrados en la consola
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   if (load) {
     return <Loading />;
