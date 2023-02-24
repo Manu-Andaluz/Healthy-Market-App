@@ -42,7 +42,7 @@ export const fetchFilteredProducts = createAsyncThunk(
   async (filterBy) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/products/filterBy?filterBy=${filterBy}`
+        `https://healthy-market-app-production.up.railway.app/products/filterBy?filterBy=${filterBy}`
       );
       return response.data;
     } catch (error) {
@@ -57,7 +57,7 @@ export const fetchCategoryProducts = createAsyncThunk(
   async ({ category }) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/products/category?categoryValue=${category}`
+        `https://healthy-market-app-production.up.railway.app/products/category?categoryValue=${category}`
       );
       return response.data;
     } catch (error) {
@@ -70,10 +70,9 @@ export const fetchCategoryProducts = createAsyncThunk(
 export const fetchFilterCategoryProducts = createAsyncThunk(
   "products/fetchFilteredProducts",
   async ({ category, filterBy }) => {
-    console.log("2");
     try {
       const response = await axios.get(
-        `http://localhost:5000/products/category?categoryValue=${category}&filterBy=${filterBy}`
+        `https://healthy-market-app-production.up.railway.app/products/category?categoryValue=${category}&filterBy=${filterBy}`
       );
       return response.data;
     } catch (error) {
