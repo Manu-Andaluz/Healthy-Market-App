@@ -8,18 +8,10 @@ export default function SearchBar() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-<<<<<<< HEAD
-    dispatch(searchProducts(search))
-  }, [search]);
 
-  function onSubmit(e) {
-    e.preventDefault();
-    
-  }
-=======
     dispatch(searchProducts(search));
   }, [search]);
->>>>>>> main
+
 
   function onInputChange(e) {
     setSearch(e.target.value);
