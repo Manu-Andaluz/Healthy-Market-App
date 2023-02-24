@@ -56,7 +56,6 @@ const Filter = () => {
   return (
     <div>
       <select name="filters" onChange={changeFilter} onClick={handleFilter}>
-        <option value="ordenamiento">Productos</option>
         <option value="alfabetic-A-Z">Alfabetic (A-Z)</option>
         <option value="alfabetic-Z-A">Alfabetic (Z-A)</option>
         <option value="cheapper-products">cheapper-products</option>
@@ -64,8 +63,8 @@ const Filter = () => {
       </select>
       <select
         name="category"
-        onChange={handleFilterCategory}
-        onClick={changeCategory}
+        onChange={changeCategory}
+        onClick={handleFilterCategory}
       >
         <option value="categoria">Categoría</option>
         <option value="Vegetariano">Vegetariano</option>
