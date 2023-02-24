@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const registerUser = createAsyncThunk("user/userFetch", async (user) => {
+  console.log(user);
   const token = await axios.post(
     "https://healthy-market-app-production.up.railway.app/users/register",
     {
@@ -9,7 +10,7 @@ export const registerUser = createAsyncThunk("user/userFetch", async (user) => {
       surname: user.surname,
       birthday: user.birthday,
       nationality: user.nationality,
-      adress: user.adress,
+      adress: user.address,
       email: user.email,
       password: user.password,
     }
