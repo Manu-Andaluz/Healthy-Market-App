@@ -8,14 +8,12 @@ export default function SearchBar() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    console.log(search);
+    dispatch(searchProducts(search))
   }, [search]);
 
   function onSubmit(e) {
     e.preventDefault();
-    if (search.length === 0) return alert('El producto ingresado no existe...');
-    dispatch(searchProducts(search));
-    setSearch('');
+    
   }
 
   function onInputChange(e) {
