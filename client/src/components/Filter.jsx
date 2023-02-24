@@ -1,28 +1,78 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchFilteredProducts } from "../slices/filterSlice";
-
+import {
+  fetchCategoryProducts,
+  fetchFilterCategoryProducts,
+  fetchFilteredProducts,
+} from "../actions/productActions";
+import { productsFetch } from "../actions/productActions";
+import { useState } from "react";
 
 const Filter = () => {
   const dispatch = useDispatch();
+  const [filter, setFilter] = useState("");
+  const [category, setCategory] = useState("");
 
-  const [filterBy, setFilterBy] = useState("");
+  const changeFilter = (e) => {
+    setFilter(e.target.value);
+  };
 
-  const handleFilter = (filter) => {
-    setFilterBy(filter);
-    dispatch(fetchFilteredProducts({ filterBy: filter, categoryValue: "" }));
+  const changeCategory = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleFilter = (e) => {
+    if (filter === "ordenamiento") {
+      dispatch(productsFetch());
+    }
+
+    if (category) {
+      dispatch(
+        fetchFilterCategoryProducts({
+          category: category,
+          filterBy: filter,
+        })
+      );
+    } else {
+      dispatch(fetchFilteredProducts(e.target.value));
+    }
+  };
+
+  const handleFilterCategory = (e) => {
+    if (category === "categoria") {
+      dispatch(productsFetch());
+    }
+    if (filter) {
+      dispatch(
+        fetchFilterCategoryProducts({
+          category: e.target.value,
+          filterBy: filter,
+        })
+      );
+    } else {
+      dispatch(fetchCategoryProducts({ category: e.target.value }));
+    }
   };
 
   return (
     <div>
-      <button onClick={() => handleFilter("alfabetic-A-Z")}>Alfabetic A-Z</button>
-      <br/>
-      <button onClick={() => handleFilter("alfabetic-Z-A")}>Alfabetic Z-A</button>
-      <br/>
-      <button onClick={() => handleFilter("cheapper-products")}>Cheapper Products</button>
-      <br/>
-      <button onClick={() => handleFilter("expensive-products")}>Expensive Products</button>
-      <br/>
+      <select name="filters" onChange={changeFilter} onClick={handleFilter}>
+        <option value="ordenamiento">Productos</option>
+        <option value="alfabetic-A-Z">Alfabetic (A-Z)</option>
+        <option value="alfabetic-Z-A">Alfabetic (Z-A)</option>
+        <option value="cheapper-products">cheapper-products</option>
+        <option value="expensive-products">expensive-products</option>
+      </select>
+      <select
+        name="category"
+        onChange={handleFilterCategory}
+        onClick={changeCategory}
+      >
+        <option value="categoria">Categoría</option>
+        <option value="Vegetariano">Vegetariano</option>
+        <option value="Gluten-Free">Gluten-Free</option>
+        <option value="Vegano">Vegano</option>
+        <option value="Almacen">Almacen</option>
+      </select>
     </div>
   );
 };

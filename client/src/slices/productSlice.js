@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { url } from "./apiSlice";
-import { productsFetch, searchProducts } from "../actions/productActions";
+import {
+  productsFetch,
+  searchProducts,
+  fetchFilteredProducts,
+  fetchFilterCategoryProducts,
+} from "../actions/productActions";
 
 const initialState = {
   allProducts: [],
-  products: [],
   favouritesProducts: [],
-  currentPage : 1,
+  currentPage: 1,
   status: null,
   errors: null,
 };
@@ -16,9 +18,9 @@ const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    changePage : (state, action)=> {
-      state.currentPage = action.payload
-    }
+    changePage: (state, action) => {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: {
     [productsFetch.pending]: (state, action) => {
@@ -41,9 +43,29 @@ const productSlice = createSlice({
     [searchProducts.rejected]: (state, action) => {
       state.status = "rejected";
     },
+    [fetchFilteredProducts.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [fetchFilteredProducts.fulfilled]: (state, action) => {
+      state.status = "succeeded";
+      state.allProducts = action.payload;
+    },
+    [fetchFilteredProducts.rejected]: (state, action) => {
+      state.status = "failed";
+    },
+    [fetchFilterCategoryProducts.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [fetchFilterCategoryProducts.fulfilled]: (state, action) => {
+      state.status = "succeeded";
+      state.allProducts = action.payload;
+    },
+    [fetchFilterCategoryProducts.rejected]: (state, action) => {
+      state.status = "failed";
+    },
   },
 });
 
-export const {changePage} = productSlice.actions;
+export const { changePage } = productSlice.actions;
 
 export default productSlice.reducer;

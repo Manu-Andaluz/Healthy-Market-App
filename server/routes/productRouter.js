@@ -2,6 +2,7 @@ const productRouter = require("express").Router();
 const {
   getProductController,
   getProductsFilteredController,
+  getCategoryFilterController,
   createProductController,
   editProductController,
   deleteProductController,
@@ -14,7 +15,11 @@ productRouter.get("/", getProductController);
 
 // FILTER PRODUCTS
 
-productRouter.get("/filterby", getProductsFilteredController);
+productRouter.get("/filterBy", getProductsFilteredController);
+
+// FILER PRODUCTS BY CATEORY AND FILERBY
+
+productRouter.get("/category", getCategoryFilterController);
 
 // CREATE PRODUCT
 
