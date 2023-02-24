@@ -12,7 +12,7 @@ export default function Paginated({ productsPerPage, products, paginado }) {
     <nav className="flex justify-center	items-center bg-lime-600 mt-5">
       <ul className="flex justify-around font-bold justify-items-center py-0 w-64">
         <li>
-          <a href="#">Prev</a>
+          <a href="#"><span>&laquo;</span></a>
         </li>
         {pageNumbers &&
           pageNumbers.map((number) => (
@@ -30,7 +30,7 @@ export default function Paginated({ productsPerPage, products, paginado }) {
             </li>
           ))}
         <li>
-          <a href="#">Next</a>
+          <a href="#"><span>&raquo;</span></a>
         </li>
       </ul>
     </nav>
