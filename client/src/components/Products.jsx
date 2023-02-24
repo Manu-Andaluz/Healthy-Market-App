@@ -8,7 +8,6 @@ import Cards from "./Cards";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Loading from "./Loading";
-import SearchBar from "./SearchBar";
 import Paginated from "./Paginated";
 import { changePage } from "./../slices/productSlice";
 import Filter from "./Filter"; // importamos el componente Filter
@@ -45,7 +44,6 @@ const Products = () => {
       <NavBar />
       <Filter filters={filters} setFilters={setFilters} />{" "}
       {/* pasamos el estado "filters" y su función "setFilters" al componente Filter */}
-      <SearchBar />
       <Cards currentProduct={currentProduct} />
       <Paginated
         productsPerPage={productsPerPage}
