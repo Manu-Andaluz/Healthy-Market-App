@@ -41,16 +41,42 @@ const getProductsFiltered = async (filterBy, categoryValue) => {
       const products = allProduct.sort((a, b) => b.price - a.price);
       return products;
     }
-    case "category": {
-      const products = allProduct.filter(
-        (product) => product.category === categoryValue
-      );
-      return products;
-    }
     default: {
       return "Invalid Filter";
     }
   }
+};
+
+// combined filter - Category and Filterby
+
+const getCategoryFiltered = async (categoryValue, filterBy) => {
+  let allProduct = await Product.find();
+  allProduct = allProduct.filter(
+    (product) => product.category.toLowerCase() == categoryValue.toLowerCase()
+  );
+
+  switch (filterBy) {
+    case "alfabetic-A-Z": {
+      const products = allProduct.sort((a, b) => a.name.localeCompare(b.name));
+      return products;
+    }
+    case "alfabetic-Z-A": {
+      const products = allProduct.sort((a, b) => b.name.localeCompare(a.name));
+      return products;
+    }
+    case "cheapper-products": {
+      const products = allProduct.sort((a, b) => a.price - b.price);
+      return products;
+    }
+    case "expensive-products": {
+      const products = allProduct.sort((a, b) => b.price - a.price);
+      return products;
+    }
+    default: {
+      return allProduct;
+    }
+  }
+  return allProduct;
 };
 
 // create product
@@ -150,6 +176,7 @@ const getProductById = async (id) => {
 module.exports = {
   getProduct,
   getProductsFiltered,
+  getCategoryFiltered,
   createProduct,
   editProduct,
   deleteProduct,
