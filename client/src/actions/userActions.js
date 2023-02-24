@@ -29,6 +29,5 @@ export const loginUser = createAsyncThunk("user/userFetch", async (user) => {
     }
   );
   localStorage.setItem("token", token.data.accessToken);
-
   return token.data.accessToken;
 });

@@ -44,7 +44,9 @@ const userSlice = createSlice({
   },
   extraReducers: {
     [registerUser.pending]: (state, action) => {
+      console.log("pending 1", state);
       state.status = "pending";
+      console.log("pending 2", state);
     },
     [registerUser.fulfilled]: (state, action) => {
       const user = jwtDecode(state.token);
