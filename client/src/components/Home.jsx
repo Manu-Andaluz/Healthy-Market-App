@@ -35,7 +35,6 @@ const Home = () => {
       <Carousel />
       <Cards />
       <Footer />
-      <CardDetail/>
     </>
   );
 };
