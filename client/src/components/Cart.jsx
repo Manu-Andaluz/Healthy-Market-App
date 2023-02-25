@@ -9,6 +9,7 @@ import {
   getTotals,
   removeFromCart,
 } from "../slices/cartSlice";
+import axios from "axios";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -115,7 +116,7 @@ const Cart = () => {
                       ${product.price}
                     </span>
                     <span className="text-center w-1/5 font-semibold text-sm">
-                      ${product.price}
+                      ${product.price * product.cartQuantity}
                     </span>
                   </div>
                 );
@@ -153,30 +154,30 @@ const Cart = () => {
                 {cart.cartTotalQuantity}
               </span>
             </div>
-            <div>
-              <label className="font-medium inline-block mb-3 text-sm uppercase">
-                Envío
-              </label>
-              <select className="block p-2 text-gray-600 w-full text-sm">
-                <option>Envío Estandar - $10.00</option>
-              </select>
-            </div>
-            <button className="bg-green-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase mt-5">
-              Aplicar
-            </button>
             <div className="border-t mt-8">
               <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                 <span>Total </span>
                 <span>${cart.cartTotalAmount}</span>
               </div>
               {user._id ? (
-                <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+                <button
+                  onClick={() => {
+                    axios
+                      .post("http://localhost:5000/order", cart.cartItems)
+                      .then(
+                        (res) =>
+                          (window.location.href =
+                            res.data.response.body.init_point)
+                      );
+                  }}
+                  className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+                >
                   Continuar con la compra
                 </button>
               ) : (
-                <Link to="/register">
+                <Link to="/login">
                   <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
-                    Registrarte para continuar
+                    Logearte para continuar
                   </button>
                 </Link>
               )}
