@@ -6,6 +6,7 @@ const initialState = {
   productDetail:{}
 };
 const productDetailSlice = createSlice({
+
   name: "productDetail",
   initialState,
   reducers: {},
@@ -24,5 +25,6 @@ const productDetailSlice = createSlice({
     },
   },
 });
+
 
 export default productDetailSlice.reducer;

@@ -1,39 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { searchProducts } from '../actions/productActions';
-import lupa from '../pictures/lupa.png'
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { searchProducts } from "../actions/productActions";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    console.log(search);
-  }, [search]);
-
-  function onSubmit(e) {
-    e.preventDefault();
-    if (search.length === 0) return alert('El producto ingresado no existe...');
     dispatch(searchProducts(search));
-    setSearch('');
-  }
+  }, [search]);
 
   function onInputChange(e) {
     setSearch(e.target.value);
   }
 
   return (
-    <div>
-      <form className="form" onSubmit={onSubmit}>
-        <input className='w-60 mx--10 border-1 h-5 border-black rounded-lg'
-          type="text"
-          placeholder="Buscar productos..."
-          onChange={onInputChange}
-          value={search}
-        />
-        <button className='mr-12  w-10 '>
-                <img className="" type="submit" src={lupa} ></img>
-            </button>
+    <div className="w-9/12 mx-auto">
+      <form className="bg-white">
+        <label
+          for="default-search"
+          class="mb-2 text-sm font-medium text-gray-200 sr-only dark:text-white"
+        >
+          Search
+        </label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              aria-hidden="true"
+              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+          </div>
+          <input
+            type="text"
+            placeholder="Buscar productos..."
+            onChange={onInputChange}
+            value={search}
+            id="default-search"
+            class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+        </div>
       </form>
     </div>
   );

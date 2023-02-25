@@ -2,15 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import NavBar from "./NavBar";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userActions";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const LoginForm = () => {
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (user._id) {
+      navigate("/home");
+    }
+  }, [user._id, navigate]);
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -65,14 +75,20 @@ const LoginForm = () => {
               </div>
             </div>
 
-            <div className="flex m-auto justify-center items-center py-5 gap-4">
-              <Link to="/register">Crear Cuenta</Link>
+            <div className="grid m-auto justify-center items-center py-5 gap-4">
               <button
-                className=" bg-green1 hover:bg-hoverGreen1 text-white font-bold py-2 px-4 rounded"
+                className=" bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded"
                 onClick={handleOnClick}
               >
                 Iniciar Sessión
               </button>
+              <p className="mt-2 ">Todavía no tienes una cuenta?</p>
+              <Link
+                to="/register"
+                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+              >
+                Crear Cuenta
+              </Link>
             </div>
           </form>
         </div>

@@ -8,9 +8,8 @@ export const store = configureStore({
   reducer: {
     allProducts: productsReducer,
     user: userReducer,
-    productDetail :productDetailReducer,
+    productDetail: productDetailReducer,
     cart: cartReducer,
-
   },
 });
 
