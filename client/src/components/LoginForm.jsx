@@ -75,14 +75,20 @@ const LoginForm = () => {
               </div>
             </div>
 
-            <div className="flex m-auto justify-center items-center py-5 gap-4">
-              <Link to="/register">Crear Cuenta</Link>
+            <div className="grid m-auto justify-center items-center py-5 gap-4">
               <button
-                className=" bg-green1 hover:bg-hoverGreen1 text-white font-bold py-2 px-4 rounded"
+                className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded"
                 onClick={handleOnClick}
               >
                 Iniciar Sessión
               </button>
+              <p className="mt-2 ">Todavía no tienes una cuenta?</p>
+              <Link
+                to="/register"
+                className="font-medium text-blue-600 dark:text-blue-700 hover:underline"
+              >
+                Crear Cuenta
+              </Link>
             </div>
           </form>
         </div>
