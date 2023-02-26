@@ -6,17 +6,17 @@ import { RxDotFilled } from "react-icons/rx";
 const Carousel = () => {
   const slides = [
     {
-      url: "https://res.cloudinary.com/ddax6s8kd/image/upload/v1676835852/Healthy-Foods/1_wevu6k.jpg",
+      url: "https://res.cloudinary.com/ddax6s8kd/image/upload/v1677420353/1_o0yi1z.jpg",
     },
     {
-      url: "https://res.cloudinary.com/ddax6s8kd/image/upload/v1676835852/Healthy-Foods/2_dlzobv.jpg",
+      url: "https://res.cloudinary.com/ddax6s8kd/image/upload/v1677420354/2_xo7etb.jpg",
     },
     {
-      url: "https://res.cloudinary.com/ddax6s8kd/image/upload/v1676835852/Healthy-Foods/4_hrphpg.jpg",
+      url: "https://res.cloudinary.com/ddax6s8kd/image/upload/v1677420356/4_dw1e9d.jpg",
     },
 
     {
-      url: "https://res.cloudinary.com/ddax6s8kd/image/upload/v1676836069/Healthy-Foods/3_msfwwb.jpg",
+      url: "https://res.cloudinary.com/ddax6s8kd/image/upload/v1677420355/3_sdvj1n.jpg",
     },
   ];
 
