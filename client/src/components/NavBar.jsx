@@ -42,7 +42,7 @@ export default function NavBar() {
             to="/home"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            <p className="text-lg font-bold ">Home</p>
+            <p className="text-lg font-bold ">Inicio</p>
           </NavLink>
         </li>
         <li className="text-gray-300">
@@ -62,7 +62,9 @@ export default function NavBar() {
           </svg>
         </li>
         <li>
-          <NavLink to="/products">
+          <NavLink to="/products"
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
             <p className="text-lg font-bold ">Productos</p>
           </NavLink>
         </li>
@@ -83,7 +85,9 @@ export default function NavBar() {
           </svg>
         </li>
         <li>
-          <NavLink to="/about">
+          <NavLink to="/about"
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
             <p className="text-lg font-bold ">Sobre Nosotros</p>
           </NavLink>
         </li>
@@ -126,13 +130,13 @@ export default function NavBar() {
       {user.email ? (
         <button onClick={handleLogout}>
           <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-lg  text-gray-900 font-bold  rounded-xl transition duration-200">
-            Logout
+            Cerrar Sesión
           </p>
         </button>
       ) : (
         <NavLink to="/login">
           <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-lg  text-gray-900 font-bold  rounded-xl transition duration-200">
-            Sign In
+            Ingresar
           </p>
         </NavLink>
       )}

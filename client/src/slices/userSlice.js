@@ -42,43 +42,51 @@ const userSlice = createSlice({
       };
     },
   },
-  extraReducers: {
-    [registerUser.pending]: (state, action) => {
-      console.log("pending 1", state);
-      state.status = "pending";
-      console.log("pending 2", state);
-    },
-    [registerUser.fulfilled]: (state, action) => {
-      const user = jwtDecode(state.token);
+  extraReducers: (builder) => {
+    builder.addCase(registerUser.pending, (state, action) => {
+      return { ...state, registerStatus: "pending" };
+    });
+    builder.addCase(registerUser.fulfilled, (state, action) => {
+      if (action.payload) {
+        const user = jwtDecode(action.payload);
+        return {
+          ...state,
+          token: action.payload,
+          name: user.name,
+          email: user.email,
+          _id: user._id,
+          isAdmin: user.isAdmin,
+        };
+      } else return state;
+    });
+    builder.addCase(registerUser.rejected, (state, action) => {
       return {
         ...state,
-        token: action.payload,
-        name: user.name,
-        email: user.email,
-        _id: user._id,
-        isAdmin: user.isAdmin,
+        registerStatus: "rejected",
+        registerError: action.payload,
       };
-    },
-    [registerUser.rejected]: (state, action) => {
-      state.status = "rejected";
-    },
-    [loginUser.pending]: (state, action) => {
-      state.status = "pending";
-    },
-    [loginUser.fulfilled]: (state, action) => {
-      const user = jwtDecode(state.token);
+    });
+    builder.addCase(loginUser.pending, (state, action) => {
+      return { ...state };
+    });
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      if (action.payload) {
+        const user = jwtDecode(action.payload);
+        return {
+          ...state,
+          token: action.payload,
+          name: user.name,
+          email: user.email,
+          _id: user._id,
+          isAdmin: user.isAdmin,
+        };
+      } else return state;
+    });
+    builder.addCase(loginUser.rejected, (state, action) => {
       return {
         ...state,
-        token: action.payload,
-        name: user.name,
-        email: user.email,
-        _id: user._id,
-        isAdmin: user.isAdmin,
       };
-    },
-    [loginUser.rejected]: (state, action) => {
-      state.status = "rejected";
-    },
+    });
   },
 });
 
