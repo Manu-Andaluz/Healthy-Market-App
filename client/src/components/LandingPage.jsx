@@ -79,7 +79,7 @@ const LandingPage = () => {
               </ul>
             </div>
             <div className="flex items-center lg:ml-auto">
-              <button
+              {/* <button
                 type="button"
                 class="inline-block px-6 py-2.5 mr-2 bg-transparent text-green1 font-bree text-xs leading-tight uppercase rounded hover:text-grisLetter hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
                 data-mdb-ripple="true"
@@ -87,7 +87,7 @@ const LandingPage = () => {
               >
                 {" "}
                 Quiero sumar mi tienda
-              </button>
+              </button> */}
 
               <button
                 type="button"
@@ -95,7 +95,7 @@ const LandingPage = () => {
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
               >
-                Mi perfil{" "}
+                Registrarse{" "}
               </button>
               <Link to="/about">
                 <button
