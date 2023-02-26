@@ -27,7 +27,7 @@ const createOrder = async (req, res) => {
     items: itemArray,
     back_urls: {
       success: "https://healthy-market-app.vercel.app/home",
-      failure: "https://healthy-market-app.vercel.app/errorPayment",
+      failure: "https://healthy-market-app.vercel.app/cart",
       pending: "",
     },
     auto_return: "approved",
