@@ -63,7 +63,7 @@ const Filter = () => {
           name="filters"
           onChange={changeFilter}
           onClick={handleFilter}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
           <option value="alfabetic-A-Z">Alfabetic (A-Z)</option>
           <option value="alfabetic-Z-A">Alfabetic (Z-A)</option>
@@ -74,7 +74,7 @@ const Filter = () => {
           name="category"
           onChange={changeCategory}
           onClick={handleFilterCategory}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         >
           <option value="categoria">Categoría</option>
           <option value="Vegetariano">Vegetariano</option>
