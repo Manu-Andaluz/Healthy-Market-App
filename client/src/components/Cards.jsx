@@ -1,7 +1,7 @@
 import React from "react";
 import { productsFetch } from "../actions/productActions";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart } from "../slices/cartSlice";
@@ -47,7 +47,7 @@ const Cards = (currentProduct) => {
               </p>
               <button
                 onClick={() => handleOnClick(product)}
-                className=" bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded w-fit mx-auto"
+                className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded w-fit mx-auto"
               >
                 <i class="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
               </button>
