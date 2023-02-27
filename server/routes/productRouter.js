@@ -7,7 +7,9 @@ const {
   editProductController,
   deleteProductController,
   getProductByIdController,
+  createProductReviewController,
 } = require("../controllers/productController.js");
+const { isAdmin } = require("../middleware/auth.js");
 
 // GET ALL PRODUCTS
 
@@ -36,5 +38,8 @@ productRouter.delete("/:id", deleteProductController);
 // GET BY ID
 
 productRouter.get("/getProductById/:productId", getProductByIdController);
+
+// CREATE REVIEW
+productRouter.post('/reviews/:id', createProductReviewController);
 
 module.exports = productRouter;

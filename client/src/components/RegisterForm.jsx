@@ -31,7 +31,7 @@ const RegisterForm = () => {
   const validate = (form) => {
     let errors = { address: {} };
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-    let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    let regexEmail = /^\w+([\+\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     let regexPassword = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
 
     if (!form.name.trim()) {
@@ -69,10 +69,11 @@ const RegisterForm = () => {
       errors.email = "Ingresar un email valido";
     }
 
-    if (!form.password) {
+    if (!regexPassword.test(form.password)) {
+      errors.password = "Ingresar una contraseña valida";
+    } 
+     else if (!form.password) {
       errors.password = "Ingresar una contraseña";
-    } else if (!regexPassword.test(form.password)) {
-      errors.password = "";
     }
 
     return errors;
@@ -158,7 +159,7 @@ const RegisterForm = () => {
                   Apellido
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   type="text"
                   placeholder="Doe"
                   name="surname"
@@ -207,15 +208,16 @@ const RegisterForm = () => {
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full px-3">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb--1"
+                  className="block  tracking-wide text-gray-700 text-xs font-bold mb--1"
                   htmlFor="grid-password"
                 >
                   <div
                     className="flex h-6 place-content-center
                   "
                   >
-                    Contraseña
+                    CONTRASEÑA
                     <Tooltip
+                      
                       content="La contraseña debe tener mas de 8 caracteres, al menos un dígito, al menos una minúscula y una mayúscula."
                       style="light"
                       animation="duration-1000"
