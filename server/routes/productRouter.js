@@ -8,10 +8,11 @@ const {
   deleteProductController,
   getProductByIdController,
 } = require("../controllers/productController.js");
+const { isAdmin } = require("../middleware/auth.js");
 
 // GET ALL PRODUCTS
 
-productRouter.get("/", getProductController);
+productRouter.get("/", isAdmin, getProductController);
 
 // FILTER PRODUCTS
 
