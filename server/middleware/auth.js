@@ -7,10 +7,9 @@ const auth = (req, res, next) => {
   try {
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
     const decoded = jwt.verify(token, jwtSecretKey);
-
     req.user = decoded;
     next();
-  } catch (ex) {
+  } catch (error) {
     res.status(400).send("Invalid auth token...");
   }
 };
