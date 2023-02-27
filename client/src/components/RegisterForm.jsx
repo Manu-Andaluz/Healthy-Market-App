@@ -421,7 +421,7 @@ const RegisterForm = () => {
                 to="/login"
                 className="font-medium text-blue-600 dark:text-blue-700 hover:underline"
               >
-                Iniciar Sessión
+                Iniciar Sesión
               </Link>
             </div>
           </form>
