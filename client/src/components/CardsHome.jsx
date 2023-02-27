@@ -50,7 +50,7 @@ const CardHome = ({ products }) => {
                 </p>
                 <button
                   onClick={() => handleOnClick(product)}
-                  className=" bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded w-fit mx-auto"
+                  className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded w-fit mx-auto"
                 >
                   <i class="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
                 </button>

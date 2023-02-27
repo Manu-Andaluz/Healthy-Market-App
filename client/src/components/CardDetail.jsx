@@ -67,7 +67,7 @@ const CardDetail = () => {
                 <div class="inline-block align-bottom">
                   <button
                     onClick={() => handleOnClick(productDet.productDetail)}
-                    class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold"
+                    className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded w-fit mx-auto"
                   >
                     <i class="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
                   </button>
