@@ -12,7 +12,7 @@ const { isAdmin } = require("../middleware/auth.js");
 
 // GET ALL PRODUCTS
 
-productRouter.get("/", isAdmin, getProductController);
+productRouter.get("/", getProductController);
 
 // FILTER PRODUCTS
 
