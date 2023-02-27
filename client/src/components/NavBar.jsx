@@ -62,8 +62,9 @@ export default function NavBar() {
           </svg>
         </li>
         <li>
-          <NavLink to="/products"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          <NavLink
+            to="/products"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             <p className="text-lg font-bold ">Productos</p>
           </NavLink>
@@ -85,8 +86,9 @@ export default function NavBar() {
           </svg>
         </li>
         <li>
-          <NavLink to="/about"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          <NavLink
+            to="/about"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             <p className="text-lg font-bold ">Sobre Nosotros</p>
           </NavLink>
