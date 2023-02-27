@@ -10,6 +10,7 @@ import {
   removeFromCart,
 } from "../slices/cartSlice";
 import axios from "axios";
+import NavBar from "./NavBar";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -38,6 +39,8 @@ const Cart = () => {
   };
 
   return (
+    <>
+    <NavBar/>
     <div className="bg-gray-100">
       <div className="container mx-auto mt-10">
         <div className="flex shadow-md my-10">
@@ -189,6 +192,7 @@ const Cart = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

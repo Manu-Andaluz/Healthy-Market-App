@@ -24,16 +24,16 @@ const CardHome = ({ products }) => {
       <h4 className="grid place-content-center w-full my-10 font-bold text-3xl">
         Productos Destacados
       </h4>
-      <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 px-5 mt-3">
+      <div className="text-base grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 px-5 mt-3">
         {products &&
           products.map((product) => {
             return (
               <div
-                className="grid place-content-center text-center gap-4"
+                className="text-base flex flex-col justify-end content-center items-center space-x-2 space-y-2 "
                 key={product._id}
               >
                 <Link to={`/detail/${product._id}`}>
-                  <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                  <div className="text-base aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8 ">
                     <img
                       src={product.image.url}
                       alt={product.name}
@@ -42,7 +42,7 @@ const CardHome = ({ products }) => {
                   </div>
                 </Link>
 
-                <h3 className="text-sm font-bree text-gray-700">
+                <h3 className="text-base font-bree text-gray-700 ">
                   {product.name}
                 </h3>
                 <p className="text-lg font-bold text-gray-900">
