@@ -1,8 +1,10 @@
 import React from "react";
 import logo from "../pictures/logo2.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const LandingPage = () => {
+  const user = useSelector((state) => state.user);
   return (
     <div>
       <section className="mb-40">
@@ -88,15 +90,19 @@ const LandingPage = () => {
                 {" "}
                 Quiero sumar mi tienda
               </button> */}
-
-              <button
-                type="button"
-                class="inline-block px-6 py-2.5 bg-green1 text-white font-bree text-xs leading-tight uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-grisLetter focus:shadow-lg focus:outline-none focus:ring-0 active:bg-rosa active:shadow-lg transition duration-150 ease-in-out"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-              >
-                Registrarse{" "}
-              </button>
+              {user.email ? (
+                <NavLink to="/cart">
+                  <button class="inline-block px-6 py-2.5 bg-green1 text-white font-bree text-xs leading-tight uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-grisLetter focus:shadow-lg focus:outline-none focus:ring-0 active:bg-rosa active:shadow-lg transition duration-150 ease-in-out">
+                    Mi cuenta
+                  </button>
+                </NavLink>
+              ) : (
+                <NavLink to="/login">
+                  <button class="inline-block px-6 py-2.5 bg-green1 text-white font-bree text-xs leading-tight uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-grisLetter focus:shadow-lg focus:outline-none focus:ring-0 active:bg-rosa active:shadow-lg transition duration-150 ease-in-out">
+                    Ingresar
+                  </button>
+                </NavLink>
+              )}
               <Link to="/about">
                 <button
                   type="button"
