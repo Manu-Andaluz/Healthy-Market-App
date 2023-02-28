@@ -173,6 +173,28 @@ const getProductById = async (id) => {
   return product;
 };
 
+// create review
+const createReview = async (rating, comment, id) => {
+
+  const product = await Product.findById(id)
+  if (product) {
+
+    const review = {
+      rating: Number(rating),
+      comment,
+    }
+
+    product.reviews.push(review)
+
+
+    product.rating =
+      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      product.reviews.length
+
+    await product.save()
+
+  }
+}
 module.exports = {
   getProduct,
   getProductsFiltered,
@@ -181,4 +203,5 @@ module.exports = {
   editProduct,
   deleteProduct,
   getProductById,
+  createReview,
 };
