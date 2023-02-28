@@ -71,7 +71,6 @@ export const fetchFilterCategoryProducts = createAsyncThunk(
   "products/fetchFilteredProducts",
   async ({ category, filterBy }) => {
     try {
-      console.log("hola")
       const response = await axios.get(
         `https://healthy-market-app-production.up.railway.app/products/category?categoryValue=${category}&filterBy=${filterBy}`
       );

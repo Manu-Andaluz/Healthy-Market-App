@@ -201,7 +201,7 @@ const createReview = async (rating, comment, id) => {
 }
 module.exports = {
   getProduct,
-  getProductsFiltered,
+  // getProductsFiltered,
   getCategoryFiltered,
   createProduct,
   editProduct,

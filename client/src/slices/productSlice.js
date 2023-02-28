@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   productsFetch,
   searchProducts,
-  fetchFilteredProducts,
+  // fetchFilteredProducts,
   fetchFilterCategoryProducts,
 } from "../actions/productActions";
 
