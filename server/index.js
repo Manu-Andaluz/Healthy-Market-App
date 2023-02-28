@@ -4,26 +4,27 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const mainRouter = require("./routes/index");
 const morgan = require("morgan");
-const pasport = require('passport');
+const pasport = require("passport");
 const passport = require("passport");
 
 const app = express();
 
+const session = require("cookie-session");
 
-const session = require('express-session');
-
-app.use(session({
-  secret: 'mysecret', // una clave secreta para la sesión
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  session({
+    secret: "mysecret", // una clave secreta para la sesión
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
 // session secret
 app.use(passport.initialize());
 app.use(passport.session());
-require('./utils/auth');
+require("./utils/auth");
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
