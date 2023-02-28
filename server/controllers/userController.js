@@ -4,7 +4,7 @@ const {
   loginUser,
 } = require("../services/userServices");
 
-const AuthService = require('./../services/authService');
+const AuthService = require("./../services/authService");
 
 const service = new AuthService();
 
@@ -18,8 +18,16 @@ const getUsersController = async (req, res) => {
 };
 
 const registerController = async (req, res) => {
-  const { name, surname, birthday, nationality, adress, email, password, id_google } =
-    req.body;
+  const {
+    name,
+    surname,
+    birthday,
+    nationality,
+    adress,
+    email,
+    password,
+    id_google,
+  } = req.body;
   try {
     const message = await createUser(
       name,
@@ -38,7 +46,6 @@ const registerController = async (req, res) => {
 };
 
 const loginController = async (req, res) => {
-
   try {
     const user = req.user;
     const userSing = service.singToken(user);
@@ -48,10 +55,9 @@ const loginController = async (req, res) => {
   }
 };
 
-
 const loginGoogle = async (req, res, next) => {
   try {
-    const user = req.user
+    const user = req.user;
     const userSchema = {
       name: user.name.givenName,
       surname: user._json.family_name,
@@ -60,20 +66,24 @@ const loginGoogle = async (req, res, next) => {
       adress: {
         zip: "",
         city: "",
-        adress: user._json.locale
+        adress: user._json.locale,
       },
       email: user._json.email,
       password: "",
-      id_google: user.id
+      id_google: user.id,
     };
     req.body = userSchema;
     req.user = userSchema;
-    console.log({ userSchema })
-    next()
-
+    console.log({ userSchema });
+    next();
   } catch (error) {
     res.json(error.message);
   }
-}
+};
 
-module.exports = { getUsersController, registerController, loginController, loginGoogle };
+module.exports = {
+  getUsersController,
+  registerController,
+  loginController,
+  loginGoogle,
+};

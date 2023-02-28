@@ -51,13 +51,11 @@ const createUser = async (
   return token;
 };
 
-const findByEmail = async(email)=>{
+const findByEmail = async (email) => {
   const rta = await User.findOne({
-     email
-  })
-  return rta
-}
+    email,
+  });
+  return rta;
+};
 
-
-
-module.exports = { getAllUsers, createUser, findByEmail};
+module.exports = { getAllUsers, createUser, findByEmail };
