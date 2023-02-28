@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { productsFetch } from "../actions/productActions";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 import Carousel from "./Carousel";
 import Footer from "./Footer";
@@ -10,6 +10,7 @@ import NavBar from "./NavBar";
 import CardHome from "./CardsHome";
 
 const Home = () => {
+  const products = useSelector((state) => state.allProducts);
   const dispatch = useDispatch();
   // const products = useSelector ((state) => state.allProducts)
   const [load, setLoad] = useState(true);
@@ -26,7 +27,7 @@ const Home = () => {
     <>
       <NavBar />
       <Carousel />
-      <CardHome />
+      <CardHome products={products.allProducts} />
       <Footer />
     </>
   );

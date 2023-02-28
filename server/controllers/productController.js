@@ -6,7 +6,10 @@ const {
   editProduct,
   deleteProduct,
   getProductById,
+  createReview,
 } = require("../services/productServices");
+
+const { Product } = require("../models/Product")
 
 // get product
 
@@ -119,6 +122,20 @@ const getProductByIdController = async (req, res) => {
   }
 };
 
+const createProductReviewController = async (req, res) => {
+  const { rating, comment } = req.body
+  const { id } = req.params
+
+  try {
+    createReview(rating, comment, id)
+    res.status(201).json({ message: 'Review added' })
+  }
+  catch {
+    res.status(404).send('Product not found')
+  }
+}
+
+
 module.exports = {
   getProductController,
   getProductsFilteredController,
@@ -127,4 +144,5 @@ module.exports = {
   editProductController,
   deleteProductController,
   getProductByIdController,
+  createProductReviewController
 };

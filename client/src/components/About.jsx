@@ -136,7 +136,7 @@ const About = () => {
                   alt="Nau featured img"
                 />
                 <p className="font-bree text-xl leading-5 text-green1 mt-4">
-                  Nau
+                  Nahu
                 </p>
               </div>
               <div className="p-4 pb-6 flex justify-center flex-col items-center">

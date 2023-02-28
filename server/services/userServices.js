@@ -51,22 +51,11 @@ const createUser = async (
   return token;
 };
 
-const loginUser = async (email, password) => {
-  const user = await User.findOne({ email });
-
-  if (!user) {
-    return "User is not registered";
-  }
-
-  const validatePassword = await bcrypt.compare(password, user.password);
-
-  if (!validatePassword) {
-    return "User or Password is incorrect";
-  }
-
-  const token = generateAuthToken(user);
-
-  return { message: "User has been logged!", accessToken: token };
+const findByEmail = async (email) => {
+  const rta = await User.findOne({
+    email,
+  });
+  return rta;
 };
 
-module.exports = { getAllUsers, createUser, loginUser };
+module.exports = { getAllUsers, createUser, findByEmail };

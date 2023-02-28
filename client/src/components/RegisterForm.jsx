@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { registerUser } from "../actions/userActions";
 import { useDispatch } from "react-redux";
 import NavBar from "./NavBar";
+import { Tooltip, Button } from "flowbite-react";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -30,45 +31,49 @@ const RegisterForm = () => {
   const validate = (form) => {
     let errors = { address: {} };
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-    let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    let regexEmail = /^\w+([\+\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let regexPassword = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
 
     if (!form.name.trim()) {
-      errors.name = "The name field is required";
+      errors.name = "El campo 'nombre' es necesario";
     } else if (!regexName.test(form.name.trim())) {
       errors.name = "Only letters can be used";
     }
 
     if (!form.surname.trim()) {
-      errors.surname = "The surname field is required";
+      errors.surname = "El campo 'apellido' es necesario";
     } else if (!regexName.test(form.name.trim())) {
-      errors.name = "Only letters can be used";
+      errors.name = "Solo se permiten letras";
     }
 
     if (form.birthday.length === 0) {
-      errors.birthday = "You must choose a birthday";
+      errors.birthday = "Elige una fecha de nacimiento";
     }
 
     if (form.nationality === "Pais" || form.nationality === "") {
-      errors.nationality = "Choose a country";
+      errors.nationality = "Elige un pais";
     }
     if (form.address.zip.length <= 3) {
-      errors.address.zip = "Add zip code";
+      errors.address.zip = "Agregar codigo postal";
     }
     if (form.address.city.length <= 3) {
-      errors.address.city = "Add city";
+      errors.address.city = "Agregar ciudad";
     }
     if (!form.address.address) {
-      errors.address.address = "Add address";
+      errors.address.address = "Agregar direccion";
     }
 
     if (!form.email) {
-      errors.email = "Add an email";
+      errors.email = "Agregar un email";
     } else if (!regexEmail.test(form.email)) {
-      errors.email = "Enter a valid email";
+      errors.email = "Ingresar un email valido";
     }
 
-    if (!form.password) {
-      errors.password = "Enter a password";
+    if (!regexPassword.test(form.password)) {
+      errors.password = "Ingresar una contraseña valida";
+    } 
+     else if (!form.password) {
+      errors.password = "Ingresar una contraseña";
     }
 
     return errors;
@@ -116,7 +121,7 @@ const RegisterForm = () => {
   return (
     <div>
       <NavBar />
-      <div className="grid text-center h-screen content-center gap-5 items-center mt-5">
+      <div className="grid text-center content-center gap-5 items-center mt-10">
         <h2 className="text-3xl font-bold">Crear Cuenta</h2>
         <div className="flex justify-center items-center bg-blue">
           <form className="w-full max-w-lg p-2">
@@ -154,7 +159,7 @@ const RegisterForm = () => {
                   Apellido
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   type="text"
                   placeholder="Doe"
                   name="surname"
@@ -199,14 +204,37 @@ const RegisterForm = () => {
                 </div>
               </div>
             </div>
+
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full px-3">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  className="block  tracking-wide text-gray-700 text-xs font-bold mb--1"
                   htmlFor="grid-password"
                 >
-                  Contraseña
+                  <div
+                    className="flex h-6 place-content-center
+                  "
+                  >
+                    CONTRASEÑA
+                    <Tooltip
+                      
+                      content="La contraseña debe tener mas de 8 caracteres, al menos un dígito, al menos una minúscula y una mayúscula."
+                      style="light"
+                      animation="duration-1000"
+                    >
+                      <svg
+                        focusable="false"
+                        aria-hidden="true"
+                        viewBox="0 18 52 52"
+                        width="20"
+                        height="32"
+                      >
+                        <path d="M16 8.667c-2.933 0-5.333 2.4-5.333 5.333h2.667c0-1.467 1.2-2.667 2.667-2.667s2.667 1.2 2.667 2.667-1.2 2.667-2.667 2.667h-1.333v4h2.667V19.2c2.267-.533 4-2.667 4-5.2 0-2.933-2.4-5.333-5.333-5.333zm-1.333 16h2.667V22h-2.667v2.667zM16 3.333c-7.333 0-13.333 6-13.333 13.333s6 13.333 13.333 13.333 13.333-6 13.333-13.333S23.333 3.333 16 3.333zm0 24c-5.867 0-10.667-4.8-10.667-10.667S10.133 5.999 16 5.999s10.667 4.8 10.667 10.667S21.867 27.333 16 27.333z"></path>
+                      </svg>
+                    </Tooltip>
+                  </div>
                 </label>
+
                 <input
                   name="password"
                   value={form.password}
@@ -215,6 +243,7 @@ const RegisterForm = () => {
                   type="password"
                   placeholder="******************"
                 />
+
                 <div
                   className={
                     errors.password
@@ -380,14 +409,20 @@ const RegisterForm = () => {
                 </div>
               </div>
             </div>
-            <div className="flex m-auto justify-center items-center py-5 gap-4">
-              <Link to="/login">Iniciar Sessión</Link>
+            <div className="grid m-auto justify-center items-center py-5 gap-4">
               <button
                 onClick={handleOnClick}
-                className=" bg-green1 hover:bg-hoverGreen1 text-white font-bold py-2 px-4 rounded"
+                className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded"
               >
                 Registrarse
               </button>
+              <p className="mt-2">Ya tienes una cuenta?</p>
+              <Link
+                to="/login"
+                className="font-medium text-blue-600 dark:text-blue-700 hover:underline"
+              >
+                Iniciar Sesión
+              </Link>
             </div>
           </form>
         </div>

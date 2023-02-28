@@ -6,10 +6,9 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart } from "../slices/cartSlice";
 
-const CardHome = () => {
+const CardHome = ({ products }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const products = useSelector((state) => state.allProducts);
 
   useEffect(() => {
     dispatch(productsFetch());
@@ -18,41 +17,48 @@ const CardHome = () => {
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
     navigate("/cart");
-    console.log("handleSubmit");
   };
 
   return (
-    <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 px-5 mt-3">
-      {products &&
-        products.allProducts.map((product) => {
-          return (
-            <div className="grid place-content-center text-center">
-              <Link to={`/detail/${product._id}`}>
-                <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-                  <img
-                    src={product.image.url}
-                    alt={product.name}
-                    className="h-full w-full object-cover object-center group-hover:opacity-75"
-                  />
-                </div>
-              </Link>
-
-              <h3 className="mt-4 text-sm font-bree text-gray-700">
-                {product.name}
-              </h3>
-              <p className="mt-4 text-lg font-bold text-gray-900">
-                ${product.price}
-              </p>
-              <button
-                onClick={() => handleOnClick(product)}
-                class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full mt-4 py-2 font-semibold"
+    <>
+      <h4 className="grid place-content-center w-full my-10 font-bold text-3xl">
+        Productos Destacados
+      </h4>
+      <div className="text-base grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 px-5 mt-3">
+        {products &&
+          products.map((product) => {
+            return (
+              <div
+                className="text-base flex flex-col justify-end content-center items-center space-x-2 space-y-2 "
+                key={product._id}
               >
-                <i class="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
-              </button>
-            </div>
-          );
-        })}
-    </div>
+                <Link to={`/detail/${product._id}`}>
+                  <div className="text-base aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8 ">
+                    <img
+                      src={product.image.url}
+                      alt={product.name}
+                      className="h-full w-full object-cover object-center group-hover:opacity-75"
+                    />
+                  </div>
+                </Link>
+
+                <h3 className="text-base font-bree text-gray-700 ">
+                  {product.name}
+                </h3>
+                <p className="text-lg font-bold text-gray-900">
+                  ${product.price}
+                </p>
+                <button
+                  onClick={() => handleOnClick(product)}
+                  className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded w-fit mx-auto"
+                >
+                  <i class="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
+                </button>
+              </div>
+            );
+          })}
+      </div>
+    </>
   );
 };
 

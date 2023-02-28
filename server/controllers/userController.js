@@ -4,6 +4,10 @@ const {
   loginUser,
 } = require("../services/userServices");
 
+const AuthService = require("./../services/authService");
+
+const service = new AuthService();
+
 const getUsersController = async (req, res) => {
   try {
     const user = await getAllUsers();
@@ -14,8 +18,16 @@ const getUsersController = async (req, res) => {
 };
 
 const registerController = async (req, res) => {
-  const { name, surname, birthday, nationality, adress, email, password } =
-    req.body;
+  const {
+    name,
+    surname,
+    birthday,
+    nationality,
+    adress,
+    email,
+    password,
+    id_google,
+  } = req.body;
   try {
     const message = await createUser(
       name,
@@ -24,7 +36,8 @@ const registerController = async (req, res) => {
       nationality,
       adress,
       email,
-      password
+      password,
+      id_google
     );
     res.status(200).send(message);
   } catch (error) {
@@ -33,13 +46,44 @@ const registerController = async (req, res) => {
 };
 
 const loginController = async (req, res) => {
-  const { email, password } = req.body;
   try {
-    const user = await loginUser(email, password);
-    res.status(200).json(user);
+    const user = req.user;
+    const userSing = service.singToken(user);
+    res.status(200).json(userSing);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = { getUsersController, registerController, loginController };
+const loginGoogle = async (req, res, next) => {
+  try {
+    const user = req.user;
+    const userSchema = {
+      name: user.name.givenName,
+      surname: user._json.family_name,
+      birthday: "",
+      nationality: user._json.locale,
+      adress: {
+        zip: "",
+        city: "",
+        adress: user._json.locale,
+      },
+      email: user._json.email,
+      password: "",
+      id_google: user.id,
+    };
+    req.body = userSchema;
+    req.user = userSchema;
+    console.log({ userSchema });
+    next();
+  } catch (error) {
+    res.json(error.message);
+  }
+};
+
+module.exports = {
+  getUsersController,
+  registerController,
+  loginController,
+  loginGoogle,
+};
