@@ -9,7 +9,6 @@ const {
   getProductByIdController,
   createProductReviewController,
 } = require("../controllers/productController.js");
-const { isAdmin } = require("../middleware/auth.js");
 
 // GET ALL PRODUCTS
 
