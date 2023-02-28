@@ -124,7 +124,7 @@ const LandingPage = () => {
               <div className="mt-12 lg:mt-0">
                 <h1 className="text-5xl md:text-6xl xl:text-7xl font-continuo tracking-tight mb-12">
                   Healthy Market <br />
-                  <span class="text-">APP</span>
+                  <span className="text-">APP</span>
                 </h1>
                 <p
                   className="text-grisLetter font-bree text-sm md:text-base mb-8"
