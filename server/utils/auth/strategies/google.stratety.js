@@ -1,8 +1,7 @@
 var GoogleStrategy = require("passport-google-oauth20");
 const { findByEmail } = require("./../../../services/userServices");
 const passport = require("passport");
-const dotenv = require("dotenv");
-require(dotenv).config();
+
 const emails = ["manulok78@gmail.com"];
 
 const Googlestrategy = new GoogleStrategy(
