@@ -2,12 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { registerUser } from "../actions/userActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavBar from "./NavBar";
+import { useNavigate } from "react-router-dom";
 import { Tooltip, Button } from "flowbite-react";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     name: "",
@@ -71,17 +74,12 @@ const RegisterForm = () => {
 
     if (!regexPassword.test(form.password)) {
       errors.password = "Ingresar una contraseña valida";
-    } 
-     else if (!form.password) {
+    } else if (!form.password) {
       errors.password = "Ingresar una contraseña";
     }
 
     return errors;
   };
-
-  // useEffect(() => {
-  //   setErrors(validate(form));
-  // }, [form]);
 
   const hasErrors = (errors) => {
     return (
@@ -117,6 +115,12 @@ const RegisterForm = () => {
     dispatch(registerUser(form));
     setForm(initialFormState);
   };
+
+  useEffect(() => {
+    if (user._id) {
+      navigate("/home");
+    }
+  }, [user._id, navigate]);
 
   return (
     <div>
@@ -217,7 +221,6 @@ const RegisterForm = () => {
                   >
                     CONTRASEÑA
                     <Tooltip
-                      
                       content="La contraseña debe tener mas de 8 caracteres, al menos un dígito, al menos una minúscula y una mayúscula."
                       style="light"
                       animation="duration-1000"
