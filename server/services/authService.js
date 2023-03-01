@@ -16,8 +16,8 @@ class AuthService {
     return user;
   }
 
-  singToken(user) {
-    const token = generateAuthToken(user);
+  async singToken(user) {
+    const token = await generateAuthToken(user);
     return token;
   }
 
