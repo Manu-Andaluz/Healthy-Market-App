@@ -46,10 +46,11 @@ const registerController = async (req, res) => {
 };
 
 const loginController = async (req, res) => {
+  const { email, password } = req.body;
   try {
-    const user = req.user;
-    const userSing = service.singToken(user);
-    res.status(200).json(userSing);
+    const token = await loginUser(email, password);
+    console.log(token);
+    res.status(200).send(token);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -74,7 +75,6 @@ const loginGoogle = async (req, res, next) => {
     };
     req.body = userSchema;
     req.user = userSchema;
-    console.log({ userSchema });
     next();
   } catch (error) {
     res.json(error.message);

@@ -11,11 +11,7 @@ const userRouter = Router();
 
 userRouter.get("/", getUsersController);
 userRouter.post("/register", registerController);
-userRouter.post(
-  "/loggin",
-  passport.authenticate("local", { session: false }),
-  loginController
-);
+userRouter.post("/loggin", loginController);
 userRouter.get(
   "/google",
   passport.authenticate("google", {
