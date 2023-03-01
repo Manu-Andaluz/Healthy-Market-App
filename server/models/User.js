@@ -6,19 +6,18 @@ const userSchema = new mongoose.Schema(
     surname: { type: String, required: true, minlength: 3, maxlength: 30 },
     birthday: {
       type: String,
-      required: true,
     },
-    nationality: { type: String, required: true },
-    adress: { type: Object, required: true },
+    nationality: { type: String },
+    adress: { type: Object },
     email: {
       type: String,
-      required: true,
       minlength: 10,
       maxlength: 50,
       unique: true,
     },
-    password: { type: String, required: true, minlength: 3, maxlength: 1024 },
+    password: { type: String, minlength: 3, maxlength: 1024 },
     isAdmin: { type: Boolean, default: true },
+    id_google : {type : String}
   },
   { timestamps: true }
 );

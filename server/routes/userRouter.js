@@ -4,7 +4,8 @@ const {
   getUsersController,
   registerController,
   loginController,
-  loginGoogle,
+  RegisterGoogle,
+  loginGoogle
 } = require("../controllers/userController");
 
 const userRouter = Router();
@@ -18,7 +19,8 @@ userRouter.get(
     session: false,
     failureRedirect: "/loggin",
   }),
-  loginGoogle
+  RegisterGoogle
 );
+
 
 module.exports = userRouter;

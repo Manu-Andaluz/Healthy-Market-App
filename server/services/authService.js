@@ -21,7 +21,7 @@ class AuthService {
     return token;
   }
 
-  async sendMail(email) {
+  async sendMail(email, body) {
     const user = await service.findByEmail(email);
     if (!user) {
       throw done(boom.unauthorized(), false);
@@ -31,17 +31,17 @@ class AuthService {
       secure: true, // true for 465, false for other ports
       port: 465,
       auth: {
-        user: "healthymaarketapp@gmail.com",
-        pass: "mglyamdeawipdgtr",
+        user: process.env.USER_MAIL,
+        pass: process.env.PASS_MAIL,
       },
     });
 
     await transporter.sendMail({
       from: "healthymaarketapp@gmail.com", // sender address
       to: `${user.email}`, // list of receivers
-      subject: "Hello ✔", // Subject line
+      subject: body.subjet, // Subject line
       text: "Correo de prueba", // plain text body
-      html: "<b>Hello world?</b>", // html body
+      html: body.body, // html body
     });
     return { message: "mail send" };
   }

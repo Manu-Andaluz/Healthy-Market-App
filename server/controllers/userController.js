@@ -2,7 +2,12 @@ const {
   getAllUsers,
   createUser,
   loginUser,
+  findByEmail
 } = require("../services/userServices");
+const boom =  require('@hapi/boom');
+const generateAuthToken = require("../utils/generateAuthToken");
+
+const {User} = require('./../models/User');
 
 const AuthService = require("./../services/authService");
 
@@ -56,34 +61,39 @@ const loginController = async (req, res) => {
   }
 };
 
-const loginGoogle = async (req, res, next) => {
+const RegisterGoogle = async (req, res, next) => {
   try {
     const user = req.user;
+    const validateUser = await findByEmail(user._json.email)
+    if(validateUser.name){
+      const token = generateAuthToken(validateUser);
+      console.log({token, message : "Estas en la ruta login"})
+      return res.status(200).send(token);  
+    }
+    
     const userSchema = {
       name: user.name.givenName,
       surname: user._json.family_name,
-      birthday: "",
       nationality: user._json.locale,
-      adress: {
-        zip: "",
-        city: "",
-        adress: user._json.locale,
-      },
       email: user._json.email,
-      password: "",
       id_google: user.id,
     };
-    req.body = userSchema;
-    req.user = userSchema;
-    next();
+    
+    const newUser = new User(userSchema);
+    await newUser.save();
+
+    const token = generateAuthToken(newUser);
+    res.status(200).json(token);
   } catch (error) {
     res.json(error.message);
   }
 };
 
+
 module.exports = {
   getUsersController,
   registerController,
   loginController,
-  loginGoogle,
+  RegisterGoogle,
+  
 };
