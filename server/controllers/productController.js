@@ -136,6 +136,7 @@ const createProductReviewController = async (req, res) => {
 }
 
 
+
 module.exports = {
   getProductController,
   // getProductsFilteredController,
@@ -144,5 +145,5 @@ module.exports = {
   editProductController,
   deleteProductController,
   getProductByIdController,
-  createProductReviewController
+  createProductReviewController,
 };
