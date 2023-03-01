@@ -2,7 +2,10 @@ const {
   getAllUsers,
   createUser,
   loginUser,
+  findByEmail
 } = require("../services/userServices");
+const boom =  require('@hapi/boom');
+const generateAuthToken = require("../utils/generateAuthToken");
 
 const {User} = require('./../models/User');
 
@@ -58,9 +61,16 @@ const loginController = async (req, res) => {
   }
 };
 
-const loginGoogle = async (req, res, next) => {
+const RegisterGoogle = async (req, res, next) => {
   try {
     const user = req.user;
+    const validateUser = await findByEmail(user._json.email)
+    if(validateUser.name){
+      const token = generateAuthToken(validateUser);
+      console.log({token, message : "Estas en la ruta login"})
+      return res.status(200).send(token);  
+    }
+    
     const userSchema = {
       name: user.name.givenName,
       surname: user._json.family_name,
@@ -71,15 +81,19 @@ const loginGoogle = async (req, res, next) => {
     
     const newUser = new User(userSchema);
     await newUser.save();
-    res.json(newUser)
+
+    const token = generateAuthToken(newUser);
+    res.status(200).json(token);
   } catch (error) {
     res.json(error.message);
   }
 };
 
+
 module.exports = {
   getUsersController,
   registerController,
   loginController,
-  loginGoogle,
+  RegisterGoogle,
+  
 };

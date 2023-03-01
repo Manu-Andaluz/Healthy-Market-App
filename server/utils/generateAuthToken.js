@@ -9,11 +9,12 @@ const generateAuthToken = (user) => {
       isAdmin: user.isAdmin,
       name: user.name,
       surname: user.surname,
-      birthday: user.birthday,
-      nationality: user.nationality,
-      adress: user.adress,
+      birthday: user.birthday ? user.birthday : null,
+      nationality: user.nationality ? user.nationality : null,
+      adress: user.adress ? user.adress : null,
       email: user.email,
-      password: user.password,
+      password: user.password ? user.adress : null,
+      id_google : user.id_google ? user.id_google : null
     },
     jwtSecretKey
   );
