@@ -35,7 +35,7 @@ const LandingPage = () => {
                   ></path>
                 </svg>
               </button>
-              <a className="navbar-brand text-grisLetter" href="#!">
+              <a className="navbar-brand text-grisLetter" href="/">
                 <img
                   src={logo}
                   alt="logo"

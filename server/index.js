@@ -20,7 +20,7 @@ AdminJS.registerAdapter(AdminJSMongoose);
 // Very basic configuration of AdminJS.
 const adminJs = new AdminJS({
   resources: [{ resource: Product }, { resource: User }],
-  rootPath: "/admin", // Path to the AdminJS dashboard.
+  rootPath: "http://localhost:3000/admin", // Path to the AdminJS dashboard.
 });
 // Build and use a router to handle AdminJS routes.
 const router = AdminJSExpress.buildAuthenticatedRouter(
