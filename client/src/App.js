@@ -12,6 +12,7 @@ import CardDetail from "./components/CardDetail";
 import Error from "./components/Error";
 import Products from "./components/Products";
 import Cart from "./components/Cart"
+import ReviewForm from "./components/ReviewForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
           <Route path='/detail/:productId' element ={<CardDetail/>}/>
           <Route path="*" element={<Error/>} />
           <Route path="/cart" element={<Cart/>}/>
+          <Route path="/reviewform" element={<ReviewForm/>}/>
         </Routes>
       </BrowserRouter>
     </div>
