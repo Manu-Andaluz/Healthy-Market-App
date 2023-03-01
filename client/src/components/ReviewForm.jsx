@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import NavBar from "./NavBar";
 import ReactStars from "react-rating-stars-component";
 import { render } from "react-dom";
+import { Link } from "react-router-dom";
 
 
 
@@ -24,6 +25,7 @@ const ratingChanged = (newRating) => {
 
 const [input, setInput] = useState({
    review: "",
+   rate:""
 })
 const [errors, setErrors] = useState({});
 
@@ -32,7 +34,9 @@ const [errors, setErrors] = useState({});
 
 function validate(input){
     let errors = {}
-    if(!input.review){
+    if(!input.rate){
+        errors.rate = "Debes puntuar este producto"
+    }else if(!input.review){
         errors.review = "Debe completar este campo"
     }else if (input.review.length > 50){
         errors.review = "No debe superar los 50 caracteres"
@@ -81,10 +85,12 @@ function validate(input){
     return(
         
        <div className="">
+        
         <NavBar/>
+        <Link to="/home">Volver</Link>
             <div className="grid text-center h-screen content-center gap-5 items-center mt-5 pb-11">
                 <h3 className="text-3xl font-bold">Califique nuestro producto</h3>
-                <label>Puntuación</label>
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold">Puntuación</label>
                 <div className='py-2 ml-96 p-52'> 
                     <ReactStars 
                     count={5} 
@@ -92,8 +98,6 @@ function validate(input){
                     size={24} 
                     activeColor="#ffd700"
                     />
-                    
-                
                </div>
                <div>
                <button className="bg-green1 hover:bg-hoverGreen1 text-white font-bold py-2 px-4 rounded">Enviar puntuación</button>
