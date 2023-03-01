@@ -4,6 +4,8 @@ const {
   loginUser,
 } = require("../services/userServices");
 
+const {User} = require('./../models/User');
+
 const AuthService = require("./../services/authService");
 
 const service = new AuthService();
@@ -61,21 +63,14 @@ const loginGoogle = async (req, res, next) => {
     const userSchema = {
       name: user.name.givenName,
       surname: user._json.family_name,
-      birthday: "",
       nationality: user._json.locale,
-      adress: {
-        zip: "",
-        city: "",
-        adress: user._json.locale,
-      },
       email: user._json.email,
-      password: "",
       id_google: user.id,
     };
-    req.body = userSchema;
-    req.user = userSchema;
-    console.log({ userSchema });
-    next();
+    
+    const newUser = new User(userSchema);
+    await newUser.save();
+    res.json(newUser)
   } catch (error) {
     res.json(error.message);
   }
