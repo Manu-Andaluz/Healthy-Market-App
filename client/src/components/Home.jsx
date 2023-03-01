@@ -8,6 +8,7 @@ import Carousel from "./Carousel";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 import CardHome from "./CardsHome";
+import Reviews from "./Reviews"
 
 const Home = () => {
   const products = useSelector((state) => state.allProducts);
@@ -28,7 +29,9 @@ const Home = () => {
       <NavBar />
       <Carousel />
       <CardHome products={products.allProducts} />
+      <Reviews />
       <Footer />
+      
     </>
   );
 };

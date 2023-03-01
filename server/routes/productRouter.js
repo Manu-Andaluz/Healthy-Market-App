@@ -7,7 +7,7 @@ const {
   editProductController,
   deleteProductController,
   getProductByIdController,
-  createProductReviewController,
+  createProductReviewController, 
 } = require("../controllers/productController.js");
 
 // GET ALL PRODUCTS
@@ -40,5 +40,6 @@ productRouter.get("/getProductById/:productId", getProductByIdController);
 
 // CREATE REVIEW
 productRouter.post('/reviews/:id', createProductReviewController);
+
 
 module.exports = productRouter;

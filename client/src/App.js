@@ -11,7 +11,8 @@ import { loadUser } from "./slices/userSlice";
 import CardDetail from "./components/CardDetail";
 import Error from "./components/Error";
 import Products from "./components/Products";
-import Cart from "./components/Cart"
+import Cart from "./components/Cart";
+import Reviews from "./components/Reviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ function App() {
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path='/detail/:productId' element ={<CardDetail/>}/>
+          <Route path="/detail/:productId/reviews" element={<Reviews />} />
+          //no funciona la ruta review!!!
           <Route path="*" element={<Error/>} />
           <Route path="/cart" element={<Cart/>}/>
         </Routes>

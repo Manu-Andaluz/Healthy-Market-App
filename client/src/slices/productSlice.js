@@ -12,6 +12,7 @@ const initialState = {
   currentPage: 1,
   status: null,
   errors: null,
+  rating: null,
 };
 
 const productSlice = createSlice({
@@ -20,6 +21,9 @@ const productSlice = createSlice({
   reducers: {
     changePage: (state, action) => {
       state.currentPage = action.payload;
+    },
+    setRating: (state, action) => {
+      state.rating = action.payload;
     },
   },
   extraReducers: {
@@ -66,6 +70,7 @@ const productSlice = createSlice({
   },
 });
 
-export const { changePage } = productSlice.actions;
+export const { changePage, setRating } = productSlice.actions;
 
 export default productSlice.reducer;
+
