@@ -22,38 +22,42 @@ const getProduct = async (name) => {
 
 // filter
 
-const getProductsFiltered = async (filterBy, categoryValue) => {
-  const allProduct = await Product.find();
-  switch (filterBy) {
-    case "alfabetic-A-Z": {
-      const products = allProduct.sort((a, b) => a.name.localeCompare(b.name));
-      return products;
-    }
-    case "alfabetic-Z-A": {
-      const products = allProduct.sort((a, b) => b.name.localeCompare(a.name));
-      return products;
-    }
-    case "cheapper-products": {
-      const products = allProduct.sort((a, b) => a.price - b.price);
-      return products;
-    }
-    case "expensive-products": {
-      const products = allProduct.sort((a, b) => b.price - a.price);
-      return products;
-    }
-    default: {
-      return "Invalid Filter";
-    }
-  }
-};
+// const getProductsFiltered = async (filterBy, categoryValue) => {
+//   const allProduct = await Product.find();
+//   console.log("aca")
+//   switch (filterBy) {
+//     case "alfabetic-A-Z": {
+//       const products = allProduct.sort((a, b) => a.name.localeCompare(b.name));
+//       return products;
+//     }
+//     case "alfabetic-Z-A": {
+//       const products = allProduct.sort((a, b) => b.name.localeCompare(a.name));
+//       return products;
+//     }
+//     case "cheapper-products": {
+//       const products = allProduct.sort((a, b) => a.price - b.price);
+//       return products;
+//     }
+//     case "expensive-products": {
+//       const products = allProduct.sort((a, b) => b.price - a.price);
+//       return products;
+//     }
+//     default: {
+//       return "Invalid Filter";
+//     }
+//   }
+// };
 
 // combined filter - Category and Filterby
 
 const getCategoryFiltered = async (categoryValue, filterBy) => {
   let allProduct = await Product.find();
-  allProduct = allProduct.filter(
-    (product) => product.category.toLowerCase() == categoryValue.toLowerCase()
-  );
+  if(categoryValue !== "categoria") {
+    allProduct = allProduct.filter(
+      (product) => product.category.toLowerCase() == categoryValue.toLowerCase()
+    );
+  }
+  
 
   switch (filterBy) {
     case "alfabetic-A-Z": {
@@ -76,7 +80,7 @@ const getCategoryFiltered = async (categoryValue, filterBy) => {
       return allProduct;
     }
   }
-  return allProduct;
+  
 };
 
 // create product
@@ -197,7 +201,7 @@ const createReview = async (rating, comment, id) => {
 }
 module.exports = {
   getProduct,
-  getProductsFiltered,
+  // getProductsFiltered,
   getCategoryFiltered,
   createProduct,
   editProduct,

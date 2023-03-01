@@ -49,7 +49,7 @@ const Cards = (currentProduct) => {
                 onClick={() => handleOnClick(product)}
                 className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded w-fit mx-auto"
               >
-                <i class="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
+                <i className="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
               </button>
             </div>
           );

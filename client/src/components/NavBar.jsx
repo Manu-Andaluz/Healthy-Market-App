@@ -36,7 +36,7 @@ export default function NavBar() {
           </svg>
         </button>
       </div>
-      <ul className="hidden absolute top-1/2 left-1/2 text-white transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+      <ul className="hidden absolute top-1/2 left-1/2 text-white transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-6">
         <li>
           <NavLink
             to="/home"
@@ -130,14 +130,29 @@ export default function NavBar() {
         </li>
       </ul>
       {user.email ? (
-        <button onClick={handleLogout}>
-          <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-lg  text-gray-900 font-bold  rounded-xl transition duration-200">
-            Cerrar Sesión
-          </p>
-        </button>
+        user.isAdmin ? (
+          <div className="flex">
+            <NavLink to="https://healthy-market-app-production.up.railway.app/admin">
+              <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-white font-bold  rounded-xl transition duration-200 text-base">
+                Admin
+              </p>
+            </NavLink>
+            <button onClick={handleLogout}>
+              <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100  text-gray-900 font-bold  rounded-xl transition duration-200 text-base">
+                Cerrar Sesión
+              </p>
+            </button>
+          </div>
+        ) : (
+          <button onClick={handleLogout}>
+            <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100  text-gray-900 font-bold  rounded-xl transition duration-200 text-base">
+              Cerrar Sesión
+            </p>
+          </button>
+        )
       ) : (
         <NavLink to="/login">
-          <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-lg  text-gray-900 font-bold  rounded-xl transition duration-200">
+          <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100  text-gray-900 font-bold  rounded-xl transition duration-200 text-base">
             Ingresar
           </p>
         </NavLink>

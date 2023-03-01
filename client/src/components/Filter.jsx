@@ -1,17 +1,17 @@
 import { useDispatch } from "react-redux";
 import {
-  fetchCategoryProducts,
+  // fetchCategoryProducts,
   fetchFilterCategoryProducts,
-  fetchFilteredProducts,
+  // fetchFilteredProducts,
 } from "../actions/productActions";
-import { productsFetch } from "../actions/productActions";
+// import { productsFetch } from "../actions/productActions";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 
 const Filter = () => {
   const dispatch = useDispatch();
   const [filter, setFilter] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("categoria");
 
   const changeFilter = (e) => {
     setFilter(e.target.value);
@@ -22,11 +22,9 @@ const Filter = () => {
   };
 
   const handleFilter = (e) => {
-    if (filter === "ordenamiento") {
-      dispatch(productsFetch());
-    }
-
-    if (category) {
+    
+    
+    if (category === "categoria" || filter) {
       dispatch(
         fetchFilterCategoryProducts({
           category: category,
@@ -34,15 +32,13 @@ const Filter = () => {
         })
       );
     } else {
-      dispatch(fetchFilteredProducts(e.target.value));
+      dispatch(fetchFilterCategoryProducts(e.target.value));
     }
   };
 
   const handleFilterCategory = (e) => {
-    if (category === "categoria") {
-      dispatch(productsFetch());
-    }
     if (filter) {
+      
       dispatch(
         fetchFilterCategoryProducts({
           category: e.target.value,
@@ -50,7 +46,7 @@ const Filter = () => {
         })
       );
     } else {
-      dispatch(fetchCategoryProducts({ category: e.target.value }));
+      dispatch(fetchFilterCategoryProducts({ category: e.target.value }));
     }
   };
 
@@ -65,6 +61,7 @@ const Filter = () => {
           onClick={handleFilter}
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
+          <option value="ordenamiento">Ordenamiento</option>
           <option value="alfabetic-A-Z">Alfabetic (A-Z)</option>
           <option value="alfabetic-Z-A">Alfabetic (Z-A)</option>
           <option value="cheapper-products">cheapper-products</option>
@@ -77,10 +74,10 @@ const Filter = () => {
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         >
           <option value="categoria">Categoría</option>
-          <option value="Vegetariano">Vegetariano</option>
-          <option value="Gluten-Free">Gluten-Free</option>
-          <option value="Vegano">Vegano</option>
-          <option value="Almacen">Almacen</option>
+          <option value="vegetariano">Vegetariano</option>
+          <option value="gluten-Free">Gluten-Free</option>
+          <option value="vegano">Vegano</option>
+          <option value="almacen">Almacen</option>
         </select>
       </div>
     </div>

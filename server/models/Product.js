@@ -8,16 +8,12 @@ const reviewSchema = mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
     require: true,
-  },
-  companyOwner: {
-    type: String,
-    // require: true, (descomentar luego de crear productos)
   },
   price: {
     type: Number,

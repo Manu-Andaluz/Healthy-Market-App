@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   productsFetch,
   searchProducts,
-  fetchFilteredProducts,
+  // fetchFilteredProducts,
   fetchFilterCategoryProducts,
 } from "../actions/productActions";
 
@@ -47,16 +47,16 @@ const productSlice = createSlice({
     [searchProducts.rejected]: (state, action) => {
       state.status = "rejected";
     },
-    [fetchFilteredProducts.pending]: (state, action) => {
-      state.status = "loading";
-    },
-    [fetchFilteredProducts.fulfilled]: (state, action) => {
-      state.status = "succeeded";
-      state.allProducts = action.payload;
-    },
-    [fetchFilteredProducts.rejected]: (state, action) => {
-      state.status = "failed";
-    },
+    // [fetchFilteredProducts.pending]: (state, action) => {
+    //   state.status = "loading";
+    // },
+    // [fetchFilteredProducts.fulfilled]: (state, action) => {
+    //   state.status = "succeeded";
+    //   state.allProducts = action.payload;
+    // },
+    // [fetchFilteredProducts.rejected]: (state, action) => {
+    //   state.status = "failed";
+    // },
     [fetchFilterCategoryProducts.pending]: (state, action) => {
       state.status = "loading";
     },

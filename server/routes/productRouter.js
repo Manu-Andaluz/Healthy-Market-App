@@ -1,7 +1,7 @@
 const productRouter = require("express").Router();
 const {
   getProductController,
-  getProductsFilteredController,
+  // getProductsFilteredController,
   getCategoryFilterController,
   createProductController,
   editProductController,
@@ -16,7 +16,7 @@ productRouter.get("/", getProductController);
 
 // FILTER PRODUCTS
 
-productRouter.get("/filterBy", getProductsFilteredController);
+// productRouter.get("/filterBy", getProductsFilteredController);
 
 // FILER PRODUCTS BY CATEORY AND FILERBY
 

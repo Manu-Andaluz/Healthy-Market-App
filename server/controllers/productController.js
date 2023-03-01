@@ -1,6 +1,6 @@
 const {
   getProduct,
-  getProductsFiltered,
+  // getProductsFiltered,
   getCategoryFiltered,
   createProduct,
   editProduct,
@@ -26,16 +26,16 @@ const getProductController = async (req, res) => {
 
 // get filter products
 
-const getProductsFilteredController = async (req, res) => {
-  const { filterBy, categoryValue } = req.query;
-  try {
-    const productsFiltered = await getProductsFiltered(filterBy, categoryValue);
-    res.status(200).send(productsFiltered);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
-  }
-};
+// const getProductsFilteredController = async (req, res) => {
+//   const { filterBy, categoryValue } = req.query;
+//   try {
+//     const productsFiltered = await getProductsFiltered(filterBy, categoryValue);
+//     res.status(200).send(productsFiltered);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send(error);
+//   }
+// };
 
 // get category filter combined
 
@@ -139,7 +139,7 @@ const createProductReviewController = async (req, res) => {
 
 module.exports = {
   getProductController,
-  getProductsFilteredController,
+  // getProductsFilteredController,
   getCategoryFilterController,
   createProductController,
   editProductController,
