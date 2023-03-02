@@ -65,7 +65,7 @@ const RegisterGoogle = async (req, res, next) => {
   try {
     const user = req.user;
     const validateUser = await findByEmail(user._json.email)
-    if(validateUser.name){
+    if(validateUser){
       const token = generateAuthToken(validateUser);
       console.log({token, message : "Estas en la ruta login"})
       return res.status(200).send(token);  
