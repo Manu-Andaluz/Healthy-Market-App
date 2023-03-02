@@ -1,47 +1,41 @@
-import React from "react";
-import Star from "./Star";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { productsFetch } from "../actions/productActions";
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useParams, Link } from "react-router-dom";
 
 const Reviews = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector(state => state.allProducts);
+  const { productId } = useParams();
 
   useEffect(() => {
     dispatch(productsFetch());
-  }, []);
- 
-  console.log(allProducts); 
+  }, [dispatch]);
+
+  const product = allProducts.allProducts.find((p) => p._id === productId);
+
   return (
-    <>
-      <div className="mx-8 my-8 px-8">
-        <aside>
-          <div class="flex items-center mt-3 space-x-3 divide-x divide-gray-200 dark:divide-gray-600">
-            <a href="/" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-xs px-2 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Volver al producto</a>
-            <a href="/" class="pl-4 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">inicio</a>
-          </div>
-        </aside>
-        {allProducts.products && allProducts.products.map((product) => {
-  console.log(product)
-  return (
-    <div
-      className="text-base flex flex-col justify-end content-center items-center space-x-2 space-y-2"
-      key={product._id}
-    >
-      <div class="flex items-center mb-1">
-        <Star stars={product.rating} />
+    <div className="reviews">
+      <div className="flex items-center mb-4 space-x-4 mx-8 my-8 px-8">
+        <div className="space-y-1 font-medium dark:text-white">
+          <h2 className="text-lg font-bree border-b-2"> Reseñas:</h2>
+        </div>
       </div>
-      <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400"><p> <time>{product.date}</time></p></footer>
-      <p class="mb-2 font-light text-gray-500 dark:text-gray-400">{product.review}</p>
+      {product && product.reviews.length > 0 ? (
+        <>
+          {product.reviews.map((review, index) => (
+            <div key={index} className="border border-gray-200 rounded-lg mb-8 mx-8">
+               <h3 className="text-sm font-bold py-3 px-4 bg-green2"> {review.user ? review.user : 'Usuario Anónimo'}</h3>
+              <h3 className="text-sm py-3 px-4">Puntuación: {review.rating} estrellas</h3>
+              <p className="text-sm py-3 px-4"> "{review.comment}"</p>
+            </div>
+          ))}
+        </>
+      ) : (
+        <p className="text-sm mx-8">No hay comentarios para este producto</p>
+      )}
     </div>
-  )
-})}
+  );
+};
 
-      </div>
-    </>
-  )
-}
-
-export default Reviews
+export default Reviews;

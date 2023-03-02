@@ -13,6 +13,7 @@ import Error from "./components/Error";
 import Products from "./components/Products";
 import Cart from "./components/Cart"
 import ReviewForm from "./components/ReviewForm";
+import Reviews from "./components/Reviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
           <Route path="*" element={<Error/>} />
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/reviewform" element={<ReviewForm/>}/>
+          <Route path="/reviews/:productId" element={<Reviews/>}/>
         </Routes>
       </BrowserRouter>
     </div>
