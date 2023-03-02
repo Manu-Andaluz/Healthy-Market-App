@@ -8,6 +8,7 @@ import { addToCart } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Star from "./Star";
+import Reviews from "./Reviews"
 
 const CardDetail = () => {
   const { productId } = useParams();
@@ -34,7 +35,7 @@ const CardDetail = () => {
             <div class="md:flex items-center -mx-10">
         <div class="absolute top-10 right-0 mr-10 z-1">
 
-        <Link to={`/detail/${productId}/reviews`}>
+         <Link to={`/reviews/${productId}`}> 
          <Star stars={productDet.productDetail.rating} />
           </Link>
 
@@ -80,13 +81,15 @@ const CardDetail = () => {
                   >
                     <i className="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
                   </button>
+                   
                 </div>
               </div>
+             
             </div>
           </div>
         </div>
       </div>
-
+      {/* <Reviews productId={productId} />  */}
       {/* <!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES --> */}
       {/* <div className="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
     <div>
