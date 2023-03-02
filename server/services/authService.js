@@ -2,6 +2,7 @@ const boom = require("@hapi/boom");
 const bcrypt = require("bcrypt");
 const { findByEmail } = require("./../services/userServices");
 const generateAuthToken = require("../utils/generateAuthToken");
+const nodemailer = require('nodemailer')
 
 class AuthService {
   async getUser(email, password) {
@@ -22,7 +23,8 @@ class AuthService {
   }
 
   async sendMail(email, body) {
-    const user = await service.findByEmail(email);
+    try {
+      const user = await findByEmail(email);
     if (!user) {
       throw done(boom.unauthorized(), false);
     }
@@ -31,19 +33,29 @@ class AuthService {
       secure: true, // true for 465, false for other ports
       port: 465,
       auth: {
-        user: process.env.USER_MAIL,
-        pass: process.env.PASS_MAIL,
+        user: 'healthymaarketapp@gmail.com',
+        pass: 'cnqaxmbvbdaiwftc',
       },
+    }, (err, info)=> {
+      if(err){
+        console.log(err)
+      }else{
+        console.log("mensaje enviado")
+      }
     });
 
     await transporter.sendMail({
       from: "healthymaarketapp@gmail.com", // sender address
       to: `${user.email}`, // list of receivers
-      subject: body.subjet, // Subject line
+      subject: "hola", // Subject line
       text: "Correo de prueba", // plain text body
-      html: body.body, // html body
+   
     });
     return { message: "mail send" };
+    } catch (error) {
+      return error
+    }
+    
   }
 }
 

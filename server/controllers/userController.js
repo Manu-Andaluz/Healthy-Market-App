@@ -55,7 +55,9 @@ const loginController = async (req, res) => {
   try {
     const token = await loginUser(email, password);
     console.log(token);
+    
     res.status(200).send(token);
+    
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -67,7 +69,7 @@ const RegisterGoogle = async (req, res, next) => {
     const validateUser = await findByEmail(user._json.email)
     if(validateUser){
       const token = generateAuthToken(validateUser);
-      console.log({token, message : "Estas en la ruta login"})
+      console.log({token, validateUser})
       return res.status(200).send(token);  
     }
     
@@ -83,6 +85,7 @@ const RegisterGoogle = async (req, res, next) => {
     await newUser.save();
 
     const token = generateAuthToken(newUser);
+   
     res.status(200).json(token);
   } catch (error) {
     res.json(error.message);
