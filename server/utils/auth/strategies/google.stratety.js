@@ -5,13 +5,13 @@ const passport = require("passport");
 const emails = ["manulok78@gmail.com"];
 const callback =
   "https://healthy-market-app-production.up.railway.app/users/google";
+const callback1 = "http://localhost:5000/users/google";
 
 const Googlestrategy = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL:
-      "https://healthy-market-app-production.up.railway.app/users/google",
+    callbackURL: callback,
     scope: [
       "https://www.googleapis.com/auth/userinfo.email",
       "https://www.googleapis.com/auth/userinfo.profile",
