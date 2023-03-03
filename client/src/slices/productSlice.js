@@ -4,6 +4,7 @@ import {
   searchProducts,
   // fetchFilteredProducts,
   fetchFilterCategoryProducts,
+  createProduct,
 } from "../actions/productActions";
 
 const initialState = {
@@ -67,10 +68,19 @@ const productSlice = createSlice({
     [fetchFilterCategoryProducts.rejected]: (state, action) => {
       state.status = "failed";
     },
+    [createProduct.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [createProduct.fulfilled]: (state, action) => {
+      state.status = "succeeded";
+      state.allProducts.push(action.payload);
+    },
+    [createProduct.rejected]: (state, action) => {
+      state.status = "failed";
+    },
   },
 });
 
 export const { changePage, setRating } = productSlice.actions;
 
 export default productSlice.reducer;
-
