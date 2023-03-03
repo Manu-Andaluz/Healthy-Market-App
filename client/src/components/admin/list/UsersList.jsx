@@ -37,13 +37,13 @@ export default function UserList() {
     { field: "id", headerName: "ID", width: 220 },
     { field: "name", headerName: "Nombre", width: 130 },
     { field: "surname", headerName: "Apellido", width: 130 },
-    { field: "email", headerName: "Email", width: 130 },
+    { field: "email", headerName: "Email", width: 200 },
     { field: "nationality", headerName: "Nacionalidad", width: 130 },
     {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: 200,
+      width: 150,
       renderCell: (params) => {
         return (
           <Actions>
@@ -58,12 +58,6 @@ export default function UserList() {
               class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             >
               Editar
-            </button>
-            <button
-              type="button"
-              class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-            >
-              Ver
             </button>
           </Actions>
         );

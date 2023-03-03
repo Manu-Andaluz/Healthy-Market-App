@@ -18,7 +18,6 @@ const Summary = () => {
   const [total, setTotal] = useState();
   const [totalPerc, setTotalPerc] = useState(0);
 
-  console.log(orders);
   function compare(a, b) {
     if (a._id < b._id) return 1;
     if (a._id > b._id) return -1;
@@ -101,7 +100,7 @@ const Summary = () => {
   ];
 
   return (
-    <StyledSummary>
+    <div className="flex">
       <MainStats>
         <Overview>
           <Title>
@@ -116,14 +115,13 @@ const Summary = () => {
         </Overview>
         <SimpleBarCharts />
         <Chart />
-        <AreaCharts />
       </MainStats>
       <SideStats>
         <AllTimeData />
         <PieCharts />
         <Transactions />
       </SideStats>
-    </StyledSummary>
+    </div>
   );
 };
 
