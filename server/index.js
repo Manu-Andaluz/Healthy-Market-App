@@ -17,7 +17,6 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use(adminJs.options.rootPath, router);
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
