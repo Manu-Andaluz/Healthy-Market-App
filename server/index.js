@@ -8,6 +8,16 @@ const passport = require("passport");
 
 const app = express();
 
+const session = require("cookie-session");
+
+app.use(
+  session({
+    secret: "mysecret", // una clave secreta para la sesión
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(adminJs.options.rootPath, router);
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
