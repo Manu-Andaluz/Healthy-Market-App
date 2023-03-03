@@ -26,7 +26,9 @@ const Summary = () => {
 
   async function fetchOrders() {
     try {
-      const res = await axios.get(`http://localhost:5000/order`);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/order`
+      );
       res.data.sort(compare);
       setoOders(res.data);
       setOrdersPerc(
@@ -39,7 +41,9 @@ const Summary = () => {
 
   async function fetchUsers() {
     try {
-      const res = await axios.get(`http://localhost:5000/users/stats`);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/users/stats`
+      );
       res.data.sort(compare);
       setUsers(res.data);
       setUserPerc(
@@ -52,7 +56,9 @@ const Summary = () => {
 
   async function fetchTotal() {
     try {
-      const res = await axios.get(`http://localhost:5000/order/income`);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/order/income`
+      );
       res.data.sort(compare);
       setTotal(res.data);
       setTotalPerc(

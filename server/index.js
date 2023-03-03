@@ -5,14 +5,12 @@ require("dotenv").config();
 const mainRouter = require("./routes/index");
 const morgan = require("morgan");
 const passport = require("passport");
-const adminRouter = require("./utils/adminjs");
 
 const app = express();
 
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
-app.use(adminRouter);
 // session secret
 app.use(passport.initialize());
 app.use(passport.session());

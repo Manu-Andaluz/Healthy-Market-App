@@ -9,7 +9,9 @@ export default function UserList() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/users`);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/users`
+      );
       setUsers(res.data);
       setLoading(false);
     } catch (error) {

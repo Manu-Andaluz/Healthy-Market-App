@@ -5,4 +5,3 @@ const Orders = () => {
 };
 
 export default Orders;
-<h2>Orders</h2>;

@@ -12,7 +12,9 @@ const AllTimeData = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/products`);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/products`
+      );
       setProducts(res.data);
       setLoading(false);
     } catch (error) {
@@ -22,7 +24,9 @@ const AllTimeData = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/order`);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/order`
+      );
       setOrders(res.data.length);
     } catch (error) {
       console.log(error);
@@ -31,7 +35,9 @@ const AllTimeData = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/users`);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/users`
+      );
       setUsers(res.data.length);
     } catch (error) {
       console.log(error);
@@ -40,7 +46,9 @@ const AllTimeData = () => {
 
   const fetchIncome = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/order/allTimeIncome`);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/order/allTimeIncome`
+      );
       setIncome(res.data[0]);
       setLoading(false);
     } catch (error) {

@@ -26,7 +26,9 @@ const Chart = () => {
 
   async function fetchTotal() {
     try {
-      const res = await axios.get(`http://localhost:5000/order/income`);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/order/income`
+      );
       res.data.sort(compare);
       const newData = res.data.map((item) => {
         return {

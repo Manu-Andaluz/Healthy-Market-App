@@ -10,7 +10,9 @@ const Transactions = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/order`);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/order`
+      );
       setOrders(res.data);
       setLoading(false);
     } catch (error) {
