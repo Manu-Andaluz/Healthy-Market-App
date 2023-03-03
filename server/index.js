@@ -5,64 +5,14 @@ require("dotenv").config();
 const mainRouter = require("./routes/index");
 const morgan = require("morgan");
 const passport = require("passport");
-const AdminJS = require("adminjs");
-const AdminJSExpress = require("@adminjs/express");
-const AdminJSMongoose = require("@adminjs/mongoose");
-const { Product } = require("./models/Product");
-const { User } = require("./models/User");
-const bcrypt = require("bcrypt");
+const adminRouter = require("./utils/adminjs");
 
 const app = express();
 
-const session = require("cookie-session");
-
-AdminJS.registerAdapter(AdminJSMongoose);
-// Very basic configuration of AdminJS.
-const adminJs = new AdminJS({
-  resources: [{ resource: Product }, { resource: User }],
-  rootPath: "/admin", // Path to the AdminJS dashboard.
-});
-// Build and use a router to handle AdminJS routes.
-const router = AdminJSExpress.buildAuthenticatedRouter(
-  adminJs,
-  {
-    cookieName: "adminjs",
-    cookiePassword: "complicatedsecurepassword",
-    authenticate: async (email, password) => {
-      const user = await User.findOne({ email });
-      if (user) {
-        const matched = await bcrypt.compare(password, user.password);
-        if (matched) {
-          const isAdmin = user.isAdmin;
-          if (isAdmin) {
-            return user;
-          }
-        }
-      }
-      return false;
-    },
-  },
-  null,
-  // Add configuration required by the express-session plugin.
-  {
-    resave: false,
-    saveUninitialized: true,
-  }
-);
-
-app.use(adminJs.options.rootPath, router);
-
-app.use(
-  session({
-    secret: "mysecret", // una clave secreta para la sesión
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-app.use(adminJs.options.rootPath, router);
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
+app.use(adminRouter);
 // session secret
 app.use(passport.initialize());
 app.use(passport.session());

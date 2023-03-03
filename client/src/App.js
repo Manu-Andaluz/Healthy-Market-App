@@ -11,8 +11,14 @@ import { loadUser } from "./slices/userSlice";
 import CardDetail from "./components/CardDetail";
 import Error from "./components/Error";
 import Products from "./components/Products";
-import Cart from "./components/Cart"
+import Cart from "./components/Cart";
 import ReviewForm from "./components/ReviewForm";
+import Dashboard from "./components/admin/Dashboard";
+import Summary from "./components/admin/Summary";
+import ProductsList from "./components/admin/list/ProductsList";
+import CreateProduct from "./components/admin/CreateProduct";
+import UserList from "./components/admin/list/UsersList";
+import OrderList from "./components/admin/list/OrderList";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,10 +37,25 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
-          <Route path='/detail/:productId' element ={<CardDetail/>}/>
-          <Route path="*" element={<Error/>} />
-          <Route path="/cart" element={<Cart/>}/>
-          <Route path="/reviewform" element={<ReviewForm/>}/>
+          <Route path="/detail/:productId" element={<CardDetail />} />
+          <Route path="*" element={<Error />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/reviewform" element={<ReviewForm />} />
+          <Route path="/admin" element={<Dashboard />}>
+            <Route path="summary" element={<Summary />} />
+            <Route path="products" element={<ProductsList />}>
+              <Route index element={<ProductsList />} />
+              <Route path="create-product" element={<CreateProduct />} />
+            </Route>
+            <Route path="users" element={<UserList />}>
+              <Route index element={<UserList />} />
+              <Route path="create-user" element={<CreateProduct />} />
+            </Route>
+            <Route path="orders" element={<OrderList />}>
+              <Route index element={<OrderList />} />
+              <Route path="create-order" element={<CreateProduct />} />
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

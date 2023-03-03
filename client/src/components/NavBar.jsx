@@ -132,7 +132,7 @@ export default function NavBar() {
       {user.email ? (
         user.isAdmin ? (
           <div className="flex">
-            <NavLink to="https://healthy-market-app-production.up.railway.app/admin">
+            <NavLink to="/admin/summary">
               <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 text-white font-bold  rounded-xl transition duration-200 text-base">
                 Admin
               </p>

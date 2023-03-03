@@ -82,3 +82,18 @@ export const fetchFilterCategoryProducts = createAsyncThunk(
   }
 );
 
+export const createProduct = createAsyncThunk(
+  "products/createProduct",
+  async (product) => {
+    try {
+      const response = await axios.post(
+        `https://healthy-market-app-production.up.railway.app/products`,
+        product
+      );
+      return response.data;
+    } catch (error) {
+      console.log({ error: error.message });
+      throw error;
+    }
+  }
+);

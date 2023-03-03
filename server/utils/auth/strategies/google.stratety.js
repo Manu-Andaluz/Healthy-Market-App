@@ -3,7 +3,8 @@ const { findByEmail } = require("./../../../services/userServices");
 const passport = require("passport");
 
 const emails = ["manulok78@gmail.com"];
-const callback = "https://healthy-market-app-production.up.railway.app/users/google";
+const callback =
+  "https://healthy-market-app-production.up.railway.app/users/google";
 
 const Googlestrategy = new GoogleStrategy(
   {
