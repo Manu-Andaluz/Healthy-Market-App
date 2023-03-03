@@ -39,7 +39,7 @@ const createOrder = async (allProducts) => {
     binary_mode: true,
   };
 
-  mercadopago.preferences.create(preference).then((response) => {
+  return mercadopago.preferences.create(preference).then((response) => {
     return { response };
   });
 };
