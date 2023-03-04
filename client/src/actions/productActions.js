@@ -85,7 +85,7 @@ export const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async (productId) => {
     try {
-      const response = await axios.get(
+      const response = await axios.delete(
         `https://healthy-market-app-production.up.railway.app/products/${productId}`
       );
       return response.data;
