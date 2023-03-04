@@ -420,6 +420,12 @@ const RegisterForm = () => {
               >
                 Registrarse
               </button>
+              <Link
+                to="https://healthy-market-app-production.up.railway.app/users/google"
+                className="font-medium text-blue-600 dark:text-blue-700 hover:underline"
+              >
+                Registrarte con Google
+              </Link>
               <p className="mt-2">Ya tienes una cuenta?</p>
               <Link
                 to="/login"

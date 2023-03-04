@@ -9,7 +9,6 @@ import { addToCart } from "../slices/cartSlice";
 const Cards = (currentProduct) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //const products = useSelector((state) => state.allProducts);
 
   useEffect(() => {
     dispatch(productsFetch());

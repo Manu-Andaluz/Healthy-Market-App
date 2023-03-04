@@ -50,37 +50,70 @@ const getProduct = async (name) => {
 
 // combined filter - Category and Filterby
 
-const getCategoryFiltered = async (categoryValue, filterBy) => {
+const getCategoryFiltered = async (categoryValue, filterBy, name) => {
   let allProduct = await Product.find();
-  if(categoryValue !== "categoria") {
+  if (categoryValue !== "categoria") {
     allProduct = allProduct.filter(
       (product) => product.category.toLowerCase() == categoryValue.toLowerCase()
     );
+    if (name) {
+      allProduct = allProduct.filter((a) =>
+        a.name.toLowerCase().includes(name.toLowerCase())
+      );
+    }
   }
-  
 
   switch (filterBy) {
     case "alfabetic-A-Z": {
       const products = allProduct.sort((a, b) => a.name.localeCompare(b.name));
+      if (name) {
+        const productFilterByName = products.filter((a) =>
+          a.name.toLowerCase().includes(name.toLowerCase())
+        );
+        return productFilterByName;
+      }
       return products;
     }
     case "alfabetic-Z-A": {
       const products = allProduct.sort((a, b) => b.name.localeCompare(a.name));
+      if (name) {
+        const productFilterByName = products.filter((a) =>
+          a.name.toLowerCase().includes(name.toLowerCase())
+        );
+        return productFilterByName;
+      }
       return products;
     }
     case "cheapper-products": {
       const products = allProduct.sort((a, b) => a.price - b.price);
+      if (name) {
+        const productFilterByName = products.filter((a) =>
+          a.name.toLowerCase().includes(name.toLowerCase())
+        );
+        return productFilterByName;
+      }
       return products;
     }
     case "expensive-products": {
       const products = allProduct.sort((a, b) => b.price - a.price);
+      if (name) {
+        const productFilterByName = products.filter((a) =>
+          a.name.toLowerCase().includes(name.toLowerCase())
+        );
+        return productFilterByName;
+      }
       return products;
     }
     default: {
+      if (name) {
+        const productFilterByName = allProduct.filter((a) =>
+          a.name.toLowerCase().includes(name.toLowerCase())
+        );
+        return productFilterByName;
+      }
       return allProduct;
     }
   }
-  
 };
 
 // create product
@@ -116,24 +149,22 @@ const editProduct = async (productImage, productId, product) => {
       product.image.public_id
     );
 
-    if (destroyResponse) {
-      const uploadedResponse = await cloudinary.uploader.upload(productImage, {
-        upload_preset: "online-shop",
-      });
+    const uploadedResponse = await cloudinary.uploader.upload(productImage, {
+      upload_preset: "healthy-market",
+    });
 
-      if (uploadedResponse) {
-        const updatedProduct = await Product.findByIdAndUpdate(
-          productId,
-          {
-            $set: {
-              ...product,
-              image: uploadedResponse,
-            },
+    if (uploadedResponse) {
+      const updatedProduct = await Product.findByIdAndUpdate(
+        productId,
+        {
+          $set: {
+            ...product,
+            image: uploadedResponse,
           },
-          { new: true }
-        );
-        return updatedProduct;
-      }
+        },
+        { new: true }
+      );
+      return updatedProduct;
     }
   } else {
     const updatedProduct = await Product.findByIdAndUpdate(
@@ -165,8 +196,6 @@ const deleteProduct = async (productId) => {
 
       return deletedProduct;
     }
-  } else {
-    console.log("Action terminated. Failed to deleted product image ... ");
   }
 };
 
@@ -178,27 +207,25 @@ const getProductById = async (id) => {
 };
 
 // create review
-const createReview = async (rating, comment, id) => {
+const createReview = async (rating, comment, id, name) => {
+  const product = await Product.findById(id);
 
-  const product = await Product.findById(id)
   if (product) {
-
     const review = {
       rating: Number(rating),
       comment,
-    }
+      name,
+    };
 
-    product.reviews.push(review)
-
+    product.reviews.push(review);
 
     product.rating =
       product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-      product.reviews.length
+      product.reviews.length;
 
-    await product.save()
-
+    await product.save();
   }
-}
+};
 module.exports = {
   getProduct,
   // getProductsFiltered,

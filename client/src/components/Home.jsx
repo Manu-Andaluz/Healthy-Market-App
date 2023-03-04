@@ -13,7 +13,6 @@ import CardHome from "./CardsHome";
 const Home = () => {
   const products = useSelector((state) => state.allProducts);
   const dispatch = useDispatch();
-  // const products = useSelector ((state) => state.allProducts)
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
@@ -30,7 +29,6 @@ const Home = () => {
       <Carousel />
       <CardHome products={products.allProducts} />
       <Footer />
-      
     </>
   );
 };

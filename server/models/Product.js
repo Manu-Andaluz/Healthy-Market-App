@@ -4,6 +4,7 @@ const reviewSchema = mongoose.Schema(
   {
     rating: { type: Number, required: true },
     comment: { type: String, required: true },
+    name: { type: String, required: true },
   },
   {
     timestamps: true,
@@ -37,6 +38,10 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     require: true,
+  },
+  isAvaliable: {
+    type: Boolean,
+    default: true,
   },
   reviews: [reviewSchema],
   rating: {

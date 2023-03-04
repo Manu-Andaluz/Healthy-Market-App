@@ -1,8 +1,25 @@
 const oderRouter = require("express").Router();
-const { createOrder } = require("../controllers/orderController.js");
+const {
+  createOrderController,
+  getAllOrderController,
+  getOrderIncomeController,
+  getAllTimeOrderController,
+} = require("../controllers/orderController.js");
 
-// GET ALL COMPANIES
+// GET ALL ORDERS
 
-oderRouter.post("/", createOrder);
+oderRouter.get("/", getAllOrderController);
+
+// GET ORDERS LAST MONTH
+
+oderRouter.get("/income", getOrderIncomeController);
+
+// GET ORDERS ALL TIME
+
+oderRouter.get("/allTimeIncome", getAllTimeOrderController);
+
+// CREATE ORDER ( MERCADO PAGO )
+
+oderRouter.post("/", createOrderController);
 
 module.exports = oderRouter;

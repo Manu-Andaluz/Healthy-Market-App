@@ -9,7 +9,7 @@ const {
   createReview,
 } = require("../services/productServices");
 
-const { Product } = require("../models/Product")
+const { Product } = require("../models/Product");
 
 // get product
 
@@ -40,9 +40,14 @@ const getProductController = async (req, res) => {
 // get category filter combined
 
 const getCategoryFilterController = async (req, res) => {
-  const { categoryValue, filterBy } = req.query;
+  const { categoryValue, filterBy, name } = req.query;
+
   try {
-    const productsFiltered = await getCategoryFiltered(categoryValue, filterBy);
+    const productsFiltered = await getCategoryFiltered(
+      categoryValue,
+      filterBy,
+      name
+    );
     res.status(200).send(productsFiltered);
   } catch (error) {
     console.log(error);
@@ -123,19 +128,16 @@ const getProductByIdController = async (req, res) => {
 };
 
 const createProductReviewController = async (req, res) => {
-  const { rating, comment } = req.body
-  const { id } = req.params
-
+  const { rating, comment, name } = req.body;
+  const { id } = req.params;
+  console.log(req.body, req.params);
   try {
-    createReview(rating, comment, id)
-    res.status(201).json({ message: 'Review added' })
+    createReview(rating, comment, id, name);
+    res.status(201).json({ message: "Review added" });
+  } catch {
+    res.status(404).send("Product not found");
   }
-  catch {
-    res.status(404).send('Product not found')
-  }
-}
-
-
+};
 
 module.exports = {
   getProductController,
