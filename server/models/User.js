@@ -16,8 +16,8 @@ const userSchema = new mongoose.Schema(
       unique: true,
     },
     password: { type: String, minlength: 3, maxlength: 1024 },
-    isAdmin: { type: Boolean, default: true },
-    id_google : {type : String}
+    isAdmin: { type: Boolean, default: false },
+    id_google: { type: String },
   },
   { timestamps: true }
 );

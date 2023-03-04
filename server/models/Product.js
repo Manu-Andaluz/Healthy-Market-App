@@ -38,6 +38,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  isAvaliable: {
+    type: Boolean,
+    default: true,
+  },
   reviews: [reviewSchema],
   rating: {
     type: Number,

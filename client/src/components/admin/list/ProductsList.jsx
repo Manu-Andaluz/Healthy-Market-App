@@ -3,7 +3,7 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { productsFetch } from "../../../actions/productActions";
+import { productsFetch, deleteProduct } from "../../../actions/productActions";
 
 export default function ProductsList() {
   const items = useSelector((state) => state.allProducts.allProducts);
@@ -12,6 +12,10 @@ export default function ProductsList() {
   useEffect(() => {
     dispatch(productsFetch());
   }, []);
+
+  const handleDelete = (productId) => {
+    dispatch(deleteProduct(productId));
+  };
 
   const rows =
     items &&

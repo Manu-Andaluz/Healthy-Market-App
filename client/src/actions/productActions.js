@@ -101,8 +101,23 @@ export const createProduct = createAsyncThunk(
   async (product) => {
     try {
       const response = await axios.post(
-        `https://healthy-market-app-production.up.railway.app/products`,
+        `http://localhost:5000/products`,
         product
+      );
+      return response.data;
+    } catch (error) {
+      console.log({ error: error.message });
+      throw error;
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "products/deleteProduct",
+  async (productId) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/products/${productId}`
       );
       return response.data;
     } catch (error) {
