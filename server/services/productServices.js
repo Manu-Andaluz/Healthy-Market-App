@@ -187,18 +187,13 @@ const deleteProduct = async (productId) => {
 
   if (!product) return "Product not found... ";
 
-  if (product.image.public_id) {
-    const destroyResponse = await cloudinary.uploader.destroy(
-      product.image.public_id
-    );
-    if (destroyResponse) {
-      const deletedProduct = await Product.findByIdAndDelete(productId);
+  // if (product.image.public_id) {
+  //   const destroyResponse = await cloudinary.uploader.destroy(
+  //     product.image.public_id
+  //   );
+  const deletedProduct = await Product.findByIdAndDelete(productId);
 
-      return deletedProduct;
-    }
-  } else {
-    console.log("Action terminated. Failed to deleted product image ... ");
-  }
+  return deletedProduct;
 };
 
 // get by id

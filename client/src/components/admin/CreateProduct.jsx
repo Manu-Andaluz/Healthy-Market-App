@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { PrimaryButton } from "./CommonStyled";
 import { createProduct } from "../../actions/productActions";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
+  const { createStatus } = useSelector((state) => state.allProducts);
 
   const [productImg, setProductImg] = useState("");
   const [category, setcategory] = useState("");
@@ -33,9 +36,14 @@ const CreateProduct = () => {
     }
   };
 
+  useEffect(() => {
+    if (createStatus === "success") {
+      toast("Producto Creado");
+    }
+  }, [createStatus]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     dispatch(
       createProduct({
         name,
@@ -100,7 +108,7 @@ const CreateProduct = () => {
           type="button"
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
         >
-          Enviar
+          {createStatus === "pending" ? "Enviando ..." : "Enviar"}
         </button>
       </StyledForm>
       <ImagePreview>
