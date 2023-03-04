@@ -60,6 +60,7 @@ const CreateProduct = () => {
           required
         />
         <select onChange={(e) => setcategory(e.target.value)} required>
+          <option value="">Select category</option>
           <option value="vegetariano">Vegetariano</option>
           <option value="gluten-Free">Gluten-Free</option>
           <option value="vegano">Vegano</option>

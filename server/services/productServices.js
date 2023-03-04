@@ -52,12 +52,11 @@ const getProduct = async (name) => {
 
 const getCategoryFiltered = async (categoryValue, filterBy) => {
   let allProduct = await Product.find();
-  if(categoryValue !== "categoria") {
+  if (categoryValue !== "categoria") {
     allProduct = allProduct.filter(
       (product) => product.category.toLowerCase() == categoryValue.toLowerCase()
     );
   }
-  
 
   switch (filterBy) {
     case "alfabetic-A-Z": {
@@ -80,7 +79,6 @@ const getCategoryFiltered = async (categoryValue, filterBy) => {
       return allProduct;
     }
   }
-  
 };
 
 // create product
@@ -116,24 +114,22 @@ const editProduct = async (productImage, productId, product) => {
       product.image.public_id
     );
 
-    if (destroyResponse) {
-      const uploadedResponse = await cloudinary.uploader.upload(productImage, {
-        upload_preset: "online-shop",
-      });
+    const uploadedResponse = await cloudinary.uploader.upload(productImage, {
+      upload_preset: "healthy-market",
+    });
 
-      if (uploadedResponse) {
-        const updatedProduct = await Product.findByIdAndUpdate(
-          productId,
-          {
-            $set: {
-              ...product,
-              image: uploadedResponse,
-            },
+    if (uploadedResponse) {
+      const updatedProduct = await Product.findByIdAndUpdate(
+        productId,
+        {
+          $set: {
+            ...product,
+            image: uploadedResponse,
           },
-          { new: true }
-        );
-        return updatedProduct;
-      }
+        },
+        { new: true }
+      );
+      return updatedProduct;
     }
   } else {
     const updatedProduct = await Product.findByIdAndUpdate(
@@ -179,26 +175,22 @@ const getProductById = async (id) => {
 
 // create review
 const createReview = async (rating, comment, id) => {
-
-  const product = await Product.findById(id)
+  const product = await Product.findById(id);
   if (product) {
-
     const review = {
       rating: Number(rating),
       comment,
-    }
+    };
 
-    product.reviews.push(review)
-
+    product.reviews.push(review);
 
     product.rating =
       product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-      product.reviews.length
+      product.reviews.length;
 
-    await product.save()
-
+    await product.save();
   }
-}
+};
 module.exports = {
   getProduct,
   // getProductsFiltered,

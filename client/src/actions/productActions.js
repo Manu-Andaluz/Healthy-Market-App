@@ -84,24 +84,26 @@ export const fetchFilterCategoryProducts = createAsyncThunk(
 
 export const reviewProducts = createAsyncThunk(
   "products/reviews",
-  async({reviews, productId}) => {
+  async ({ reviews, productId }) => {
     try {
       const response = await axios.post(
-        `https://healthy-market-app-production.up.railway.app/reviews/${productId}`, reviews)
-      return response.data
+        `https://healthy-market-app-production.up.railway.app/reviews/${productId}`,
+        reviews
+      );
+      return response.data;
     } catch (error) {
-      console.log({error: error.message})
-      throw error
+      console.log({ error: error.message });
+      throw error;
     }
   }
-)
+);
 
 export const createProduct = createAsyncThunk(
   "products/createProduct",
   async (product) => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/products`,
+        `https://healthy-market-app-production.up.railway.app/products`,
         product
       );
       return response.data;
@@ -116,8 +118,24 @@ export const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async (productId) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/products/${productId}`
+      const response = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/products/${productId}`
+      );
+      return response.data;
+    } catch (error) {
+      console.log({ error: error.message });
+      throw error;
+    }
+  }
+);
+
+export const editProduct = createAsyncThunk(
+  "products/editProduct",
+  async (values) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/products/editProduct/${values.product._id}`,
+        values
       );
       return response.data;
     } catch (error) {
