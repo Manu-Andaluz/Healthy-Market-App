@@ -22,38 +22,33 @@ const Filter = () => {
   };
 
   const handleFilter = (e) => {
-    
-    
-    if (category === "categoria" || filter) {
-      dispatch(
-        fetchFilterCategoryProducts({
-          category: category,
-          filterBy: filter,
-        })
-      );
-    } else {
-      dispatch(fetchFilterCategoryProducts(e.target.value));
-    }
+    dispatch(
+      fetchFilterCategoryProducts({
+        category: category,
+        filterBy: filter,
+        name: "",
+      })
+    );
   };
 
   const handleFilterCategory = (e) => {
-    if (filter) {
-      
-      dispatch(
-        fetchFilterCategoryProducts({
-          category: e.target.value,
-          filterBy: filter,
-        })
-      );
-    } else {
-      dispatch(fetchFilterCategoryProducts({ category: e.target.value }));
-    }
+    dispatch(
+      fetchFilterCategoryProducts({
+        category: category,
+        filterBy: filter,
+        name: "",
+      })
+    );
   };
 
   return (
     <div className="grid mx-auto gap-2 my-5">
+      <div className="flex flex-column">
+        <label>Ordenamiento:</label>
+        <label>Ordenamiento:</label>
+      </div>
       <div className="flex w-9/12 gap-5 mx-auto">
-        <SearchBar />
+        <SearchBar filter={filter} category={category} />
 
         <select
           name="filters"
@@ -67,6 +62,7 @@ const Filter = () => {
           <option value="cheapper-products">cheapper-products</option>
           <option value="expensive-products">expensive-products</option>
         </select>
+
         <select
           name="category"
           onChange={changeCategory}

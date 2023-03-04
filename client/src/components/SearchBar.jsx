@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { searchProducts } from "../actions/productActions";
+import {
+  searchProducts,
+  fetchFilterCategoryProducts,
+} from "../actions/productActions";
 
-export default function SearchBar() {
+export default function SearchBar({ filter, category }) {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    dispatch(searchProducts(search));
+    dispatch(
+      fetchFilterCategoryProducts({
+        category: category,
+        filterBy: filter,
+        name: search,
+      })
+    );
   }, [search]);
 
   function onInputChange(e) {
