@@ -196,8 +196,6 @@ const deleteProduct = async (productId) => {
 
       return deletedProduct;
     }
-  } else {
-    console.log("Action terminated. Failed to deleted product image ... ");
   }
 };
 

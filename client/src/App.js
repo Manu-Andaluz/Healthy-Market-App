@@ -22,6 +22,7 @@ import OrderList from "./components/admin/list/OrderList";
 import Reviews from "./components/Reviews";
 import ProductsDashboard from "./components/admin/Products";
 import EditProduct from "./components/admin/EditProduct";
+import { toast, ToastContainer } from "react-toastify";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />

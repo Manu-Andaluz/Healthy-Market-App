@@ -13,6 +13,7 @@ const initialState = {
   allProducts: [],
   favouritesProducts: [],
   currentPage: 1,
+  createStatus: null,
   status: null,
   errors: null,
   rating: null,
@@ -75,6 +76,7 @@ const productSlice = createSlice({
     },
     [createProduct.fulfilled]: (state, action) => {
       state.status = "succeeded";
+      state.createStatus = "success";
       state.allProducts.push(action.payload);
     },
     [createProduct.rejected]: (state, action) => {
