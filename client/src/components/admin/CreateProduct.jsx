@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { PrimaryButton } from "./CommonStyled";
 import { createProduct } from "../../actions/productActions";
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
-  const { createStatus } = useSelector((state) => state.products);
 
   const [productImg, setProductImg] = useState("");
   const [category, setcategory] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [details, setdetails] = useState("");
+  const [stock, setStock] = useState("");
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -42,6 +42,7 @@ const CreateProduct = () => {
         category,
         price,
         details,
+        stock,
         image: productImg,
       })
     );
@@ -50,7 +51,7 @@ const CreateProduct = () => {
   return (
     <StyledCreateProduct>
       <StyledForm onSubmit={handleSubmit}>
-        <h3>Create a Product</h3>
+        <h3>Creación del Producto</h3>
         <input
           id="imgUpload"
           accept="image/*"
@@ -59,37 +60,47 @@ const CreateProduct = () => {
           required
         />
         <select onChange={(e) => setcategory(e.target.value)} required>
-          <option value="">Select category</option>
-          <option value="Technology">Technology</option>
-          <option value="Indumentary">Indumentary</option>
-          <option value="Accessories">Accessories</option>
-          <option value="Mates">Mates</option>
+          <option value="vegetariano">Vegetariano</option>
+          <option value="gluten-Free">Gluten-Free</option>
+          <option value="vegano">Vegano</option>
+          <option value="almacen">Almacen</option>
         </select>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Nombre"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
         <input
           type="number"
-          placeholder="Price"
+          placeholder="Precio"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
         />
         <input
+          type="number"
+          placeholder="Stock"
+          value={stock}
+          onChange={(e) => setStock(e.target.value)}
+          required
+        />
+        <input
           type="text"
-          placeholder="Short detailsription"
+          placeholder="Descripción"
           value={details}
           onChange={(e) => setdetails(e.target.value)}
           required
         />
 
-        <PrimaryButton type="submit">
-          {createStatus === "pending" ? "Submitting" : "Submit"}
-        </PrimaryButton>
+        <button
+          onClick={handleSubmit}
+          type="button"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          Enviar
+        </button>
       </StyledForm>
       <ImagePreview>
         {productImg ? (
