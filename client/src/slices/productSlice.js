@@ -14,6 +14,8 @@ const initialState = {
   favouritesProducts: [],
   currentPage: 1,
   createStatus: null,
+  deleteStatus: null,
+  editStatus: null,
   status: null,
   errors: null,
   rating: null,
@@ -51,16 +53,6 @@ const productSlice = createSlice({
     [searchProducts.rejected]: (state, action) => {
       state.status = "rejected";
     },
-    // [fetchFilteredProducts.pending]: (state, action) => {
-    //   state.status = "loading";
-    // },
-    // [fetchFilteredProducts.fulfilled]: (state, action) => {
-    //   state.status = "succeeded";
-    //   state.allProducts = action.payload;
-    // },
-    // [fetchFilteredProducts.rejected]: (state, action) => {
-    //   state.status = "failed";
-    // },
     [fetchFilterCategoryProducts.pending]: (state, action) => {
       state.status = "loading";
     },
@@ -83,30 +75,31 @@ const productSlice = createSlice({
       state.status = "failed";
     },
     [deleteProduct.pending]: (state, action) => {
-      state.status = "pending";
+      state.deleteStatus = "pending";
     },
     [deleteProduct.fulfilled]: (state, action) => {
-      const newList = state.items.filter(
+      state.deleteStatus = "success";
+      const newList = state.allProducts.filter(
         (item) => item._id !== action.payload._id
       );
-      state.items = newList;
+      state.allProducts = newList;
       state.status = "success";
     },
     [deleteProduct.rejected]: (state, action) => {
-      state.status = "rejected";
+      state.deleteStatus = "rejecteds";
     },
     [editProduct.pending]: (state, action) => {
-      state.status = "pending";
+      state.editStatus = "pending";
     },
     [editProduct.fulfilled]: (state, action) => {
       const updateProducts = state.items.map((product) =>
         product._id === action.payload._id ? action.payload : product
       );
       state.items = updateProducts;
-      state.status = "success";
+      state.editStatus = "succes";
     },
     [editProduct.rejected]: (state, action) => {
-      state.status = "rejected";
+      state.editStatus = "rejected";
     },
   },
 });

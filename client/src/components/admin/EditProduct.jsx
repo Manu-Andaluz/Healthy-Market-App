@@ -82,7 +82,7 @@ export default function EditProduct({ productId }) {
 
   return (
     <div>
-      <Edit onClick={handleClickOpen}>Edit</Edit>
+      <Edit onClick={handleClickOpen}>Editar</Edit>
       <Dialog
         open={open}
         onClose={handleClose}

@@ -6,15 +6,20 @@ import { useEffect } from "react";
 import { productsFetch, deleteProduct } from "../../../actions/productActions";
 import { useNavigate } from "react-router-dom";
 import EditProduct from "../EditProduct";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function ProductsList() {
   const items = useSelector((state) => state.allProducts.allProducts);
+  const { deleteStatus } = useSelector((state) => state.allProducts);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(productsFetch());
-  }, []);
+
+    if (deleteStatus === "success") {
+      toast("Producto Eliminado");
+    }
+  }, [deleteStatus, dispatch]);
 
   const rows =
     items &&
@@ -25,7 +30,7 @@ export default function ProductsList() {
         category: item.category,
         name: item.name,
         details: item.details,
-        price: item.price.toLocaleString(),
+        price: "$" + item.price.toLocaleString(),
       };
     });
 
