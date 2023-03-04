@@ -1,10 +1,8 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import styled from "styled-components";
 import { PrimaryButton } from "./CommonStyled";
@@ -108,10 +106,10 @@ export default function EditProduct({ productId }) {
                 required
               >
                 <option value="">Select category</option>
-          <option value="vegetariano">Vegetariano</option>
-          <option value="gluten-Free">Gluten-Free</option>
-          <option value="vegano">Vegano</option>
-          <option value="almacen">Almacen</option>
+                <option value="vegetariano">Vegetariano</option>
+                <option value="gluten-Free">Gluten-Free</option>
+                <option value="vegano">Vegano</option>
+                <option value="almacen">Almacen</option>
               </select>
               <input
                 type="text"
