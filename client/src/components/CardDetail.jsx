@@ -8,7 +8,7 @@ import { addToCart } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Star from "./Star";
-import Reviews from "./Reviews"
+import Reviews from "./Reviews";
 
 const CardDetail = () => {
   const { productId } = useParams();
@@ -23,7 +23,6 @@ const CardDetail = () => {
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
     navigate("/cart");
-    console.log("handleSubmit");
   };
   return (
     <div>
@@ -31,15 +30,12 @@ const CardDetail = () => {
       {/* <!-- component --> */}
       <div class="min-w-screen h-full flex items-center p-5 lg:p-10 overflow-hidden relative bg-gray-100">
         <div class="w-full max-w-6xl rounded bg-white shadow-xl p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
-
-            <div class="md:flex items-center -mx-10">
-        <div class="absolute top-10 right-0 mr-10 z-1">
-
-         <Link to={`/reviews/${productId}`}> 
-         <Star stars={productDet.productDetail.rating} />
-          </Link>
-
-                 </div>
+          <div class="md:flex items-center -mx-10">
+            <div class="absolute top-10 right-0 mr-10 z-1">
+              <Link to={`/reviews/${productId}`}>
+                <Star stars={productDet.productDetail.rating} />
+              </Link>
+            </div>
 
             <div class=" shadow-[0_32px_50px_-15px_rgba(0,0,0,0.2)] rounded-xl w-full md:w-1/2 px-10 mb-10 md:mb-0">
               <div class="relative">
@@ -79,12 +75,11 @@ const CardDetail = () => {
                     onClick={() => handleOnClick(productDet.productDetail)}
                     className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded w-fit mx-auto"
                   >
-                    <i className="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
+                    <i className="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL
+                    CARRITO{" "}
                   </button>
-                   
                 </div>
               </div>
-             
             </div>
           </div>
         </div>

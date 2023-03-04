@@ -56,7 +56,7 @@ export const reviewProducts = createAsyncThunk(
   async ({ reviews, productId }) => {
     try {
       const response = await axios.post(
-        `https://healthy-market-app-production.up.railway.app/reviews/${productId}`,
+        `https://healthy-market-app-production.up.railway.app/products/reviews/${productId}`,
         reviews
       );
       return response.data;

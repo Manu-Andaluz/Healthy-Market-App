@@ -209,12 +209,14 @@ const getProductById = async (id) => {
 };
 
 // create review
-const createReview = async (rating, comment, id) => {
+const createReview = async (rating, comment, id, name) => {
   const product = await Product.findById(id);
+
   if (product) {
     const review = {
       rating: Number(rating),
       comment,
+      name,
     };
 
     product.reviews.push(review);
