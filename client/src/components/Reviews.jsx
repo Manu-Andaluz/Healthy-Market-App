@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { productsFetch } from "../actions/productActions";
 import { useParams, Link } from "react-router-dom";
+import ReviewForm from "./ReviewForm";
 
 const Reviews = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Reviews = () => {
 
   return (
     <div className="reviews">
+      <div><ReviewForm element={productId}/></div>
       <div className="flex items-center mb-4 space-x-4 mx-8 my-8 px-8">
         <div className="space-y-1 font-medium dark:text-white">
           <h2 className="text-lg font-bree border-b-2"> Reseñas:</h2>

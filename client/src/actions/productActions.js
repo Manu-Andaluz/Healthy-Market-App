@@ -82,6 +82,20 @@ export const fetchFilterCategoryProducts = createAsyncThunk(
   }
 );
 
+export const reviewProducts = createAsyncThunk(
+  "products/reviews",
+  async({reviews, productId}) => {
+    try {
+      const response = await axios.post(
+        `https://healthy-market-app-production.up.railway.app/reviews/${productId}`, reviews)
+      return response.data
+    } catch (error) {
+      console.log({error: error.message})
+      throw error
+    }
+  }
+)
+
 export const createProduct = createAsyncThunk(
   "products/createProduct",
   async (product) => {
