@@ -6,6 +6,7 @@ const {
 } = require("../services/userServices");
 const boom =  require('@hapi/boom');
 const generateAuthToken = require("../utils/generateAuthToken");
+const { welcomeUser } = require("../services/mail");
 
 const {User} = require('./../models/User');
 
@@ -46,7 +47,7 @@ const registerController = async (req, res) => {
       id_google
     );
     console.log("hola")
-    welcomeUser("juandaviddiazorozco@gmail.com")
+    welcomeUser(message.email)
     res.status(200).send(message);
 
   } catch (error) {
@@ -59,7 +60,7 @@ const loginController = async (req, res) => {
   try {
     const token = await loginUser(email, password);
     console.log(token);
-    welcomeUser("juandaviddiazorozco@gmail.com")
+    welcomeUser(email)
     res.status(200).send(token);
     
   } catch (error) {
@@ -70,6 +71,7 @@ const loginController = async (req, res) => {
 const RegisterGoogle = async (req, res, next) => {
   try { 
     const token = req.user;
+    welcomeUser('juandaviddiazorozco@gmail.com')
     res.redirect(`http://localhost:3000/home?token=${token}`);
   } catch (error) {
     res.json(error.message);
