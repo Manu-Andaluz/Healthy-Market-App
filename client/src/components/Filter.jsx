@@ -1,10 +1,5 @@
 import { useDispatch } from "react-redux";
-import {
-  // fetchCategoryProducts,
-  fetchFilterCategoryProducts,
-  // fetchFilteredProducts,
-} from "../actions/productActions";
-// import { productsFetch } from "../actions/productActions";
+import { fetchFilterCategoryProducts } from "../actions/productActions";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 

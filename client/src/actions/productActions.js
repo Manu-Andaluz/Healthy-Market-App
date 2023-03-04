@@ -8,7 +8,7 @@ export const productsFetch = createAsyncThunk(
       const response = await axios.get(`http://localhost:5000/products`);
       return response.data;
     } catch (error) {
-      console.log({ error: error.message });
+      throw error;
     }
   }
 );
@@ -29,40 +29,10 @@ export const findProductById = createAsyncThunk(
     const response = await axios.get(
       `http://localhost:5000/products/getProductById/${productId}`
     );
-    console.log(response.data, "consolog de data");
+
     return response.data;
   }
 );
-
-// export const fetchFilteredProducts = createAsyncThunk(
-//   "products/fetchFilteredProducts",
-//   async (filterBy) => {
-//     try {
-//       const response = await axios.get(
-//         `https://healthy-market-app-production.up.railway.app/products/filterBy?filterBy=${filterBy}`
-//       );
-//       return response.data;
-//     } catch (error) {
-//       console.log({ error: error.message });
-//       throw error;
-//     }
-//   }
-// );
-
-// export const fetchCategoryProducts = createAsyncThunk(
-//   "products/fetchFilteredProducts",
-//   async ({ category }) => {
-//     try {
-//       const response = await axios.get(
-//         `http://localhost:5000/products/category?categoryValue=${category}`
-//       );
-//       return response.data;
-//     } catch (error) {
-//       console.log({ error: error.message });
-//       throw error;
-//     }
-//   }
-// );
 
 export const fetchFilterCategoryProducts = createAsyncThunk(
   "products/fetchFilteredProducts",
@@ -73,7 +43,6 @@ export const fetchFilterCategoryProducts = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.log({ error: error.message });
       throw error;
     }
   }
@@ -89,7 +58,6 @@ export const reviewProducts = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.log({ error: error.message });
       throw error;
     }
   }
@@ -105,7 +73,6 @@ export const createProduct = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.log({ error: error.message });
       throw error;
     }
   }
@@ -120,7 +87,6 @@ export const deleteProduct = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.log({ error: error.message });
       throw error;
     }
   }
@@ -136,7 +102,6 @@ export const editProduct = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.log({ error: error.message });
       throw error;
     }
   }

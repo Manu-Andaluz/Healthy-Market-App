@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  searchProducts,
-  fetchFilterCategoryProducts,
-} from "../actions/productActions";
+import { fetchFilterCategoryProducts } from "../actions/productActions";
 
 export default function SearchBar({ filter, category }) {
   const dispatch = useDispatch();

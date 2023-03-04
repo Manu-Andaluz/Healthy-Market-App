@@ -2,8 +2,6 @@ import React from "react";
 
 export default function Paginated({ productsPerPage, products, paginado }) {
   const pageNumbers = [];
-  console.log(products);
-  console.log(productsPerPage);
   for (let i = 1; i <= Math.ceil(products / productsPerPage); i++) {
     pageNumbers.push(i);
   }
