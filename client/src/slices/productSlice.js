@@ -5,6 +5,8 @@ import {
   // fetchFilteredProducts,
   fetchFilterCategoryProducts,
   createProduct,
+  deleteProduct,
+  editProduct,
 } from "../actions/productActions";
 
 const initialState = {
@@ -77,6 +79,32 @@ const productSlice = createSlice({
     },
     [createProduct.rejected]: (state, action) => {
       state.status = "failed";
+    },
+    [deleteProduct.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [deleteProduct.fulfilled]: (state, action) => {
+      const newList = state.items.filter(
+        (item) => item._id !== action.payload._id
+      );
+      state.items = newList;
+      state.status = "success";
+    },
+    [deleteProduct.rejected]: (state, action) => {
+      state.status = "rejected";
+    },
+    [editProduct.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [editProduct.fulfilled]: (state, action) => {
+      const updateProducts = state.items.map((product) =>
+        product._id === action.payload._id ? action.payload : product
+      );
+      state.items = updateProducts;
+      state.status = "success";
+    },
+    [editProduct.rejected]: (state, action) => {
+      state.status = "rejected";
     },
   },
 });

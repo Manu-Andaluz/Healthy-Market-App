@@ -149,24 +149,22 @@ const editProduct = async (productImage, productId, product) => {
       product.image.public_id
     );
 
-    if (destroyResponse) {
-      const uploadedResponse = await cloudinary.uploader.upload(productImage, {
-        upload_preset: "online-shop",
-      });
+    const uploadedResponse = await cloudinary.uploader.upload(productImage, {
+      upload_preset: "healthy-market",
+    });
 
-      if (uploadedResponse) {
-        const updatedProduct = await Product.findByIdAndUpdate(
-          productId,
-          {
-            $set: {
-              ...product,
-              image: uploadedResponse,
-            },
+    if (uploadedResponse) {
+      const updatedProduct = await Product.findByIdAndUpdate(
+        productId,
+        {
+          $set: {
+            ...product,
+            image: uploadedResponse,
           },
-          { new: true }
-        );
-        return updatedProduct;
-      }
+        },
+        { new: true }
+      );
+      return updatedProduct;
     }
   } else {
     const updatedProduct = await Product.findByIdAndUpdate(

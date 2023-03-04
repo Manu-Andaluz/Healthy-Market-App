@@ -110,3 +110,34 @@ export const createProduct = createAsyncThunk(
     }
   }
 );
+
+export const deleteProduct = createAsyncThunk(
+  "products/deleteProduct",
+  async (productId) => {
+    try {
+      const response = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/products/${productId}`
+      );
+      return response.data;
+    } catch (error) {
+      console.log({ error: error.message });
+      throw error;
+    }
+  }
+);
+
+export const editProduct = createAsyncThunk(
+  "products/editProduct",
+  async (values) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/products/editProduct/${values.product._id}`,
+        values
+      );
+      return response.data;
+    } catch (error) {
+      console.log({ error: error.message });
+      throw error;
+    }
+  }
+);

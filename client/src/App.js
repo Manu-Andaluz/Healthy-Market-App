@@ -20,6 +20,8 @@ import CreateProduct from "./components/admin/CreateProduct";
 import UserList from "./components/admin/list/UsersList";
 import OrderList from "./components/admin/list/OrderList";
 import Reviews from "./components/Reviews";
+import ProductsDashboard from "./components/admin/Products";
+import EditProduct from "./components/admin/EditProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,9 +46,10 @@ function App() {
           <Route path="/reviewform" element={<ReviewForm />} />
           <Route path="/admin" element={<Dashboard />}>
             <Route path="summary" element={<Summary />} />
-            <Route path="products" element={<ProductsList />}>
+            <Route path="products" element={<ProductsDashboard />}>
               <Route index element={<ProductsList />} />
               <Route path="create-product" element={<CreateProduct />} />
+              <Route path="edit/:productId" element={<EditProduct />} />
             </Route>
             <Route path="users" element={<UserList />}>
               <Route index element={<UserList />} />
