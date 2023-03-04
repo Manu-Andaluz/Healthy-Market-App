@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { reviewProducts } from "../actions/productActions";
 import NavBar from "./NavBar";
 import ReactStars from "react-rating-stars-component";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function ReviewForm(productId) {
   const dispatch = useDispatch();
+  const usuario = useSelector((state) => state.user);
 
   // useEffect(() => {
   //     dispatch(reviewProducts())
@@ -19,6 +20,7 @@ export default function ReviewForm(productId) {
   //     setRating(rate)
 
   //   }
+
   const ratingChanged = (newRating) => {
     setInput({ ...input, rating: newRating });
   };
@@ -26,12 +28,16 @@ export default function ReviewForm(productId) {
   const [input, setInput] = useState({
     comment: "",
     rating: 0,
+    name: "",
   });
+
   const [errors, setErrors] = useState({});
 
   function validate(input) {
     let errors = {};
-    if (!input.rating) {
+    if(input.name){
+        errors.name = "Debes iniciar sesión para comentar"
+    } else if (!input.rating) {
       errors.rating = "Debes puntuar este producto";
     } else if (!input.comment) {
       errors.comment = "Debe completar este campo";
@@ -43,10 +49,10 @@ export default function ReviewForm(productId) {
 
     return errors;
   }
-
   function handleChange(e) {
     setInput({
       ...input,
+      name: usuario.name,
       [e.target.name]: e.target.value,
     });
     setErrors(
@@ -63,26 +69,18 @@ export default function ReviewForm(productId) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if(!input.name) return alert("Debes iniciar sesión para comentar")
     if (input.comment === "" && input.rating === 0)
       return alert("Debe llenar este campo");
-    dispatch(reviewProducts(input, productId.element));
+    dispatch(reviewProducts({ reviews: input, productId: productId.element }));
     alert("¡Tu calificación ha sido enviada!");
-    setInput({
-      comment: "",
-      rating: "",
-    });
   }
 
   return (
     <div className="">
       {/* <NavBar/> */}
-      <Link
-        to="/products"
-        className="flex font-semibold text-indigo-600 text-sm mt-10"
-      >
-        Volver
-      </Link>
-      <div className="grid text-center h-screen content-center gap-5 items-center mt-5 pb-11">
+      
+      <div className="grid text-center h-1/2 content-center gap-5 items-center mt-5 pb-11">
         <h3 className="text-3xl font-bold">Califique nuestro producto</h3>
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold">
           Puntuación
@@ -99,13 +97,13 @@ export default function ReviewForm(productId) {
           {/* <button className="bg-green1 hover:bg-hoverGreen1 text-white font-bold py-2 px-4 rounded">Enviar puntuación</button> */}
         </div>
 
-        <form className="w-full" onSubmit={handleSubmit}>
+        <form className="w-full">
           <div className="justify-center items-center bg-blue">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Comentario*
             </label>
-            <input
-              className="border border-gray-200 rounded-lg mb-8 mx-8 w-1/3 h-48 whitespace-pre-line bg-gray-200 text-gray-700  focus:bg-white"
+            <textarea
+              className="border border-gray-200 rounded-lg mb-8 mx-8 w-1/3 h-28	 whitespace-pre-line bg-gray-200 text-gray-700 focus:bg-white"
               placeholder="Agregue el comentario..."
               type="text"
               value={input.comment}
@@ -115,7 +113,10 @@ export default function ReviewForm(productId) {
             {errors.comment && <p className="e">{errors.comment}</p>}
           </div>
           <div className="pt-3">
-            <button className="bg-green1 hover:bg-hoverGreen1 text-white font-bold py-2 px-4 rounded ">
+            <button
+              className="bg-green1 hover:bg-hoverGreen1 text-white font-bold py-2 px-4 rounded "
+              onClick={handleSubmit}
+            >
               Enviar comentario
             </button>
           </div>
