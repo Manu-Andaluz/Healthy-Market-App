@@ -1,11 +1,17 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import NavBar from "./NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userActions";
+
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { redirect } from 'react-router-dom';
+import './ButtonGoogle.css'
+
+
 
 const LoginForm = () => {
   const user = useSelector((state) => state.user);
@@ -15,8 +21,11 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
+  
+
 
   useEffect(() => {
+    
     if (user._id) {
       navigate("/home");
     }
@@ -89,6 +98,12 @@ const LoginForm = () => {
               >
                 Crear Cuenta
               </Link>
+              <NavLink
+                to="http://localhost:5000/users/google"
+                className="google-login-button"
+              >
+                Ingresa con Google
+              </NavLink>
             </div>
           </form>
         </div>

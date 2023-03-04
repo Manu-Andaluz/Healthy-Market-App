@@ -1,6 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+
+
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (user) => {
@@ -18,7 +21,7 @@ export const registerUser = createAsyncThunk(
       }
     );
     localStorage.setItem("token", token.data);
-
+    
     return token.data;
   }
 );
@@ -34,3 +37,12 @@ export const loginUser = createAsyncThunk("user/loginUser", async (user) => {
   localStorage.setItem("token", token.data);
   return token.data;
 });
+
+
+export const  fetchGoogleToken = createAsyncThunk("user/loginUserGoogle", async (token)=>{
+  localStorage.setItem("token", token);
+}) 
+
+
+
+ 

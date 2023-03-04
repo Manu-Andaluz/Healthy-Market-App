@@ -1,10 +1,12 @@
 var GoogleStrategy = require("passport-google-oauth20");
 const { findByEmail } = require("./../../../services/userServices");
-const passport = require("passport");
+const generateAuthToken = require("../../generateAuthToken");
+const { User } = require('./../../../models/User');
 
-const emails = ["manulok78@gmail.com"];
 const callback = "https://healthy-market-app-production.up.railway.app/users/google";
-const callback1 = "http://localhost:5000/users/google";
+const callback1 = "http://localhost:5000/users/google/callback";
+
+
 
 const Googlestrategy = new GoogleStrategy(
   {
@@ -12,23 +14,38 @@ const Googlestrategy = new GoogleStrategy(
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL:
       callback1,
+
     scope: [
       "https://www.googleapis.com/auth/userinfo.email",
       "https://www.googleapis.com/auth/userinfo.profile",
     ],
-    state: true,
+    state: true
   },
   async function verify(accessToken, refreshToken, profile, done) {
-    const user = emails.includes(profile.emails[0].value);
-    // const user = await findByEmail(profile.emails[0].value)
-    console.log(user);
+
+    const user = await User.findOne({})
     if (user) {
-      done(null, profile);
+      const token = generateAuthToken(user);
+      done(null, token);
     } else {
-      emails.push(profile.emails[0].value);
-      done(null, profile);
+      const userSchema = {
+        name: user.name.givenName,
+        surname: user._json.family_name,
+        nationality: user._json.locale,
+        email: user._json.email,
+        id_google: user.id,
+      };
+
+      const newUser = new User(userSchema);
+      await newUser.save();
+
+      const token = generateAuthToken(newUser);
+      done(null, token);
     }
   }
 );
+
+
+
 
 module.exports = Googlestrategy;

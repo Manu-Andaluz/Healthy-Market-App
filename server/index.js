@@ -14,6 +14,8 @@ const bcrypt = require("bcrypt");
 
 const app = express();
 
+require("./utils/auth");
+
 const session = require("cookie-session");
 
 AdminJS.registerAdapter(AdminJSMongoose);
@@ -66,7 +68,7 @@ app.use(cors());
 // session secret
 app.use(passport.initialize());
 app.use(passport.session());
-require("./utils/auth");
+
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");

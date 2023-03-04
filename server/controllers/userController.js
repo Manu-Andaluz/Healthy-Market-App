@@ -15,6 +15,7 @@ const service = new AuthService();
 
 const getUsersController = async (req, res) => {
   try {
+    console.log(req.user)
     const user = await getAllUsers();
     res.status(200).send(user);
   } catch (error) {
@@ -44,7 +45,10 @@ const registerController = async (req, res) => {
       password,
       id_google
     );
+    console.log("hola")
+    welcomeUser("juandaviddiazorozco@gmail.com")
     res.status(200).send(message);
+
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
@@ -55,7 +59,7 @@ const loginController = async (req, res) => {
   try {
     const token = await loginUser(email, password);
     console.log(token);
-    
+    welcomeUser("juandaviddiazorozco@gmail.com")
     res.status(200).send(token);
     
   } catch (error) {
@@ -64,10 +68,20 @@ const loginController = async (req, res) => {
 };
 
 const RegisterGoogle = async (req, res, next) => {
+  try { 
+    const token = req.user;
+    res.redirect(`http://localhost:3000/home?token=${token}`);
+  } catch (error) {
+    res.json(error.message);
+  }
+};
+
+
+/*const RegisterGoogle = async (req, res, next) => {
   try {
     const user = req.user;
     const validateUser = await findByEmail(user._json.email)
-    if(validateUser){
+    if(user){
       const token = generateAuthToken(validateUser);
       console.log({token, validateUser})
       return res.status(200).send(token);  
@@ -85,12 +99,13 @@ const RegisterGoogle = async (req, res, next) => {
     await newUser.save();
 
     const token = generateAuthToken(newUser);
-   
+    
     res.status(200).json(token);
+    
   } catch (error) {
     res.json(error.message);
   }
-};
+};*/
 
 
 module.exports = {

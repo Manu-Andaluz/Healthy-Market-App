@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const { findByEmail } = require("./../services/userServices");
 const generateAuthToken = require("../utils/generateAuthToken");
 const nodemailer = require('nodemailer')
+var dotenv = require('dotenv');
+dotenv.config();
 
 class AuthService {
   async getUser(email, password) {
@@ -58,5 +60,9 @@ class AuthService {
     
   }
 }
+
+
+
+
 
 module.exports = AuthService;
