@@ -2,8 +2,6 @@ import React from "react";
 
 export default function Paginated({ productsPerPage, products, paginado }) {
   const pageNumbers = [];
-  console.log(products);
-  console.log(productsPerPage);
   for (let i = 1; i <= Math.ceil(products / productsPerPage); i++) {
     pageNumbers.push(i);
   }
@@ -12,9 +10,9 @@ export default function Paginated({ productsPerPage, products, paginado }) {
     <nav className="flex justify-center	items-center my-8">
       <ul className="flex justify-around font-bold justify-items-center py-0 w-64">
         <li>
-          <a href="#">
+          <button>
             <span>&laquo;</span>
-          </a>
+          </button>
         </li>
         {pageNumbers &&
           pageNumbers.map((number) => (

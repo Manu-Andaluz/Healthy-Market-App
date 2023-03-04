@@ -14,7 +14,6 @@ import NavBar from "./NavBar";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
   const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
@@ -53,13 +52,13 @@ const Cart = () => {
                 <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
                   Detalle de producto
                 </h3>
-                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
+                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
                   Cantidad
                 </h3>
-                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
+                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
                   Precio
                 </h3>
-                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
+                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">
                   Total
                 </h3>
               </div>
