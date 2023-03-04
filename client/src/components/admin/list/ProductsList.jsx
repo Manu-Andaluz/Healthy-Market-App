@@ -16,10 +16,6 @@ export default function ProductsList() {
     dispatch(productsFetch());
   }, []);
 
-  const handleDelete = (productId) => {
-    dispatch(deleteProduct(productId));
-  };
-
   const rows =
     items &&
     items.map((item) => {
@@ -68,6 +64,7 @@ export default function ProductsList() {
         return (
           <Actions>
             <button
+              onClick={() => dispatch(deleteProduct(params.id))}
               type="button"
               class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             >
