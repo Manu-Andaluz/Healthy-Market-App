@@ -40,9 +40,10 @@ const getProductController = async (req, res) => {
 // get category filter combined
 
 const getCategoryFilterController = async (req, res) => {
-  const { categoryValue, filterBy } = req.query;
+  const { categoryValue, filterBy, name } = req.query;
+  
   try {
-    const productsFiltered = await getCategoryFiltered(categoryValue, filterBy);
+    const productsFiltered = await getCategoryFiltered(categoryValue, filterBy,name);
     res.status(200).send(productsFiltered);
   } catch (error) {
     console.log(error);

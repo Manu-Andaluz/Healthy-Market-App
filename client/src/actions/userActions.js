@@ -4,7 +4,6 @@ import axios from "axios";
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (user) => {
-    console.log(user);
     const token = await axios.post(
       "https://healthy-market-app-production.up.railway.app/users/register",
       {
