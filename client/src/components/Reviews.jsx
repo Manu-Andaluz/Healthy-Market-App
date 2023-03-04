@@ -17,8 +17,13 @@ const Reviews = () => {
 
   return (
     <div className="reviews">
+      <Link
+        to="/products"
+        className="flex font-semibold text-indigo-600 text-sm mt-10"
+      >
+        Volver
+      </Link>
       <div>
-        <ReviewForm element={productId} />
       </div>
       <div className="flex items-center mb-4 space-x-4 mx-8 my-8 px-8">
         <div className="space-y-1 font-medium dark:text-white">
@@ -46,6 +51,8 @@ const Reviews = () => {
       ) : (
         <p className="text-sm mx-8">No hay comentarios para este producto</p>
       )}
+              <ReviewForm element={productId} />
+
     </div>
   );
 };
