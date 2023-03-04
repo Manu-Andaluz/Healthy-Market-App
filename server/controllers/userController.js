@@ -71,7 +71,7 @@ const loginController = async (req, res) => {
 const RegisterGoogle = async (req, res, next) => {
   try { 
     const token = req.user;
-    welcomeUser('juandaviddiazorozco@gmail.com')
+    welcomeUser();
     res.redirect(`http://localhost:3000/home?token=${token}`);
   } catch (error) {
     res.json(error.message);
