@@ -6,7 +6,7 @@ const {
 } = require("../services/userServices");
 const boom = require("@hapi/boom");
 const generateAuthToken = require("../utils/generateAuthToken");
-const { welcomeUser } = require("../services/mail");
+const { welcomeUser,welcome } = require("../services/mail");
 
 const { User } = require("./../models/User");
 
@@ -46,8 +46,8 @@ const registerController = async (req, res) => {
       password,
       id_google
     );
-    console.log("hola")
-    welcomeUser(message.email)
+    console.log("hola", message);
+    welcome(message.email);
     res.status(200).send(message);
 
   } catch (error) {
@@ -60,7 +60,7 @@ const loginController = async (req, res) => {
   try {
     const token = await loginUser(email, password);
     console.log(token);
-    welcomeUser(email)
+    welcome(email)
     res.status(200).send(token);
     
   } catch (error) {

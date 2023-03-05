@@ -16,17 +16,30 @@ auth: {
     try { let info = await transporter.sendMail({
             from: 'rociomolina.b3@gmail.com',
             to:email,
-            subject: "hola",
-            html:"<p>usted se ha logueado correctamente</p>"
+            subject: "Bienvenido a Healthy Market 🌿 ",
+            html:"<div><p>Te damos la bienvenida a nuestra tienda de productos saludables, dónde podrás agregar productos a tu carrito y realizar tu compra con cualquier medio de pago. </p></div>"
         })
         console.log(info.messageId);
         console.log('Mail service working');
     } catch (error) {
         console.log(error.message)
     }
+}
 
+async function welcome (email){
+    try { let info = await transporter.sendMail({
+            from: 'rociomolina.b3@gmail.com',
+            to:email,
+            subject: "Bienvenido a Healthy Market 🌿 ",
+            html:"<div><p>Te damos la bienvenida a nuestra tienda de productos saludables, dónde podrás agregar productos a tu carrito y realizar tu compra con cualquier medio de pago. </p></div>"
+        })
+        console.log(info.messageId);
+        console.log('Mail service working');
+    } catch (error) {
+        console.log(error.message)
+    }
 }
 
 module.exports = {
-    welcomeUser
+    welcomeUser, welcome
 }
