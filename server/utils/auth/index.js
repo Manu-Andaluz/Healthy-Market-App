@@ -5,3 +5,4 @@ const GoogleStrategy = require('./strategies/google.stratety');
 
 passport.use(LocalStrategy);
 passport.use('google', GoogleStrategy);
+
