@@ -18,7 +18,7 @@ const Star = ({ stars, reviews }) => {
             )}
           </span>
         ))}
-        {/* <p className="text-gray-600 ml-2">{reviews} reseñas</p> */}
+         <p className="text-gray-600 ml-2">(Ver reseñas)</p> 
       </div>
     </div>
   );
