@@ -40,7 +40,7 @@ const Filter = () => {
     <div className="grid mx-auto gap-2 my-5">
       <div className="flex flex-column">
         <label>Ordenamiento:</label>
-        <label>Ordenamiento:</label>
+        
       </div>
       <div className="flex w-9/12 gap-5 mx-auto">
         <SearchBar filter={filter} category={category} />
@@ -51,11 +51,11 @@ const Filter = () => {
           onClick={handleFilter}
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
-          <option value="ordenamiento">Ordenamiento</option>
-          <option value="alfabetic-A-Z">Alfabetic (A-Z)</option>
-          <option value="alfabetic-Z-A">Alfabetic (Z-A)</option>
-          <option value="cheapper-products">cheapper-products</option>
-          <option value="expensive-products">expensive-products</option>
+          <option value="ordenamiento">Más reciente</option>
+          <option value="alfabetic-A-Z">Orden (A-Z)</option>
+          <option value="alfabetic-Z-A">Orden (Z-A)</option>
+          <option value="cheapper-products">Menor precio</option>
+          <option value="expensive-products">Mayor precio</option>
         </select>
 
         <select
@@ -64,7 +64,7 @@ const Filter = () => {
           onClick={handleFilterCategory}
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         >
-          <option value="categoria">Categoría</option>
+          <option value="categoria">Sin Categoría</option>
           <option value="vegetariano">Vegetariano</option>
           <option value="gluten-Free">Gluten-Free</option>
           <option value="vegano">Vegano</option>
