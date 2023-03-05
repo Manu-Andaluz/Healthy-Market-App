@@ -18,7 +18,7 @@ const CardHome = ({ products }) => {
     const url = new URLSearchParams(window.location.search)
     const tokenUser = url.get('token');
    
-    console.log(tokenUser)
+    
     if (tokenUser) {
       // Almacenar el token en el estado local
       setToken(tokenUser);
