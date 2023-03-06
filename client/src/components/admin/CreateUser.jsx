@@ -36,12 +36,15 @@ const CreateUser = () => {
 
   const createUser = async () => {
     try {
-      const res = await axios.post(`http://localhost:5000/users/createUser`, {
-        name,
-        surname,
-        email,
-        nationality,
-      });
+      const res = await axios.post(
+        `https://healthy-market-app-production.up.railway.app/users/createUser`,
+        {
+          name,
+          surname,
+          email,
+          nationality,
+        }
+      );
       return res.data;
     } catch (error) {
       console.log(error);
