@@ -13,7 +13,7 @@ const Googlestrategy = new GoogleStrategy(
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL:
-      callback1,
+      callback,
 
     scope: [
       "https://www.googleapis.com/auth/userinfo.email",
