@@ -8,6 +8,8 @@ const passport = require("passport");
 
 const app = express();
 
+require("./utils/auth");
+
 const session = require("cookie-session");
 
 app.use(
@@ -23,7 +25,7 @@ app.use(cors());
 // session secret
 app.use(passport.initialize());
 app.use(passport.session());
-require("./utils/auth");
+
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
