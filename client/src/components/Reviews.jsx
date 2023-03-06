@@ -20,10 +20,12 @@ const Reviews = () => {
     <div className="reviews">
 <Link
   to="/products"
-  className="bg-green2 hover:bg-beige text-white font-bold py-1 px-3 mx-6 my-6 rounded-full inline-flex items-center"
+  className="bg-green2 hover:bg-green1 text-white font-bold py-1 px-3 mx-6 my-6 rounded-full inline-flex items-center"
 >
   
-  Volver
+<svg class="h-8 w-8 text-white"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
+</svg>
 </Link>
 
       <div>
