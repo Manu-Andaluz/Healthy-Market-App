@@ -8,10 +8,8 @@ import { loginUser } from "../actions/userActions";
 
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { redirect } from 'react-router-dom';
-import './ButtonGoogle.css'
-
-
+import { redirect } from "react-router-dom";
+import "./ButtonGoogle.css";
 
 const LoginForm = () => {
   const user = useSelector((state) => state.user);
@@ -21,11 +19,8 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
-  
-
 
   useEffect(() => {
-    
     if (user._id) {
       navigate("/home");
     }
@@ -99,7 +94,7 @@ const LoginForm = () => {
                 Crear Cuenta
               </Link>
               <NavLink
-                to="http://localhost:5000/users/google"
+                to="https://healthy-market-app-production.up.railway.app/users/google"
                 className="google-login-button"
               >
                 Ingresa con Google
