@@ -5,15 +5,15 @@ require("dotenv").config();
 const mainRouter = require("./routes/index");
 const morgan = require("morgan");
 const passport = require("passport");
+const CookieSession = require("cookie-session");
+require("./utils/auth");
+
+
 
 const app = express();
 
-require("./utils/auth");
-
-const session = require("cookie-session");
-
 app.use(
-  session({
+  CookieSession({
     secret: "mysecret", // una clave secreta para la sesión
     resave: false,
     saveUninitialized: false,

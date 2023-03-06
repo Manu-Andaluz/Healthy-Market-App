@@ -27,7 +27,7 @@ const Googlestrategy = new GoogleStrategy(
       done(null, token);
     } else {
       const userSchema = {
-        name: user.name.givenName,
+        name: profile.name.givenName,
         surname: user._json.family_name,
         nationality: user._json.locale,
         email: user._json.email,
