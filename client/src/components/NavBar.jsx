@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logoutUser } from "../slices/userSlice";
@@ -7,6 +7,8 @@ export default function NavBar() {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const [navbarHeight, setNavbarHeight] = useState("auto"); 
   let activeStyle = {
     color: "#03C988",
   };
@@ -14,18 +16,30 @@ export default function NavBar() {
   const handleLogout = () => {
     dispatch(logoutUser());
   };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);  
+    setNavbarHeight(isMenuOpen ? "auto" : "calc(100vh - 64px)"); 
+  };
+
   return (
-    <nav className="relative px-4 py-5 flex justify-between items-center bg-gray-800">
+    <nav
+      className="relative px-4 py-5 flex flex-col sm:flex-row justify-between items-center bg-gray-800"
+      style={{ height: navbarHeight }} 
+    >
       <NavLink to="/">
         <p
-          className="text-2xl text-white font-bold leading-none flex items-center"
+          className="text-2xl text-white  font-bold leading-none flex items-center"
           href="#"
         >
           Healthy Market 🌿
         </p>
       </NavLink>
       <div className="lg:hidden">
-        <button className="navbar-burger flex items-center text-blue-600 p-3">
+        <button
+          className="navbar-burger flex items-center text-blue-600 p-3"
+          onClick={toggleMenu} 
+        >
           <svg
             className="block h-4 w-4 fill-current"
             viewBox="0 0 20 20"
@@ -36,7 +50,12 @@ export default function NavBar() {
           </svg>
         </button>
       </div>
-      <ul className="hidden absolute top-1/2 left-1/2 text-white transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-6">
+      <ul
+        className={`${
+          isMenuOpen ? "block" : "hidden" 
+        } absolute top-1/2 left-1/2 text-white transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-6 bg-gray-800 py-2 mt-4 `}
+      >
+
         <li>
           <NavLink
             to="/home"
