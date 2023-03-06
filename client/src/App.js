@@ -23,6 +23,8 @@ import Reviews from "./components/Reviews";
 import ProductsDashboard from "./components/admin/Products";
 import EditProduct from "./components/admin/EditProduct";
 import { toast, ToastContainer } from "react-toastify";
+import UserDashboard from "./components/admin/Users";
+import CreateUser from "./components/admin/CreateUser";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,9 +55,9 @@ function App() {
               <Route path="create-product" element={<CreateProduct />} />
               <Route path="edit/:productId" element={<EditProduct />} />
             </Route>
-            <Route path="users" element={<UserList />}>
+            <Route path="users" element={<UserDashboard />}>
               <Route index element={<UserList />} />
-              <Route path="create-user" element={<CreateProduct />} />
+              <Route path="create-user" element={<CreateUser />} />
             </Route>
             <Route path="orders" element={<OrderList />}>
               <Route index element={<OrderList />} />
