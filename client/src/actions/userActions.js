@@ -40,7 +40,7 @@ export const loginUser = createAsyncThunk("user/loginUser", async (user) => {
 
 export const  fetchGoogleToken = createAsyncThunk("user/loginUserGoogle", async (token)=>{
   localStorage.setItem("token", token);
-}) 
+}); 
 
 
 

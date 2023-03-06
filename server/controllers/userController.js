@@ -71,7 +71,7 @@ const RegisterGoogle = async (req, res, next) => {
   try {
     const token = req.user;
     welcomeUser();
-    res.redirect(`https://healthy-market-app.vercel.app/home?token=${token}`);
+    res.redirect(`http://localhost:3000/home?token=${token}`);
   } catch (error) {
     res.json(error.message);
   }
