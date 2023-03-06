@@ -11,14 +11,13 @@ import { useState } from "react";
 const CardHome = ({ products }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
 
   const handleToken = () => {
     // Obtener el token del query string de la URL
-    const url = new URLSearchParams(window.location.search)
-    const tokenUser = url.get('token');
-   
-    
+    const url = new URLSearchParams(window.location.search);
+    const tokenUser = url.get("token");
+
     if (tokenUser) {
       // Almacenar el token en el estado local
       setToken(tokenUser);
@@ -30,7 +29,7 @@ const CardHome = ({ products }) => {
   useEffect(() => {
     dispatch(productsFetch());
     handleToken();
-  });
+  }, [dispatch]);
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
