@@ -16,7 +16,6 @@ const Products = () => {
   const products = useSelector((state) => state.allProducts.allProducts);
   const currentPage = useSelector((state) => state.allProducts.currentPage);
   const [load, setLoad] = useState(true);
-  const [filters, setFilters] = useState({ filterBy: "", categoryValue: "" }); // añadimos el estado "filters"
 
   const [productsPerPage] = useState(10);
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -42,8 +41,7 @@ const Products = () => {
       <h4 className="grid place-content-center w-full my-10 font-bold text-3xl">
         Todos Los Productos
       </h4>
-      <Filter filters={filters} setFilters={setFilters} />{" "}
-      {/* pasamos el estado "filters" y su función "setFilters" al componente Filter */}
+      <Filter />
       <Cards currentProduct={currentProduct} />
       <Paginated
         productsPerPage={productsPerPage}

@@ -38,9 +38,9 @@ const Filter = () => {
 
   return (
     <div className="grid mx-auto gap-2 my-5">
-      <div className="flex flex-column">
-        <label>Ordenamiento:</label>
-        
+      <div className="flex flex-row justify-center  ">
+        <div className="px-28 ">Ordenamiento:</div>
+        <div className="px-28">Categoria:</div>
       </div>
       <div className="flex w-9/12 gap-5 mx-auto">
         <SearchBar filter={filter} category={category} />
