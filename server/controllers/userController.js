@@ -3,6 +3,7 @@ const {
   createUser,
   loginUser,
   findByEmail,
+  deleteUser,
 } = require("../services/userServices");
 const boom = require("@hapi/boom");
 const generateAuthToken = require("../utils/generateAuthToken");
@@ -111,9 +112,20 @@ const RegisterGoogle = async (req, res, next) => {
   }
 };*/
 
+const deleteUserController = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const deletedUser = await deleteUser(userId);
+    res.status(200).send(deletedUser);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getUsersController,
   registerController,
   loginController,
   RegisterGoogle,
+  deleteUserController,
 };

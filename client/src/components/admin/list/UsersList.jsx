@@ -2,10 +2,13 @@ import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { deleteUser } from "../../../actions/userActions";
 
 export default function UserList() {
   const [users, setUsers] = useState();
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   const fetchUsers = async () => {
     try {
@@ -14,6 +17,16 @@ export default function UserList() {
       );
       setUsers(res.data);
       setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteUser = async (userId) => {
+    try {
+      const res = await axios.delete(`http://localhost:5000/users/${userId}`);
+      const newList = users.filter((item) => item._id !== res.data._id);
+      setUsers(newList);
     } catch (error) {
       console.log(error);
     }
@@ -50,6 +63,7 @@ export default function UserList() {
         return (
           <Actions>
             <button
+              onClick={() => dispatch(deleteUser(params.id))}
               type="button"
               class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             >

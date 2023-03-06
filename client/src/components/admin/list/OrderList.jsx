@@ -30,7 +30,7 @@ export default function OrderList() {
         id: order._id,
         name: order.shipping.name,
         adress: order.shipping.adress,
-        total: order.total,
+        total: "$" + order.total.toLocaleString(),
         delivery_status: order.delivery_status,
         payment_status: order.payment_status,
         createdAt: order.createdAt,
@@ -38,12 +38,12 @@ export default function OrderList() {
     });
 
   const columns = [
-    { field: "name", headerName: "Nombre", width: 130 },
-    { field: "adress", headerName: "Dirección", width: 130 },
+    { field: "name", headerName: "Nombre", width: 150 },
+    { field: "adress", headerName: "Dirección", width: 150 },
     { field: "delivery_status", headerName: "Envío", width: 130 },
     { field: "payment_status", headerName: "Pago", width: 130 },
     { field: "total", headerName: "Total", width: 130 },
-    { field: "createdAt", headerName: "Fecha de Compra", width: 200 },
+    { field: "createdAt", headerName: "Fecha de Compra", width: 160 },
     {
       field: "actions",
       headerName: "Actions",
