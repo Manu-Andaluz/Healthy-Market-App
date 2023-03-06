@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
 import { registerUser, loginUser } from "../actions/userActions";
-
 const initialState = {
   token: localStorage.getItem("token"),
   name: "",
@@ -32,6 +31,7 @@ const userSlice = createSlice({
     },
     logoutUser(state, action) {
       localStorage.removeItem("token");
+      
       return {
         ...state,
         token: "",
