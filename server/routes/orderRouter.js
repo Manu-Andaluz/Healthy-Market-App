@@ -4,6 +4,7 @@ const {
   getAllOrderController,
   getOrderIncomeController,
   getAllTimeOrderController,
+  deleteOrderController,
 } = require("../controllers/orderController.js");
 
 // GET ALL ORDERS
@@ -21,5 +22,7 @@ oderRouter.get("/allTimeIncome", getAllTimeOrderController);
 // CREATE ORDER ( MERCADO PAGO )
 
 oderRouter.post("/", createOrderController);
+
+oderRouter.delete("/:orderId", deleteOrderController);
 
 module.exports = oderRouter;
