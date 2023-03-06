@@ -3,7 +3,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { deleteUser } from "../../../actions/userActions";
 
 export default function UserList() {
   const [users, setUsers] = useState();
@@ -24,7 +23,9 @@ export default function UserList() {
 
   const deleteUser = async (userId) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/users/${userId}`);
+      const res = await axios.delete(
+        `https://healthy-market-app-production.up.railway.app/users/${userId}`
+      );
       const newList = users.filter((item) => item._id !== res.data._id);
       setUsers(newList);
     } catch (error) {

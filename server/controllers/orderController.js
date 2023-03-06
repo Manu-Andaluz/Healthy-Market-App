@@ -6,6 +6,7 @@ const {
   createOrder,
   getOrderIncome,
   getAllTimeOrder,
+  deleteOrder,
 } = require("../services/orderService");
 dotenv.config();
 // Agrega credenciales
@@ -51,9 +52,21 @@ const getAllTimeOrderController = async (req, res) => {
   }
 };
 
+const deleteOrderController = async (req, res) => {
+  const { orderId } = req.params;
+  try {
+    const deletedOrder = await deleteOrder(orderId);
+    res.status(200).send(deletedOrder);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+};
+
 module.exports = {
   createOrderController,
   getAllOrderController,
   getOrderIncomeController,
   getAllTimeOrderController,
+  deleteOrderController,
 };
