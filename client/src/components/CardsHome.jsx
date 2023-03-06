@@ -28,8 +28,8 @@ const CardHome = ({ products }) => {
 
   useEffect(() => {
     dispatch(productsFetch());
-    handleToken()
-  }, [dispatch]);
+    handleToken();
+  }, [dispatch, token]);
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
