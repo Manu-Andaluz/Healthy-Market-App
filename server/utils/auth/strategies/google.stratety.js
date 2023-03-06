@@ -4,7 +4,7 @@ const generateAuthToken = require("../../generateAuthToken");
 const { User } = require("./../../../models/User");
 
 const callback =
-  "https://healthy-market-app-production.up.railway.app/users/google";
+  "https://healthy-market-app-production.up.railway.app/users/google/callback";
 const callback1 = "http://localhost:5000/users/google/callback";
 
 const Googlestrategy = new GoogleStrategy(
