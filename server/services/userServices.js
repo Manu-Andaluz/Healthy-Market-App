@@ -73,6 +73,25 @@ const findByEmail = async (email) => {
   return rta;
 };
 
+const createUserAdmin = async (name, surname, nationality, email) => {
+  if (!name || !surname || !nationality || !email) {
+    throw new Error("Missing data");
+  }
+
+  let user = await User.findOne({ email: email });
+  if (user) throw new Error("User already exists...");
+  user = new User({
+    name,
+    surname,
+    nationality,
+    email,
+  });
+
+  await user.save();
+
+  return user;
+};
+
 const deleteUser = async (userId) => {
   const deletedUser = await User.findByIdAndDelete(userId);
 
@@ -86,5 +105,6 @@ module.exports = {
   createUser,
   loginUser,
   findByEmail,
+  createUserAdmin,
   deleteUser,
 };
