@@ -92,11 +92,11 @@ const productSlice = createSlice({
       state.editStatus = "pending";
     },
     [editProduct.fulfilled]: (state, action) => {
+      state.editStatus = "success";
       const updateProducts = state.items.map((product) =>
         product._id === action.payload._id ? action.payload : product
       );
       state.items = updateProducts;
-      state.editStatus = "succes";
     },
     [editProduct.rejected]: (state, action) => {
       state.editStatus = "rejected";

@@ -15,7 +15,7 @@ export default function ProductsList() {
 
   useEffect(() => {
     dispatch(productsFetch());
-
+    console.log("as");
     if (deleteStatus === "success") {
       toast("Producto Eliminado");
     }

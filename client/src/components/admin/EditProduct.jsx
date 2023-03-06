@@ -1,4 +1,3 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -7,12 +6,14 @@ import DialogTitle from "@mui/material/DialogTitle";
 import styled from "styled-components";
 import { PrimaryButton } from "./CommonStyled";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { editProduct } from "../../actions/productActions";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function EditProduct({ productId }) {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.allProducts.allProducts);
+  const { editStatus } = useSelector((state) => state.allProducts);
 
   const [currentProduct, setCurrentProduct] = useState({});
   const [previusImg, setPreviusImg] = useState("");
@@ -60,7 +61,7 @@ export default function EditProduct({ productId }) {
     );
   };
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -79,6 +80,12 @@ export default function EditProduct({ productId }) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (editStatus === "success") {
+      toast("Producto Editado");
+    }
+  }, [editStatus]);
 
   return (
     <div>

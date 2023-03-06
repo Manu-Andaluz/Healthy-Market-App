@@ -5,6 +5,7 @@ const {
   registerController,
   loginController,
   RegisterGoogle,
+  deleteUserController,
   loginGoogle,
 } = require("../controllers/userController");
 const moment = require("moment");
@@ -53,5 +54,7 @@ userRouter.get("/stats", async (req, res) => {
     res.status(500).send(err);
   }
 });
+
+userRouter.delete("/:userId", deleteUserController);
 
 module.exports = userRouter;

@@ -56,27 +56,35 @@ const loginUser = async (email, password) => {
   if (!user) {
     return "User is not registered";
   }
-  console.log(user.password)
-  
-  
+  console.log(user.password);
+
   var validatePassword = await bcrypt.compare(password, user.password);
 
   if (!validatePassword) {
     return "User or Password is incorrect";
   }
-  
+
   const token = generateAuthToken(user);
   return token;
 };
 
 const findByEmail = async (email) => {
-  const rta = await User.findOne(
-    {email}
-  );
+  const rta = await User.findOne({ email });
   return rta;
 };
 
+const deleteUser = async (userId) => {
+  const deletedUser = await User.findByIdAndDelete(userId);
 
+  if (deletedUser) {
+    return deletedUser;
+  }
+};
 
-
-module.exports = { getAllUsers, createUser, loginUser, findByEmail };
+module.exports = {
+  getAllUsers,
+  createUser,
+  loginUser,
+  findByEmail,
+  deleteUser,
+};
