@@ -21,17 +21,18 @@ const Googlestrategy = new GoogleStrategy(
   },
   async function verify(accessToken, refreshToken, profile, done) {
     const email = profile.emails[0].value;
-    const user = await User.findOne({email});
+    const user = await User.findOne({ email });
+
     if (user) {
       const token = generateAuthToken(user);
       done(null, token);
     } else {
       const userSchema = {
         name: profile.name.givenName,
-        surname: user._json.family_name,
-        nationality: user._json.locale,
-        email: user._json.email,
-        id_google: user.id,
+        surname: profile._json.family_name,
+        nationality: profile._json.locale,
+        email: profile._json.email,
+        id_google: profile.id,
       };
 
       const newUser = new User(userSchema);
