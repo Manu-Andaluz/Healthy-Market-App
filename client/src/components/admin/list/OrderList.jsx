@@ -2,10 +2,12 @@ import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 export default function OrderList() {
   const [oders, setOrders] = useState();
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   const fetchOrders = async () => {
     try {
@@ -14,6 +16,18 @@ export default function OrderList() {
       );
       setOrders(res.data);
       setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteOrder = async (orderId) => {
+    try {
+      const res = await axios.delete(
+        `https://healthy-market-app-production.up.railway.app/order/${orderId}`
+      );
+      const newList = oders.filter((item) => item._id !== res.data._id);
+      setOrders(newList);
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +44,7 @@ export default function OrderList() {
         id: order._id,
         name: order.shipping.name,
         adress: order.shipping.adress,
-        total: order.total,
+        total: "$" + order.total.toLocaleString(),
         delivery_status: order.delivery_status,
         payment_status: order.payment_status,
         createdAt: order.createdAt,
@@ -38,12 +52,12 @@ export default function OrderList() {
     });
 
   const columns = [
-    { field: "name", headerName: "Nombre", width: 130 },
-    { field: "adress", headerName: "Dirección", width: 130 },
+    { field: "name", headerName: "Nombre", width: 150 },
+    { field: "adress", headerName: "Dirección", width: 150 },
     { field: "delivery_status", headerName: "Envío", width: 130 },
     { field: "payment_status", headerName: "Pago", width: 130 },
     { field: "total", headerName: "Total", width: 130 },
-    { field: "createdAt", headerName: "Fecha de Compra", width: 200 },
+    { field: "createdAt", headerName: "Fecha de Compra", width: 160 },
     {
       field: "actions",
       headerName: "Actions",
@@ -53,6 +67,7 @@ export default function OrderList() {
         return (
           <Actions>
             <button
+              onClick={() => dispatch(deleteOrder(params.id))}
               type="button"
               class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             >

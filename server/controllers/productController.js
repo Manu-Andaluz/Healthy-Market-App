@@ -130,7 +130,6 @@ const getProductByIdController = async (req, res) => {
 const createProductReviewController = async (req, res) => {
   const { rating, comment, name } = req.body;
   const { id } = req.params;
-  console.log(req.body, req.params);
   try {
     createReview(rating, comment, id, name);
     res.status(201).json({ message: "Review added" });

@@ -20,36 +20,6 @@ const getProduct = async (name) => {
   return allData;
 };
 
-// filter
-
-// const getProductsFiltered = async (filterBy, categoryValue) => {
-//   const allProduct = await Product.find();
-//   console.log("aca")
-//   switch (filterBy) {
-//     case "alfabetic-A-Z": {
-//       const products = allProduct.sort((a, b) => a.name.localeCompare(b.name));
-//       return products;
-//     }
-//     case "alfabetic-Z-A": {
-//       const products = allProduct.sort((a, b) => b.name.localeCompare(a.name));
-//       return products;
-//     }
-//     case "cheapper-products": {
-//       const products = allProduct.sort((a, b) => a.price - b.price);
-//       return products;
-//     }
-//     case "expensive-products": {
-//       const products = allProduct.sort((a, b) => b.price - a.price);
-//       return products;
-//     }
-//     default: {
-//       return "Invalid Filter";
-//     }
-//   }
-// };
-
-// combined filter - Category and Filterby
-
 const getCategoryFiltered = async (categoryValue, filterBy, name) => {
   let allProduct = await Product.find();
   if (categoryValue !== "categoria") {
@@ -226,6 +196,7 @@ const createReview = async (rating, comment, id, name) => {
     await product.save();
   }
 };
+
 module.exports = {
   getProduct,
   // getProductsFiltered,

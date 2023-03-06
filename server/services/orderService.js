@@ -87,4 +87,17 @@ const getAllTimeOrder = async () => {
   return orders;
 };
 
-module.exports = { getAllOrders, createOrder, getOrderIncome, getAllTimeOrder };
+const deleteOrder = async (orderId) => {
+  const deleteOrder = await Order.findByIdAndDelete(orderId);
+  if (deleteOrder) {
+    return deleteOrder;
+  }
+};
+
+module.exports = {
+  getAllOrders,
+  createOrder,
+  getOrderIncome,
+  getAllTimeOrder,
+  deleteOrder,
+};

@@ -3,10 +3,12 @@ const {
   createUser,
   loginUser,
   findByEmail,
+  createUserAdmin,
+  deleteUser,
 } = require("../services/userServices");
 const boom = require("@hapi/boom");
 const generateAuthToken = require("../utils/generateAuthToken");
-const { welcomeUser } = require("../services/mail");
+const { welcomeUser, welcome } = require("../services/mail");
 
 const { User } = require("./../models/User");
 
@@ -16,7 +18,7 @@ const service = new AuthService();
 
 const getUsersController = async (req, res) => {
   try {
-    console.log(req.user)
+    console.log(req.user);
     const user = await getAllUsers();
     res.status(200).send(user);
   } catch (error) {
@@ -46,10 +48,8 @@ const registerController = async (req, res) => {
       password,
       id_google
     );
-    console.log("hola")
-    welcomeUser(message.email)
+    welcome(message.email);
     res.status(200).send(message);
-
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
@@ -60,16 +60,15 @@ const loginController = async (req, res) => {
   try {
     const token = await loginUser(email, password);
     console.log(token);
-    welcomeUser(email)
+    welcome(email);
     res.status(200).send(token);
-    
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
 const RegisterGoogle = async (req, res, next) => {
-  try { 
+  try {
     const token = req.user;
     welcomeUser();
     res.redirect(`http://localhost:3000/home?token=${token}`);
@@ -77,7 +76,6 @@ const RegisterGoogle = async (req, res, next) => {
     res.json(error.message);
   }
 };
-
 
 /*const RegisterGoogle = async (req, res, next) => {
   try {
@@ -111,9 +109,31 @@ const RegisterGoogle = async (req, res, next) => {
   }
 };*/
 
+const createUserController = async (req, res) => {
+  const { name, surname, nationality, email } = req.body;
+  try {
+    const user = await createUserAdmin(name, surname, nationality, email);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
+
+const deleteUserController = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const deletedUser = await deleteUser(userId);
+    res.status(200).send(deletedUser);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getUsersController,
   registerController,
   loginController,
   RegisterGoogle,
+  createUserController,
+  deleteUserController,
 };
