@@ -7,7 +7,6 @@ import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 import { Tooltip, Button } from "flowbite-react";
 
-
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
