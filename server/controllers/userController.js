@@ -70,7 +70,7 @@ const loginController = async (req, res) => {
 const RegisterGoogle = async (req, res, next) => {
   try {
     req.user = req.user
-    res.redirect("http://localhost:3000/loginSuccess")
+    res.redirect("https://healthy-market-app-production.up.railway.app/loginSuccess")
    
   } catch (error) {
     res.json(error.message);

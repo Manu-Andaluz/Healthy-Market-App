@@ -17,7 +17,7 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use(cors({origin : "http://localhost:3000", credentials:true}));
+app.use(cors({origin : "https://healthy-market-app-production.up.railway.app", credentials:true}));
 app.use(session({
   secret: [process.env.COOKIE_KEY], // una clave secreta para la sesión
 }))

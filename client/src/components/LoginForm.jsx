@@ -28,7 +28,7 @@ const LoginForm = () => {
 
   const redirectToGoogleSSO = async () => {
     let timer = null;
-    const googleLoginUrl = "http://localhost:5000/users/google";
+    const googleLoginUrl = "https://healthy-market-app-production.up.railway.app/users/google";
     const newWindow = window.open(googleLoginUrl, "_blanck", "width=400, height=400");
     if (newWindow) {
       timer = setInterval(() => {

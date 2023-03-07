@@ -17,6 +17,7 @@ const userRouter = Router();
 
 const successRedirectUrl = "http://localhost:3000/loginSuccess";
 const failureRedirectUrl = "http://localhost:5000/users/google/error";
+const failureRedirectVercel = "https://healthy-market-app-production.up.railway.app/users/google/error";
 
 userRouter.get("/", getUsersController);
 userRouter.post("/register", registerController);
@@ -26,7 +27,7 @@ userRouter.get("/google", passport.authenticate("google"));
 userRouter.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: failureRedirectUrl,
+    failureRedirect: failureRedirectVercel,
   }),
   RegisterGoogle
 );

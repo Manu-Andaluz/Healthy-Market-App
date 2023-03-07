@@ -4,15 +4,14 @@ const generateAuthToken = require("../../generateAuthToken");
 const { User } = require("./../../../models/User");
 
 
-const callback =
-  "https://healthy-market-app-production.up.railway.app/users/google/callback";
+const callback = "https://healthy-market-app-production.up.railway.app/users/google/callback";
 const callback1 = "http://localhost:5000/users/google/callback";
 
 const Googlestrategy = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: callback1,
+    callbackURL: callback,
 
     scope: [
       "https://www.googleapis.com/auth/userinfo.email",
