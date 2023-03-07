@@ -1,9 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
-
-
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (user) => {
@@ -20,14 +17,14 @@ export const registerUser = createAsyncThunk(
       }
     );
     localStorage.setItem("token", token.data);
-    
+
     return token.data;
   }
 );
 
 export const loginUser = createAsyncThunk("user/loginUser", async (user) => {
   const token = await axios.post(
-    "https://healthy-market-app-production.up.railway.app/users/loggin",
+    "https://healthy-market-app-production.up.railway.app/loggin",
     {
       email: user.email,
       password: user.password,
@@ -37,11 +34,9 @@ export const loginUser = createAsyncThunk("user/loginUser", async (user) => {
   return token.data;
 });
 
-
-export const  fetchGoogleToken = createAsyncThunk("user/loginUserGoogle", async (token)=>{
-  localStorage.setItem("token", token);
-}) 
-
-
-
- 
+export const fetchGoogleToken = createAsyncThunk(
+  "user/loginUserGoogle",
+  async (token) => {
+    localStorage.setItem("token", token);
+  }
+);

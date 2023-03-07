@@ -18,7 +18,6 @@ const CardHome = ({ products }) => {
     const url = new URLSearchParams(window.location.search);
     const tokenUser = url.get("token");
 
-
     if (tokenUser) {
       // Almacenar el token en el estado local
       setToken(tokenUser);
@@ -30,7 +29,7 @@ const CardHome = ({ products }) => {
   useEffect(() => {
     dispatch(productsFetch());
     handleToken();
-  }, []);
+  }, [dispatch, token]);
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
