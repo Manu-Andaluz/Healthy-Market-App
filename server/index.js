@@ -14,7 +14,9 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use(cors());
+app.use(
+  cors({ origin: "https://healthy-market-app.vercel.app", credentials: true })
+);
 app.use(
   session({
     secret: [process.env.COOKIE_KEY], // una clave secreta para la sesión
