@@ -70,4 +70,4 @@ mongoose
   .catch((error) => console.error("MongoDB connection failed:", error.message));
 
 app.use(mainRouter);
-app.use(authRoute);
+// app.use(authRoute);
