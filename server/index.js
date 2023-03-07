@@ -3,54 +3,41 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const mainRouter = require("./routes/index");
-const authRoute =require('./routes/authRoute')
+const authRoute = require("./routes/authRoute");
 const morgan = require("morgan");
 const passport = require("passport");
 const CookieSession = require("cookie-session");
 require("./utils/auth/index.js");
-const session = require('express-session');
-
-
+const session = require("express-session");
 
 const app = express();
 
-
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use(cors({origin : "https://healthy-market-app-production.up.railway.app", credentials:true}));
-app.use(session({
-  secret: [process.env.COOKIE_KEY], // una clave secreta para la sesión
-}))
+app.use(
+  cors({ origin: "https://healthy-market-app.vercel.app", credentials: true })
+);
+app.use(
+  session({
+    secret: [process.env.COOKIE_KEY], // una clave secreta para la sesión
+  })
+);
 
-// session secret
-
-// app.use(
-//   CookieSession({
-
-//     secret:` ${process.env.COOKIE_KEY}`, // una clave secreta para la sesión
-//    // una clave secreta para la sesión
-//     resave: false,
-//     saveUninitialized: false,
-
-//   })
-// );
-app.use(function(request, response, next) {
+app.use(function (request, response, next) {
   if (request.session && !request.session.regenerate) {
-      request.session.regenerate = (cb) => {
-          cb()
-      }
+    request.session.regenerate = (cb) => {
+      cb();
+    };
   }
   if (request.session && !request.session.save) {
-      request.session.save = (cb) => {
-          cb()
-      }
+    request.session.save = (cb) => {
+      cb();
+    };
   }
-  next()
-})
+  next();
+});
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -83,4 +70,4 @@ mongoose
   .catch((error) => console.error("MongoDB connection failed:", error.message));
 
 app.use(mainRouter);
-app.use(authRoute)
+app.use(authRoute);
