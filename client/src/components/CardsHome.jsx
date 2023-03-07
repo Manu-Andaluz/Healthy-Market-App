@@ -11,25 +11,13 @@ import { useState } from "react";
 const CardHome = ({ products }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [token, setToken] = useState("");
 
-  const handleToken = () => {
-    // Obtener el token del query string de la URL
-    const url = new URLSearchParams(window.location.search);
-    const tokenUser = url.get("token");
-
-    if (tokenUser) {
-      // Almacenar el token en el estado local
-      setToken(tokenUser);
-      // Despachar la acción de inicio de sesión con el token como argumento
-      dispatch(fetchGoogleToken(token));
-    }
-  };
+  
 
   useEffect(() => {
     dispatch(productsFetch());
-    handleToken();
-  }, [dispatch, token]);
+
+  }, [dispatch]);
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));

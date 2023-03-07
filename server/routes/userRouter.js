@@ -8,14 +8,14 @@ const {
   RegisterGoogle,
   createUserController,
   deleteUserController,
-  loginGoogle,
 } = require("../controllers/userController");
+const {isUserAuthenticate} = require('./../middleware/auth');
 const moment = require("moment");
 const { User } = require("../models/User");
 
 const userRouter = Router();
 
-const successRedirectUrl = "http://localhost:5000/users/google/success";
+const successRedirectUrl = "http://localhost:3000/loginSuccess";
 const failureRedirectUrl = "http://localhost:5000/users/google/error";
 
 userRouter.get("/", getUsersController);
@@ -26,15 +26,13 @@ userRouter.get("/google", passport.authenticate("google"));
 userRouter.get(
   "/google/callback",
   passport.authenticate("google", {
-    session: false,
     failureRedirect: failureRedirectUrl,
   }),
   RegisterGoogle
 );
 
-userRouter.get("/succes", (req, res) => {
-  res.send(req.user);
-});
+
+
 
 userRouter.get("/stats", async (req, res) => {
   const previusMonth = moment()
