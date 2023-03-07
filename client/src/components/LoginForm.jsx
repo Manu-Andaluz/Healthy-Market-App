@@ -38,7 +38,7 @@ const LoginForm = () => {
           if (timer) clearInterval(timer)
           // time to refresh page
           setTimeout(()=>{
-            location.reload(); 
+              window.location.reload()
           }, 1000)
         } 
       }, 500);
