@@ -48,7 +48,7 @@ const registerController = async (req, res) => {
       password,
       id_google
     );
-    welcome(message.email);
+    welcome(email);
     res.status(200).send(message);
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -70,7 +70,7 @@ const loginController = async (req, res) => {
 const RegisterGoogle = async (req, res, next) => {
   try {
     const token = req.user;
-    welcomeUser();
+    welcome();
     res.redirect(`http://localhost:3000/home?token=${token}`);
   } catch (error) {
     res.json(error.message);
