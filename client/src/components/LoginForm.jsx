@@ -94,7 +94,7 @@ const LoginForm = () => {
                 Crear Cuenta
               </Link>
               <NavLink
-                to="http://localhost:5000/users/google"
+                to="https://healthy-market-app-production.up.railway.app/users/google"
                 className="google-login-button"
               >
                 Ingresa con Google
