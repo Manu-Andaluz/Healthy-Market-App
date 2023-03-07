@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import GoogleButtom from 'react-google-button';
-import { fetchGoogleToken } from './../actions/userActions'
+import GoogleButtom from "react-google-button";
+import { fetchGoogleToken } from "./../actions/userActions";
 
 const LoginForm = () => {
   const user = useSelector((state) => state.user);
@@ -23,28 +23,31 @@ const LoginForm = () => {
     if (user._id) {
       navigate("/home");
     }
-   
   }, [user._id, navigate]);
 
   const redirectToGoogleSSO = async () => {
     let timer = null;
-    const googleLoginUrl = "https://healthy-market-app-production.up.railway.app/users/google";
-    const newWindow = window.open(googleLoginUrl, "_blanck", "width=400, height=400");
+    const googleLoginUrl =
+      "https://healthy-market-app-production.up.railway.app/users/google";
+    const newWindow = window.open(
+      googleLoginUrl,
+      "_blanck",
+      "width=400, height=400"
+    );
     if (newWindow) {
       timer = setInterval(() => {
         if (newWindow.closed) {
-          console.log('We are authenticated');
-          dispatch(fetchGoogleToken())
-          if (timer) clearInterval(timer)
+          console.log("We are authenticated");
+          dispatch(fetchGoogleToken());
+          if (timer) clearInterval(timer);
           // time to refresh page
-          setTimeout(()=>{
-              window.location.reload()
-          }, 1000)
-        } 
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        }
       }, 500);
-        
     }
-  }
+  };
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });

@@ -36,7 +36,18 @@ export const loginUser = createAsyncThunk("user/loginUser", async (user) => {
 
 export const fetchGoogleToken = createAsyncThunk(
   "user/loginUserGoogle",
-  async (token) => {
-    localStorage.setItem("token", token);
+  async () => {
+    const token = await axios
+      .get("https://healthy-market-app-production.up.railway.app/auth/user", {
+        withCredentials: true,
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    console.log(token.data);
+    if (token && token.data) {
+      localStorage.setItem("token", token.data);
+      return token.data;
+    }
   }
 );
