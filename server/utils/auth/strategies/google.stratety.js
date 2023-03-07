@@ -3,29 +3,34 @@ const { findByEmail } = require("./../../../services/userServices");
 const generateAuthToken = require("../../generateAuthToken");
 const { User } = require("./../../../models/User");
 
-const callback =
-  "https://healthy-market-app-production.up.railway.app/users/google/callback";
+
+const callback = "https://healthy-market-app-production.up.railway.app/users/google/callback";
 const callback1 = "http://localhost:5000/users/google/callback";
 
 const Googlestrategy = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: callback1,
+    callbackURL: callback,
 
     scope: [
       "https://www.googleapis.com/auth/userinfo.email",
       "https://www.googleapis.com/auth/userinfo.profile",
     ],
-    state: true,
+    
+ 
   },
-  async function verify(accessToken, refreshToken, profile, done) {
+  async function verify( accessToken, refreshToken, profile, done) {
+    // console.log({accessToken, refreshToken, profile, done})
+   
+    
+   try {
     const email = profile.emails[0].value;
-    const user = await User.findOne({ email });
-
+    const user = await User.findOne({ email : email });
+  
     if (user) {
-      const token = generateAuthToken(user);
-      done(null, token);
+      user.id_google = profile.id;
+      done(null, user);
     } else {
       const userSchema = {
         name: profile.name.givenName,
@@ -37,11 +42,14 @@ const Googlestrategy = new GoogleStrategy(
 
       const newUser = new User(userSchema);
       await newUser.save();
-
-      const token = generateAuthToken(newUser);
-      done(null, token);
+      done(null, newUser);
     }
+   } catch (error) {
+      console.log({error : error.message})
+   }
   }
 );
+
+
 
 module.exports = Googlestrategy;
