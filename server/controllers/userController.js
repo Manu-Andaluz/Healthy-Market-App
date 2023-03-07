@@ -18,7 +18,6 @@ const service = new AuthService();
 
 const getUsersController = async (req, res) => {
   try {
-    console.log(req.user);
     const user = await getAllUsers();
     res.status(200).send(user);
   } catch (error) {
@@ -59,7 +58,6 @@ const loginController = async (req, res) => {
   const { email, password } = req.body;
   try {
     const token = await loginUser(email, password);
-    console.log(token);
     welcome(email);
     res.status(200).send(token);
   } catch (error) {
@@ -69,9 +67,8 @@ const loginController = async (req, res) => {
 
 const RegisterGoogle = async (req, res, next) => {
   try {
-    req.user = req.user
-    res.redirect("https://healthy-market-app-production.up.railway.app/loginSuccess")
-   
+    req.user = req.user;
+    res.redirect("https://healthy-market-app.vercel.app/loginSuccess");
   } catch (error) {
     res.json(error.message);
   }
