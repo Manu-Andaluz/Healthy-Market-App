@@ -48,7 +48,7 @@ const registerController = async (req, res) => {
       password,
       id_google
     );
-    welcome(message.email);
+    welcome(email);
     res.status(200).send(message);
   } catch (error) {
     res.status(400).send({ error: error.message });
