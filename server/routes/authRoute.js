@@ -5,7 +5,7 @@ const {welcome} = require('./../services/mail');
 const authRoute = Router();
 
 authRoute.get("/user", isUserAuthenticate, (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://healthy-market-app-production.up.railway.app/');
+  res.header('Access-Control-Allow-Origin', 'https://healthy-market-app-production.up.railway.app');
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   try {
