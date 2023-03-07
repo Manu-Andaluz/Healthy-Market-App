@@ -11,7 +11,7 @@ const Googlestrategy = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: callback,
+    callbackURL: callback1,
 
     scope: [
       "https://www.googleapis.com/auth/userinfo.email",
@@ -20,17 +20,19 @@ const Googlestrategy = new GoogleStrategy(
     state: true,
   },
   async function verify(accessToken, refreshToken, profile, done) {
-    const user = await User.findOne({});
+    const email = profile.emails[0].value;
+    const user = await User.findOne({ email });
+
     if (user) {
       const token = generateAuthToken(user);
       done(null, token);
     } else {
       const userSchema = {
-        name: user.name.givenName,
-        surname: user._json.family_name,
-        nationality: user._json.locale,
-        email: user._json.email,
-        id_google: user.id,
+        name: profile.name.givenName,
+        surname: profile._json.family_name,
+        nationality: profile._json.locale,
+        email: profile._json.email,
+        id_google: profile.id,
       };
 
       const newUser = new User(userSchema);

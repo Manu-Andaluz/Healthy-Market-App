@@ -165,10 +165,7 @@ const Cart = () => {
                   <button
                     onClick={() => {
                       axios
-                        .post(
-                          "https://healthy-market-app-production.up.railway.app/order",
-                          cart.cartItems
-                        )
+                        .post("http://localhost:5000/order", cart.cartItems)
                         .then(
                           (res) =>
                             (window.location.href =
