@@ -161,7 +161,7 @@ const Cart = () => {
                   <span>Total </span>
                   <span>${cart.cartTotalAmount}</span>
                 </div>
-                {user._id ? (
+                {user.email ? (
                   <button
                     onClick={() => {
                       axios
