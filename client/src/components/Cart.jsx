@@ -161,13 +161,17 @@ const Cart = () => {
                   <span>Total </span>
                   <span>${cart.cartTotalAmount}</span>
                 </div>
-                {user._id ? (
+                {user.email ? (
                   <button
                     onClick={() => {
                       axios
                         .post(
                           "https://healthy-market-app-production.up.railway.app/order",
-                          cart.cartItems
+                          {
+                            cart: cart.cartItems,
+                            userName: user.name,
+                            userEmail: user.email,
+                          }
                         )
                         .then(
                           (res) =>

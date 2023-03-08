@@ -7,38 +7,35 @@ const Dashboard = () => {
 
   if (!user.isAdmin) return <p>Access denied. Not an Admin!</p>;
 
+  let activeStyle = {
+    color: "#03C988",
+  };
+
   return (
     <StyledDashboard>
       <SideNav>
+        <NavLink to="/home">← Volver</NavLink>
         <h3>DashBoard</h3>
         <NavLink
-          className={({ isActive }) =>
-            isActive ? "link-active" : "link-inactive"
-          }
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
           to="/admin/summary"
         >
           Estadísticas
         </NavLink>
         <NavLink
-          className={({ isActive }) =>
-            isActive ? "link-active" : "link-inactive"
-          }
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
           to="/admin/products"
         >
           Productos
         </NavLink>
         <NavLink
-          className={({ isActive }) =>
-            isActive ? "link-active" : "link-inactive"
-          }
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
           to="/admin/orders"
         >
           Ordenes
         </NavLink>
         <NavLink
-          className={({ isActive }) =>
-            isActive ? "link-active" : "link-inactive"
-          }
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
           to="/admin/users"
         >
           Usuarios

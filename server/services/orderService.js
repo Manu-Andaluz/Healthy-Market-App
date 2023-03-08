@@ -14,8 +14,8 @@ const getAllOrders = async () => {
   return orders;
 };
 
-const createOrder = async (allProducts) => {
-  const itemArray = await allProducts.map((product) => {
+const createOrder = async (cart, userName, userEmail) => {
+  const itemArray = await cart.map((product) => {
     return {
       id: product._id,
       title: product.name,
@@ -55,6 +55,12 @@ const createOrder = async (allProducts) => {
 
     const order = new Order({
       products: products,
+      userId: userEmail,
+      shipping: {
+        userName,
+        userEmail,
+      },
+      subTotal: total,
       total: sumWithInitial,
     });
 
