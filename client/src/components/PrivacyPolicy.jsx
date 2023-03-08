@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
             <div className="container px-5 py-24 mx-auto ">
                 <div className="flex flex-col text-center w-full mb-12">
                     <h1 className="text-3xl lg:text-4xl font-bold leading-9 text-gray-600 pb-4 ">
-                        POLÍTICA DE PRIVACIDAD
+                        POLITICA DE PRIVACIDAD
                     </h1>
                     <p className="font-bree text-base leading-6 text-gray-600 px-8">
                         La presente Política de Privacidad establece los términos
