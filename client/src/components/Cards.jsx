@@ -41,6 +41,8 @@ const Cards = (currentProduct) => {
               <h3 className="text-base font-bree text-gray-700">
                 {product.name}
               </h3>
+              <p className="font-mono">{product.category}</p>
+
               <p className="text-lg font-bold text-gray-900">
                 ${product.price}
               </p>
