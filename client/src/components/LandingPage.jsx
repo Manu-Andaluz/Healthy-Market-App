@@ -24,7 +24,7 @@ const LandingPage = () => {
                   aria-hidden="true"
                   focusable="false"
                   data-prefix="fas"
-                  class="w-1"
+                  className="w-1"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 448 512"
@@ -83,7 +83,7 @@ const LandingPage = () => {
             <div className="flex items-center lg:ml-auto">
               {/* <button
                 type="button"
-                class="inline-block px-6 py-2.5 mr-2 bg-transparent text-green1 font-bree text-xs leading-tight uppercase rounded hover:text-grisLetter hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
+                className="inline-block px-6 py-2.5 mr-2 bg-transparent text-green1 font-bree text-xs leading-tight uppercase rounded hover:text-grisLetter hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
               >
@@ -92,13 +92,13 @@ const LandingPage = () => {
               </button> */}
               {user.email ? (
                 <NavLink to="/cart">
-                  <button class="inline-block px-6 py-2.5 bg-green1 text-white font-bree text-xs leading-tight uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-grisLetter focus:shadow-lg focus:outline-none focus:ring-0 active:bg-rosa active:shadow-lg transition duration-150 ease-in-out">
+                  <button className="inline-block px-6 py-2.5 bg-green1 text-white font-bree text-xs leading-tight uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-grisLetter focus:shadow-lg focus:outline-none focus:ring-0 active:bg-rosa active:shadow-lg transition duration-150 ease-in-out">
                     Mi cuenta
                   </button>
                 </NavLink>
               ) : (
                 <NavLink to="/login">
-                  <button class="inline-block px-6 py-2.5 bg-green1 text-white font-bree text-xs leading-tight uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-grisLetter focus:shadow-lg focus:outline-none focus:ring-0 active:bg-rosa active:shadow-lg transition duration-150 ease-in-out">
+                  <button className="inline-block px-6 py-2.5 bg-green1 text-white font-bree text-xs leading-tight uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-grisLetter focus:shadow-lg focus:outline-none focus:ring-0 active:bg-rosa active:shadow-lg transition duration-150 ease-in-out">
                     Ingresar
                   </button>
                 </NavLink>
@@ -106,7 +106,7 @@ const LandingPage = () => {
               <Link to="/about">
                 <button
                   type="button"
-                  class="inline-block px-6 py-2.5 mr-2 bg-transparent text-green1 font-bree text-xs leading-tight uppercase rounded hover:text-grisLetter hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
+                  className="inline-block px-6 py-2.5 mr-2 bg-transparent text-green1 font-bree text-xs leading-tight uppercase rounded hover:text-grisLetter hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                 >
