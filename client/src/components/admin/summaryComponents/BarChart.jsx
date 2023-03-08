@@ -11,13 +11,13 @@ import {
 } from "recharts";
 
 const data = [
-  { name: "María", age: 10, weight: 60 },
-  { name: "Karina", age: 25, weight: 70 },
-  { name: "Susana", age: 15, weight: 65 },
-  { name: "Pedro", age: 35, weight: 85 },
-  { name: "Felipe", age: 12, weight: 48 },
-  { name: "Laura", age: 30, weight: 69 },
-  { name: "Adrián", age: 15, weight: 78 },
+  { name: "María", age: 10, nacionalidad: "Argentina" },
+  { name: "Karina", age: 25, nacionalidad: "Chile" },
+  { name: "Susana", age: 15, nacionalidad: "Colombia" },
+  { name: "Pedro", age: 35, nacionalidad: "Argentina" },
+  { name: "Felipe", age: 12, nacionalidad: "Argentina" },
+  { name: "Laura", age: 30, nacionalidad: "Mexico" },
+  { name: "Adrián", age: 15, nacionalidad: "Argentina" },
 ];
 
 const SimpleBarCharts = () => {
@@ -40,8 +40,8 @@ const SimpleBarCharts = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="weight" fill="#6b48ff" />
-          <Bar dataKey="age" fill="#1ee3cf" />
+          <Bar dataKey="nacionalidad" fill="#6b48ff" />
+          <Bar dataKey="age" fill="#1553cf" />
         </BarChart>
       </ResponsiveContainer>
     </div>

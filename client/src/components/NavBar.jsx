@@ -7,8 +7,8 @@ export default function NavBar() {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
-  const [navbarHeight, setNavbarHeight] = useState("auto"); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [navbarHeight, setNavbarHeight] = useState("auto");
   let activeStyle = {
     color: "#03C988",
   };
@@ -18,44 +18,65 @@ export default function NavBar() {
   };
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);  
-    setNavbarHeight(isMenuOpen ? "auto" : "calc(100vh - 64px)"); 
+    setIsMenuOpen(!isMenuOpen);
+    setNavbarHeight(isMenuOpen ? "auto" : "calc(100vh - 64px)");
   };
 
   return (
     <nav
       className="relative px-4 py-5 flex flex-col sm:flex-row justify-between items-center bg-gray-800"
-      style={{ height: navbarHeight }} 
+      style={{ height: navbarHeight }}
     >
       <NavLink to="/">
         <p
-          className="text-2xl text-white  font-bold leading-none flex items-center"
+          className="text-2xl text-white font-bold leading-none flex items-center"
           href="#"
         >
           Healthy Market 🌿
         </p>
       </NavLink>
       <div className="lg:hidden">
-        <button
-          className="navbar-burger flex items-center text-blue-600 p-3"
-          onClick={toggleMenu} 
-        >
-          <svg
-            className="block h-4 w-4 fill-current"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+        {!isMenuOpen && (
+          <button
+            className="navbar-burger flex items-center text-blue-600 p-3"
+            onClick={toggleMenu}
           >
-            <title>Mobile menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-          </svg>
-        </button>
+            <svg
+              className="block h-4 w-4 fill-current"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Mobile menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+            </svg>
+          </button>
+        )}
+        {isMenuOpen && (
+          <button
+            className="navbar-close absolute top-0 right-0 text-white p-3"
+            onClick={toggleMenu}
+          >
+            <svg
+              className="block h-4 w-4 fill-current"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Close menu</title>
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M10 8.414l5.293-5.293 1.414 1.414L11.414 10l5.293 5.293-1.414 1.414L10 11.414l-5.293 5.293-1.414-1.414L8.586 10 3.293 4.707l1.414-1.414L10 8.414z"
+              />
+            </svg>
+          </button>
+        )}
       </div>
       <ul
+        // absolute mt-0  left-1/2 text-white transform translate-y-1/9 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-7 bg-gray-800 py-2
         className={`${
-          isMenuOpen ? "block" : "hidden" 
-        } absolute top-1/2 left-1/2 text-white transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-6 bg-gray-800 py-2 mt-4 `}
+          isMenuOpen ? "block" : "hidden"
+        } absolute mt-0 top-1/2 left-1/2 text-white transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-6 bg-gray-800 py-2  `}
       >
-
         <li>
           <NavLink
             to="/home"
@@ -129,10 +150,10 @@ export default function NavBar() {
           </svg>
         </li>
         <li>
-          <NavLink to="/cart"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          <NavLink
+            to="/cart"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            
             <div className="flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

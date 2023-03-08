@@ -2,12 +2,10 @@ import React from "react";
 import { PieChart, ResponsiveContainer, Pie, Tooltip, Cell } from "recharts";
 
 const data = [
-  { name: "Group A", value: 2400 },
-  { name: "Group B", value: 4567 },
-  { name: "Group C", value: 1398 },
-  { name: "Group D", value: 9800 },
-  { name: "Group E", value: 3908 },
-  { name: "Group F", value: 4800 },
+  { name: "Vegano", value: 2400 },
+  { name: "Alamacén", value: 4567 },
+  { name: "Gluten-Free", value: 1398 },
+  { name: "Vegetariano", value: 1200 },
 ];
 
 const COLORS = [

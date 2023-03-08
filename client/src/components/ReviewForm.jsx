@@ -69,7 +69,14 @@ export default function ReviewForm(productId) {
       return alert("Debe llenar este campo");
     dispatch(reviewProducts({ reviews: input, productId: productId.element }));
     alert("¡Tu calificación ha sido enviada!");
+    setInput({
+      comment: "",
+      rating: 0,
+      name: "",
+       });
   }
+
+  
 
   return (
     <div className="">

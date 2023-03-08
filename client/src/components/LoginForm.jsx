@@ -36,9 +36,10 @@ const LoginForm = () => {
     dispatch(loginUser(form));
   };
 
-  const handleGoogle = (e) => {
+  const handleGoogle = async (e) => {
     e.preventDefault();
-    dispatch(singWithGoogle());
+    await dispatch(singWithGoogle());
+    window.location.reload();
   };
 
   return (
