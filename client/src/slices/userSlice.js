@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
 import { registerUser, loginUser } from "../actions/userActions";
+import { singWithGoogle } from "../firebase";
 const initialState = {
   token: localStorage.getItem("token"),
   name: "",
@@ -31,7 +32,7 @@ const userSlice = createSlice({
     },
     logoutUser(state, action) {
       localStorage.removeItem("token");
-      
+
       return {
         ...state,
         token: "",
@@ -83,6 +84,26 @@ const userSlice = createSlice({
       } else return state;
     });
     builder.addCase(loginUser.rejected, (state, action) => {
+      return {
+        ...state,
+      };
+    });
+    builder.addCase(singWithGoogle.pending, (state, action) => {
+      return { ...state };
+    });
+    builder.addCase(singWithGoogle.fulfilled, (state, action) => {
+      if (action.payload) {
+        const user = jwtDecode(action.payload);
+        return {
+          ...state,
+          token: action.payload,
+          name: user.name,
+          email: user.email,
+          isAdmin: user.isAdmin,
+        };
+      } else return state;
+    });
+    builder.addCase(singWithGoogle.rejected, (state, action) => {
       return {
         ...state,
       };

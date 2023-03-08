@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { redirect } from "react-router-dom";
 import { auth, provider, singWithGoogle } from "../firebase";
+import { loadUser } from "../slices/userSlice";
 
 const LoginForm = () => {
   const user = useSelector((state) => state.user);
@@ -22,11 +22,10 @@ const LoginForm = () => {
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    setValue(localStorage.getItem("email"));
-    if (user._id || value) {
+    if (user.name || value) {
       navigate("/home");
     }
-  }, [user._id, navigate]);
+  }, [user.name, navigate]);
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -35,6 +34,11 @@ const LoginForm = () => {
   const handleOnClick = (e) => {
     e.preventDefault();
     dispatch(loginUser(form));
+  };
+
+  const handleGoogle = (e) => {
+    e.preventDefault();
+    dispatch(singWithGoogle());
   };
 
   return (
@@ -95,9 +99,7 @@ const LoginForm = () => {
               >
                 Crear Cuenta
               </Link>
-              <button onClick={() => singWithGoogle()}>
-                Ingresa con Google
-              </button>
+              <button onClick={handleGoogle}>Ingresa con Google</button>
             </div>
           </form>
         </div>

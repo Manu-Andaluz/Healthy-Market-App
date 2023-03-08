@@ -5,18 +5,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart } from "../slices/cartSlice";
-import { fetchGoogleToken } from "../actions/userActions";
-import { useState } from "react";
 
 const CardHome = ({ products }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  
-
   useEffect(() => {
     dispatch(productsFetch());
-
   }, [dispatch]);
 
   const handleOnClick = (item) => {

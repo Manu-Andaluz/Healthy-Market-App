@@ -1,10 +1,6 @@
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signInWithRedirect,
-} from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCm_pfc9WZYcUJ-hkxc9mhUK0NknqzLEqM",
@@ -25,12 +21,15 @@ provider.setCustomParameters({
   prompt: "select_account",
 });
 
-const singWithGoogle = async () => {
-  const result = await signInWithPopup(auth, provider);
-  const credential = await GoogleAuthProvider.credentialFromResult(result);
-  const token = credential.accessToken;
-  localStorage.setItem("token", token);
-};
+const singWithGoogle = createAsyncThunk(
+  "user/loginUserGoogle",
+  async (user) => {
+    const result = await signInWithPopup(auth, provider);
+    const credential = await GoogleAuthProvider.credentialFromResult(result);
+    let token = result.user.accessToken;
+    localStorage.setItem("token", token);
+  }
+);
 
 // Get a list of cities from your database
 export { auth, provider, singWithGoogle };
