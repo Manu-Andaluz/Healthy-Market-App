@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { reviewProducts } from "../actions/productActions";
-import NavBar from "./NavBar";
 import ReactStars from "react-rating-stars-component";
-import { render } from "react-dom";
-import { Link } from "react-router-dom";
+
 
 export default function ReviewForm(productId) {
   const dispatch = useDispatch();
@@ -63,9 +60,7 @@ export default function ReviewForm(productId) {
     );
   }
 
-  function handleOnClick(e) {
-    e.preventDefault();
-  }
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -110,7 +105,7 @@ export default function ReviewForm(productId) {
               Comentario*
             </label>
             <textarea
-              className="border border-gray-200 rounded-lg mb-8 mx-8 w-1/3 h-28	 whitespace-pre-line bg-gray-200 text-gray-700 focus:bg-white"
+              className="border border-gray-200 rounded-lg mb-8 mx-8 w-1/3 h-28	pl-3 pt-2 whitespace-pre-line bg-gray-200 text-gray-700 focus:bg-white"
               placeholder="Agregue el comentario..."
               type="text"
               value={input.comment}

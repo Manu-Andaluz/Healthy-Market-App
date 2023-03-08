@@ -18,6 +18,8 @@ const Reviews = () => {
 
   return (
     <div className="reviews">
+
+
       <Link
         to="/products"
         className="bg-green2 hover:bg-green1 text-white font-bold py-1 px-3 mx-6 my-6 rounded-full inline-flex items-center"
@@ -36,6 +38,7 @@ const Reviews = () => {
           />
         </svg>
       </Link>
+
 
       <div></div>
       <div className="flex items-center mb-4 space-x-4 mx-8 my-8 px-8">
