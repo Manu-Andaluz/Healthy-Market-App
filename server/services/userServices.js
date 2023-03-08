@@ -56,9 +56,8 @@ const loginUser = async (email, password) => {
   if (!user) {
     return "User is not registered";
   }
-  console.log(user.password);
 
-  var validatePassword = await bcrypt.compare(password, user.password);
+  var validatePassword = bcrypt.compare(password, user.password);
 
   if (!validatePassword) {
     return "User or Password is incorrect";
@@ -100,6 +99,16 @@ const deleteUser = async (userId) => {
   }
 };
 
+const fireBase = async (name, age, email) => {
+  // const user = await addDoc(collection(db, "users"), {
+  //   name,
+  //   age,
+  //   email,
+  // });
+
+  return "user";
+};
+
 module.exports = {
   getAllUsers,
   createUser,
@@ -107,4 +116,5 @@ module.exports = {
   findByEmail,
   createUserAdmin,
   deleteUser,
+  fireBase,
 };

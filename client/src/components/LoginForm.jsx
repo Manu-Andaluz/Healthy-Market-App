@@ -5,11 +5,10 @@ import { useState } from "react";
 import NavBar from "./NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userActions";
-
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { redirect } from "react-router-dom";
-import "./ButtonGoogle.css";
+import { auth, provider, singWithGoogle } from "../firebase";
+import { loadUser } from "../slices/userSlice";
 
 const LoginForm = () => {
   const user = useSelector((state) => state.user);
@@ -20,11 +19,13 @@ const LoginForm = () => {
     password: "",
   });
 
+  const [value, setValue] = useState("");
+
   useEffect(() => {
-    if (user._id) {
+    if (user.name || value) {
       navigate("/home");
     }
-  }, [user._id, navigate]);
+  }, [user.name, navigate]);
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -33,6 +34,11 @@ const LoginForm = () => {
   const handleOnClick = (e) => {
     e.preventDefault();
     dispatch(loginUser(form));
+  };
+
+  const handleGoogle = (e) => {
+    e.preventDefault();
+    dispatch(singWithGoogle());
   };
 
   return (
@@ -93,12 +99,7 @@ const LoginForm = () => {
               >
                 Crear Cuenta
               </Link>
-              <NavLink
-                to="https://healthy-market-app-production.up.railway.app/users/google"
-                className="google-login-button"
-              >
-                Ingresa con Google
-              </NavLink>
+              <button onClick={handleGoogle}>Ingresa con Google</button>
             </div>
           </form>
         </div>
