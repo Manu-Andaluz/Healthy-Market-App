@@ -1,30 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchFilterCategoryProducts } from "../actions/productActions";
 
-export default function SearchBar({ filter, category }) {
+export default function SearchBar({ onChange, inputState, filter, category }) {
   const dispatch = useDispatch();
-  const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(
       fetchFilterCategoryProducts({
         category: category,
         filterBy: filter,
-        name: search,
+        name: inputState,
       })
     );
-  }, [search]);
-
-  function onInputChange(e) {
-    setSearch(e.target.value);
-  }
+  }, [inputState]);
 
   return (
     <div className="w-9/12 mx-auto">
       <form className="bg-white">
         <label
-          for="default-search"
+          htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-200 sr-only"
         >
           Search
@@ -40,9 +35,9 @@ export default function SearchBar({ filter, category }) {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               ></path>
             </svg>
@@ -50,8 +45,8 @@ export default function SearchBar({ filter, category }) {
           <input
             type="text"
             placeholder="Buscar productos..."
-            onChange={onInputChange}
-            value={search}
+            onChange={onChange}
+            value={inputState}
             id="default-search"
             className="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
           />
