@@ -8,7 +8,6 @@ import { loginUser } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { redirect } from "react-router-dom";
-import "./ButtonGoogle.css";
 import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 

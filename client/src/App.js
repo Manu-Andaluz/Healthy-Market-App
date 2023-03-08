@@ -25,6 +25,7 @@ import EditProduct from "./components/admin/EditProduct";
 import { toast, ToastContainer } from "react-toastify";
 import UserDashboard from "./components/admin/Users";
 import CreateUser from "./components/admin/CreateUser";
+import LoginSuccess from "./components/LogginSuccess";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/loginSuccess" element={<LoginSuccess/>}/>
           <Route path="/detail/:productId" element={<CardDetail />} />
           <Route path="*" element={<Error />} />
           <Route path="/cart" element={<Cart />} />

@@ -19,7 +19,6 @@ const service = new AuthService();
 
 const getUsersController = async (req, res) => {
   try {
-    console.log(req.user);
     const user = await getAllUsers();
     res.status(200).send(user);
   } catch (error) {
@@ -49,7 +48,7 @@ const registerController = async (req, res) => {
       password,
       id_google
     );
-    welcome(message.email);
+    welcome(email);
     res.status(200).send(message);
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -60,7 +59,6 @@ const loginController = async (req, res) => {
   const { email, password } = req.body;
   try {
     const token = await loginUser(email, password);
-    console.log(token);
     welcome(email);
     res.status(200).send(token);
   } catch (error) {
@@ -70,9 +68,8 @@ const loginController = async (req, res) => {
 
 const RegisterGoogle = async (req, res, next) => {
   try {
-    const token = req.user;
-    welcomeUser();
-    res.redirect(`https://healthy-market-app.vercel.app/home?token=${token}`);
+    req.user = req.user;
+    res.redirect("https://healthy-market-app.vercel.app/loginSuccess");
   } catch (error) {
     res.json(error.message);
   }

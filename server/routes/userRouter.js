@@ -8,6 +8,7 @@ const {
   deleteUserController,
   fireBaseController,
 } = require("../controllers/userController");
+
 const { User } = require("../models/User");
 
 const userRouter = Router();

@@ -23,7 +23,7 @@ const createOrder = async (allProducts) => {
       picture_url: product.image.url,
       description: product.details,
       category_id: product.category,
-      quantity: 1,
+      quantity: product.cartQuantity,
       unit_price: product.price,
     };
   });
@@ -40,6 +40,26 @@ const createOrder = async (allProducts) => {
   };
 
   return mercadopago.preferences.create(preference).then((response) => {
+    const products = response.body.items.map((product) => ({
+      productId: product.id,
+      quantity: product.quantity,
+    }));
+    const data = response.body.items.map(
+      (product) => product.unit_price * product.quantity
+    );
+    const initialValue = 0;
+    const sumWithInitial = data.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      initialValue
+    );
+
+    const order = new Order({
+      products: products,
+      total: sumWithInitial,
+    });
+
+    order.save();
+
     return { response };
   });
 };
