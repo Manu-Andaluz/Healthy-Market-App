@@ -36,12 +36,14 @@ const isAdmin = (req, res, next) => {
   });
 };
 
-const isUserAuthenticate = (req,res,next)=>{
-  if(req.user){
+const isUserAuthenticate = (req, res, next) => {
+  console.log("hay user", req.user);
+  if (req.user) {
     next();
-  }else{
-    res.status(401).send('You must login first!')
+  } else {
+    console.log("falloAuth");
+    res.status(401).send("You must login first!");
   }
-}
+};
 
 module.exports = { auth, isUser, isAdmin, isUserAuthenticate };
