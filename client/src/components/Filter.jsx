@@ -38,13 +38,13 @@ const Filter = () => {
 
   return (
     <div className="grid mx-auto gap-2 my-5">
-      <div className="flex flex-row justify-center  ">
+      {/* <div className="flex flex-row justify-center  ">
         <div className="px-28 ">Ordenamiento:</div>
         <div className="px-28">Categoria:</div>
-      </div>
-      <div className="flex w-9/12 gap-5 mx-auto">
+      </div> */}
+      <div className="flex flex-col md:flex-row justify-between items-center w-9/12 gap-5 mx-auto">
         <SearchBar filter={filter} category={category} />
-
+        
         <select
           name="filters"
           onChange={changeFilter}
