@@ -1,12 +1,10 @@
 import { initializeApp } from "firebase/app";
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-} from "firebase/firestore/lite";
-
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithRedirect,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCm_pfc9WZYcUJ-hkxc9mhUK0NknqzLEqM",
@@ -19,10 +17,20 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const auth = getAuth();
+auth.languageCode = "it";
 
-const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  prompt: "select_account",
+});
+
+const singWithGoogle = async () => {
+  const result = await signInWithPopup(auth, provider);
+  const credential = await GoogleAuthProvider.credentialFromResult(result);
+  const token = credential.accessToken;
+  localStorage.setItem("token", token);
+};
 
 // Get a list of cities from your database
-export { auth, provider };
+export { auth, provider, singWithGoogle };

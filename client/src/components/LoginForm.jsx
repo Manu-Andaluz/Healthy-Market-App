@@ -8,8 +8,7 @@ import { loginUser } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { redirect } from "react-router-dom";
-import { auth, provider } from "../firebase";
-import { signInWithPopup } from "firebase/auth";
+import { auth, provider, singWithGoogle } from "../firebase";
 
 const LoginForm = () => {
   const user = useSelector((state) => state.user);
@@ -23,6 +22,7 @@ const LoginForm = () => {
   const [value, setValue] = useState("");
 
   useEffect(() => {
+    setValue(localStorage.getItem("email"));
     if (user._id || value) {
       navigate("/home");
     }
@@ -35,13 +35,6 @@ const LoginForm = () => {
   const handleOnClick = (e) => {
     e.preventDefault();
     dispatch(loginUser(form));
-  };
-
-  const handleGoogle = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      setValue(data.user.email);
-      localStorage.setItem("email", data.user.email);
-    });
   };
 
   return (
@@ -102,7 +95,7 @@ const LoginForm = () => {
               >
                 Crear Cuenta
               </Link>
-              <button onClick={handleGoogle} className="google-login-button">
+              <button onClick={() => singWithGoogle()}>
                 Ingresa con Google
               </button>
             </div>
