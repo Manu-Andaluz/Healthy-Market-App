@@ -5,6 +5,7 @@ const {
   findByEmail,
   createUserAdmin,
   deleteUser,
+  fireBase,
 } = require("../services/userServices");
 const boom = require("@hapi/boom");
 const generateAuthToken = require("../utils/generateAuthToken");
@@ -77,38 +78,6 @@ const RegisterGoogle = async (req, res, next) => {
   }
 };
 
-/*const RegisterGoogle = async (req, res, next) => {
-  try {
-    const user = req.user;
-    const validateUser = await findByEmail(user._json.email)
-    if(user){
-    const validateUser = await findByEmail(user._json.email);
-    if (validateUser) {
-      const token = generateAuthToken(validateUser);
-      console.log({token, validateUser})
-      return res.status(200).send(token);  
-    }
-
-    const userSchema = {
-      name: user.name.givenName,
-      surname: user._json.family_name,
-      nationality: user._json.locale,
-      email: user._json.email,
-      id_google: user.id,
-    };
-
-    const newUser = new User(userSchema);
-    await newUser.save();
-
-    const token = generateAuthToken(newUser);
-    
-    res.status(200).json(token);
-    
-  } catch (error) {
-    res.json(error.message);
-  }
-};*/
-
 const createUserController = async (req, res) => {
   const { name, surname, nationality, email } = req.body;
   try {
@@ -129,6 +98,17 @@ const deleteUserController = async (req, res) => {
   }
 };
 
+const fireBaseController = async (req, res) => {
+  const { name, age, email } = req.body;
+  try {
+    const user = await fireBase(name, age, email);
+    res.status(200).send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getUsersController,
   registerController,
@@ -136,4 +116,5 @@ module.exports = {
   RegisterGoogle,
   createUserController,
   deleteUserController,
+  fireBaseController,
 };

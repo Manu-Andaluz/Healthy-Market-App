@@ -100,6 +100,16 @@ const deleteUser = async (userId) => {
   }
 };
 
+const fireBase = async (name, age, email) => {
+  // const user = await addDoc(collection(db, "users"), {
+  //   name,
+  //   age,
+  //   email,
+  // });
+
+  return "user";
+};
+
 module.exports = {
   getAllUsers,
   createUser,
@@ -107,4 +117,5 @@ module.exports = {
   findByEmail,
   createUserAdmin,
   deleteUser,
+  fireBase,
 };

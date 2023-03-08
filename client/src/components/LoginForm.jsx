@@ -5,11 +5,12 @@ import { useState } from "react";
 import NavBar from "./NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userActions";
-
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { redirect } from "react-router-dom";
 import "./ButtonGoogle.css";
+import { auth, provider } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
 
 const LoginForm = () => {
   const user = useSelector((state) => state.user);
@@ -20,8 +21,10 @@ const LoginForm = () => {
     password: "",
   });
 
+  const [value, setValue] = useState("");
+
   useEffect(() => {
-    if (user._id) {
+    if (user._id || value) {
       navigate("/home");
     }
   }, [user._id, navigate]);
@@ -33,6 +36,13 @@ const LoginForm = () => {
   const handleOnClick = (e) => {
     e.preventDefault();
     dispatch(loginUser(form));
+  };
+
+  const handleGoogle = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      setValue(data.user.email);
+      localStorage.setItem("email", data.user.email);
+    });
   };
 
   return (
@@ -93,12 +103,9 @@ const LoginForm = () => {
               >
                 Crear Cuenta
               </Link>
-              <NavLink
-                to="https://healthy-market-app-production.up.railway.app/users/google"
-                className="google-login-button"
-              >
+              <button onClick={handleGoogle} className="google-login-button">
                 Ingresa con Google
-              </NavLink>
+              </button>
             </div>
           </form>
         </div>
