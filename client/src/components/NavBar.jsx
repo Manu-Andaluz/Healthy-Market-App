@@ -129,7 +129,10 @@ export default function NavBar() {
           </svg>
         </li>
         <li>
-          <NavLink to="/cart">
+          <NavLink to="/cart"
+          style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            
             <div className="flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
