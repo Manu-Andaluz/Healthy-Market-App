@@ -25,6 +25,7 @@ import EditProduct from "./components/admin/EditProduct";
 import { toast, ToastContainer } from "react-toastify";
 import UserDashboard from "./components/admin/Users";
 import CreateUser from "./components/admin/CreateUser";
+import PrivacyPolicy from "./components/PrivacyPolicy"
 
 function App() {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/reviewform" element={<ReviewForm />} />
           <Route path="/reviews/:productId" element={<Reviews />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         </Routes>
       </BrowserRouter>
     </div>
