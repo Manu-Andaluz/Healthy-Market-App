@@ -167,7 +167,11 @@ const Cart = () => {
                       axios
                         .post(
                           "https://healthy-market-app-production.up.railway.app/order",
-                          cart.cartItems
+                          {
+                            cart: cart.cartItems,
+                            userName: user.name,
+                            userEmail: user.email,
+                          }
                         )
                         .then(
                           (res) =>

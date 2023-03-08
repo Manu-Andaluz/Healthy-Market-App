@@ -15,10 +15,10 @@ mercadopago.configure({
 });
 
 const createOrderController = async (req, res) => {
-  const allProducts = req.body;
+  const { cart, userName, userEmail } = req.body;
 
   try {
-    const newOrder = await createOrder(allProducts);
+    const newOrder = await createOrder(cart, userName, userEmail);
     res.send(newOrder);
   } catch (error) {
     res.status(400).send(error);
