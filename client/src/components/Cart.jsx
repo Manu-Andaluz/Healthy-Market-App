@@ -56,7 +56,7 @@ const Cart = () => {
                   Cantidad
                 </h3>
                 <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
-                  Precio
+                  Precio unitario
                 </h3>
                 <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">
                   Total
