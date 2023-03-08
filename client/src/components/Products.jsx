@@ -47,6 +47,7 @@ const Products = () => {
         productsPerPage={productsPerPage}
         products={products.length}
         paginado={paginado}
+        currentPage={currentPage}
       />
       <Footer />
     </>
