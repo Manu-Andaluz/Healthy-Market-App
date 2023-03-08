@@ -56,9 +56,8 @@ const loginUser = async (email, password) => {
   if (!user) {
     return "User is not registered";
   }
-  console.log(user.password);
 
-  var validatePassword = await bcrypt.compare(password, user.password);
+  var validatePassword = bcrypt.compare(password, user.password);
 
   if (!validatePassword) {
     return "User or Password is incorrect";

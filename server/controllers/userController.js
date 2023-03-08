@@ -18,7 +18,6 @@ const service = new AuthService();
 
 const getUsersController = async (req, res) => {
   try {
-    console.log(req.user);
     const user = await getAllUsers();
     res.status(200).send(user);
   } catch (error) {
@@ -59,7 +58,6 @@ const loginController = async (req, res) => {
   const { email, password } = req.body;
   try {
     const token = await loginUser(email, password);
-    console.log(token);
     welcome(email);
     res.status(200).send(token);
   } catch (error) {
@@ -69,46 +67,12 @@ const loginController = async (req, res) => {
 
 const RegisterGoogle = async (req, res, next) => {
   try {
-    const token = req.user;
-    welcome();
-    res.redirect(`http://localhost:3000/home?token=${token}`);
+    req.user = req.user;
+    res.redirect("https://healthy-market-app.vercel.app/loginSuccess");
   } catch (error) {
     res.json(error.message);
   }
 };
-
-/*const RegisterGoogle = async (req, res, next) => {
-  try {
-    const user = req.user;
-    const validateUser = await findByEmail(user._json.email)
-    if(user){
-    const validateUser = await findByEmail(user._json.email);
-    if (validateUser) {
-      const token = generateAuthToken(validateUser);
-      console.log({token, validateUser})
-      return res.status(200).send(token);  
-    }
-
-    const userSchema = {
-      name: user.name.givenName,
-      surname: user._json.family_name,
-      nationality: user._json.locale,
-      email: user._json.email,
-      id_google: user.id,
-    };
-
-    const newUser = new User(userSchema);
-    await newUser.save();
-
-    const token = generateAuthToken(newUser);
-    
-    res.status(200).json(token);
-    
-  } catch (error) {
-    res.json(error.message);
-  }
-};*/
-
 const createUserController = async (req, res) => {
   const { name, surname, nationality, email } = req.body;
   try {

@@ -11,35 +11,38 @@ const Googlestrategy = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: callback1,
+    callbackURL: callback,
 
     scope: [
       "https://www.googleapis.com/auth/userinfo.email",
       "https://www.googleapis.com/auth/userinfo.profile",
     ],
-    state: true,
   },
   async function verify(accessToken, refreshToken, profile, done) {
-    const email = profile.emails[0].value;
-    const user = await User.findOne({ email });
+    // console.log({accessToken, refreshToken, profile, done})
 
-    if (user) {
-      const token = generateAuthToken(user);
-      done(null, token);
-    } else {
-      const userSchema = {
-        name: profile.name.givenName,
-        surname: profile._json.family_name,
-        nationality: profile._json.locale,
-        email: profile._json.email,
-        id_google: profile.id,
-      };
+    try {
+      const email = profile.emails[0].value;
+      const user = await User.findOne({ email: email });
 
-      const newUser = new User(userSchema);
-      await newUser.save();
+      if (user) {
+        user.id_google = profile.id;
+        done(null, user);
+      } else {
+        const userSchema = {
+          name: profile.name.givenName,
+          surname: profile._json.family_name,
+          nationality: profile._json.locale,
+          email: profile._json.email,
+          id_google: profile.id,
+        };
 
-      const token = generateAuthToken(newUser);
-      done(null, token);
+        const newUser = new User(userSchema);
+        await newUser.save();
+        done(null, newUser);
+      }
+    } catch (error) {
+      console.log({ error: error.message });
     }
   }
 );
