@@ -53,6 +53,11 @@ const CardDetail = () => {
                   {productDet.productDetail.name}
                   <br />
                 </h1>
+                <p className="  text-2xl mb-5 text-small">
+                  {productDet.productDetail.category}
+                  <br />
+                </p>
+                
                 <p className="text-sm">
                   {productDet.productDetail.details}{" "}
                   <a
@@ -60,8 +65,10 @@ const CardDetail = () => {
                     className="opacity-50 text-gray-900 hover:opacity-100 inline-block text-xs leading-none border-b border-gray-900"
                   >
                     {" "}
+                   
                   </a>
                 </p>
+               
               </div>
               <div>
                 <div className="inline-block align-bottom mr-5">
