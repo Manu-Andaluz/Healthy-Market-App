@@ -25,9 +25,17 @@ userRouter.post("/loggin", loginController);
 userRouter.get("/google", passport.authenticate("google"));
 userRouter.get(
   "/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: failureRedirectVercel,
-  }),
+  function () {
+    try {
+      console.log("callback");
+      passport.authenticate("google", {
+        failureRedirect: failureRedirectVercel,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   RegisterGoogle
 );
 
