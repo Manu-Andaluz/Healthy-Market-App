@@ -5,6 +5,7 @@ const {
   findByEmail,
   createUserAdmin,
   deleteUser,
+  fireBase,
 } = require("../services/userServices");
 const boom = require("@hapi/boom");
 const generateAuthToken = require("../utils/generateAuthToken");
@@ -73,6 +74,7 @@ const RegisterGoogle = async (req, res, next) => {
     res.json(error.message);
   }
 };
+
 const createUserController = async (req, res) => {
   const { name, surname, nationality, email } = req.body;
   try {
@@ -93,6 +95,17 @@ const deleteUserController = async (req, res) => {
   }
 };
 
+const fireBaseController = async (req, res) => {
+  const { name, age, email } = req.body;
+  try {
+    const user = await fireBase(name, age, email);
+    res.status(200).send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getUsersController,
   registerController,
@@ -100,4 +113,5 @@ module.exports = {
   RegisterGoogle,
   createUserController,
   deleteUserController,
+  fireBaseController,
 };

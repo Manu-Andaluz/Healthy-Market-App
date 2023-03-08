@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import GoogleButtom from "react-google-button";
-import { fetchGoogleToken } from "./../actions/userActions";
+import { auth, provider, singWithGoogle } from "../firebase";
+import { loadUser } from "../slices/userSlice";
 
 const LoginForm = () => {
   const user = useSelector((state) => state.user);
@@ -19,35 +19,13 @@ const LoginForm = () => {
     password: "",
   });
 
+  const [value, setValue] = useState("");
+
   useEffect(() => {
-    if (user._id) {
+    if (user.name || value) {
       navigate("/home");
     }
-  }, [user._id, navigate]);
-
-  const redirectToGoogleSSO = async () => {
-    let timer = null;
-    const googleLoginUrl =
-      "https://healthy-market-app-production.up.railway.app/users/google";
-    const newWindow = window.open(
-      googleLoginUrl,
-      "_blanck",
-      "width=400, height=400"
-    );
-    if (newWindow) {
-      timer = setInterval(() => {
-        if (newWindow.closed) {
-          console.log("We are authenticated");
-          dispatch(fetchGoogleToken());
-          if (timer) clearInterval(timer);
-          // time to refresh page
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        }
-      }, 500);
-    }
-  };
+  }, [user.name, navigate]);
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -56,6 +34,11 @@ const LoginForm = () => {
   const handleOnClick = (e) => {
     e.preventDefault();
     dispatch(loginUser(form));
+  };
+
+  const handleGoogle = (e) => {
+    e.preventDefault();
+    dispatch(singWithGoogle());
   };
 
   return (
@@ -116,9 +99,7 @@ const LoginForm = () => {
               >
                 Crear Cuenta
               </Link>
-              <div>
-                <GoogleButtom onClick={redirectToGoogleSSO} />
-              </div>
+              <button onClick={handleGoogle}>Ingresa con Google</button>
             </div>
           </form>
         </div>
