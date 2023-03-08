@@ -7,6 +7,11 @@ const Filter = () => {
   const dispatch = useDispatch();
   const [filter, setFilter] = useState("");
   const [category, setCategory] = useState("categoria");
+  const [search, setSearch] = useState("");
+
+  function onInputChange(e) {
+    setSearch(e.target.value);
+  }
 
   const changeFilter = (e) => {
     setFilter(e.target.value);
@@ -21,7 +26,7 @@ const Filter = () => {
       fetchFilterCategoryProducts({
         category: category,
         filterBy: filter,
-        name: "",
+        name: search,
       })
     );
   };
@@ -31,7 +36,7 @@ const Filter = () => {
       fetchFilterCategoryProducts({
         category: category,
         filterBy: filter,
-        name: "",
+        name: search,
       })
     );
   };
@@ -43,13 +48,18 @@ const Filter = () => {
         <div className="px-28">Categoria:</div>
       </div> */}
       <div className="flex flex-col md:flex-row justify-between items-center w-9/12 gap-5 mx-auto">
-        <SearchBar filter={filter} category={category} />
-        
+        <SearchBar
+          inputState={search}
+          onChange={onInputChange}
+          filter={filter}
+          category={category}
+        />
+
         <select
           name="filters"
           onChange={changeFilter}
           onClick={handleFilter}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
           <option value="ordenamiento">Más reciente</option>
           <option value="alfabetic-A-Z">Orden (A-Z)</option>
@@ -62,7 +72,7 @@ const Filter = () => {
           name="category"
           onChange={changeCategory}
           onClick={handleFilterCategory}
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         >
           <option value="categoria">Sin Categoría</option>
           <option value="vegetariano">Vegetariano</option>
