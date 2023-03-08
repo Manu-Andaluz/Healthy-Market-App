@@ -20,7 +20,7 @@ const About = () => {
               Developer de SOY HENRY, estamos comprometidos en brindar una
               solución efectiva para un estilo de vida más saludable. Nos
               enfocamos en brindar una experiencia simple y fácil de usar en
-              nuestra plataforma, permitiendo que tanto los vendedores como los
+              nuestra plataforma, permitiendo que tanto los
               compradores se concentren en lo que realmente importa: la calidad
               y el sabor de la comida.
             </p>
