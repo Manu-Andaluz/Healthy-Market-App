@@ -53,7 +53,7 @@ export default function OrderList() {
 
   const columns = [
     { field: "name", headerName: "Nombre", width: 150 },
-    { field: "email", headerName: "Email", width: 150 },
+    { field: "email", headerName: "Email", width: 250 },
     { field: "delivery_status", headerName: "Envío", width: 130 },
     { field: "payment_status", headerName: "Pago", width: 130 },
     { field: "total", headerName: "Total", width: 130 },
@@ -62,7 +62,7 @@ export default function OrderList() {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: 150,
+      width: 80,
       renderCell: (params) => {
         return (
           <Actions>
