@@ -24,7 +24,7 @@ export default function EditProduct({ productId }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [details, setdetails] = useState("");
-  const [isAvaliable, SetIsAvaliable] = useState(true);
+  const [isAvaliable, SetIsAvaliable] = useState("");
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -142,7 +142,7 @@ export default function EditProduct({ productId }) {
 
               <select
                 onChange={(e) => SetIsAvaliable(e.target.value)}
-                value={category}
+                value={isAvaliable}
                 required
               >
                 <option value={true}>Disponible</option>
