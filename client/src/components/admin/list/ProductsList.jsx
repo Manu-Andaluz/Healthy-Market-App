@@ -9,7 +9,7 @@ import EditProduct from "../EditProduct";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function ProductsList() {
-  const items = useSelector((state) => state.allProducts.allProducts);
+  const items = useSelector((state) => state.allProducts.productList);
   const { deleteStatus } = useSelector((state) => state.allProducts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,10 +19,11 @@ export default function ProductsList() {
     if (deleteStatus === "success") {
       toast("Producto Eliminado");
     }
+    console.log("1");
   }, [deleteStatus, dispatch]);
 
   const rows =
-    items &&
+    Array.isArray(items) &&
     items.map((item) => {
       return {
         id: item._id,
