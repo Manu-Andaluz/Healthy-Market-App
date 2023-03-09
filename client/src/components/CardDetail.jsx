@@ -31,7 +31,7 @@ const CardDetail = () => {
       <div className="min-w-screen h-full flex items-center p-5 lg:p-10 overflow-hidden relative bg-gray-100">
         <div className="w-full max-w-6xl rounded bg-white shadow-xl p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
           <div className="md:flex items-center -mx-10">
-            <div className="absolute top-10 right-0 mr-10 z-1">
+            <div className="md:absolute md:top-10 md:right-8 z-400 ml-6">
               <Link to={`/reviews/${productId}`}>
                 <Star stars={productDet.productDetail.rating} />
               </Link>
@@ -41,7 +41,7 @@ const CardDetail = () => {
               <div className="relative">
                 <img
                   src={productDet?.productDetail?.image?.url}
-                  className="w-full relative z-10"
+                  className="w-full relative z-10 mt-4 md:mt-0"
                   alt=""
                 />
                 <div className="border-4 absolute top-10 bottom-10 left-10 right-10 z-0"></div>
