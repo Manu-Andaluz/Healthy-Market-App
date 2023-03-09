@@ -10,6 +10,7 @@ import Loading from "./Loading";
 import Paginated from "./Paginated";
 import { changePage } from "./../slices/productSlice";
 import Filter from "./Filter"; // importamos el componente Filter
+import productNotFound from "../pictures/emptyProduct.png";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -36,21 +37,40 @@ const Products = () => {
   }
 
   return (
-    <>
+    <div className="h-screen relative flex flex-col">
       <NavBar />
-      <h4 className="grid place-content-center w-full my-10 font-bold text-3xl">
-        Todos Los Productos
-      </h4>
-      <Filter />
-      <Cards currentProduct={currentProduct} />
-      <Paginated
-        productsPerPage={productsPerPage}
-        products={products.length}
-        paginado={paginado}
-        currentPage={currentPage}
-      />
+      <div className="grow">
+        <h4 className="grid place-content-center w-full my-10 font-bold text-3xl">
+          Todos Los Productos
+        </h4>
+        <Filter />
+
+        {products && products.length > 0 ? (
+          <div>
+            <Cards currentProduct={currentProduct} />
+            <Paginated
+              productsPerPage={productsPerPage}
+              products={products.length}
+              paginado={paginado}
+              currentPage={currentPage}
+            />
+          </div>
+        ) : (
+          <div className="flex grow flex-col ">
+            <img
+              className="object-contain h-[500px]"
+              src={productNotFound}
+              alt="productNotFound"
+            />
+            <p className="text-center text-xl font-bold">
+              No se han encontrado productos para tu busqueda
+            </p>
+          </div>
+        )}
+      </div>
+
       <Footer />
-    </>
+    </div>
   );
 };
 

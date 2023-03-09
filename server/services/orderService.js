@@ -60,7 +60,7 @@ const createOrder = async (cart, userName, userEmail) => {
         userName,
         userEmail,
       },
-      subTotal: total,
+      subTotal: sumWithInitial,
       total: sumWithInitial,
     });
 
