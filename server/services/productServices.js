@@ -21,7 +21,7 @@ const getProduct = async (name) => {
 };
 
 const getCategoryFiltered = async (categoryValue, filterBy, name) => {
-  let allProduct = await Product.find();
+  let allProduct = await Product.find({ isAvaliable: true });
   if (categoryValue !== "categoria") {
     allProduct = allProduct.filter(
       (product) => product.category.toLowerCase() == categoryValue.toLowerCase()
@@ -197,6 +197,11 @@ const createReview = async (rating, comment, id, name) => {
   }
 };
 
+const getAllProducts = async () => {
+  const allData = await Product.find();
+  return allData;
+};
+
 module.exports = {
   getProduct,
   // getProductsFiltered,
@@ -206,4 +211,5 @@ module.exports = {
   deleteProduct,
   getProductById,
   createReview,
+  getAllProducts,
 };
