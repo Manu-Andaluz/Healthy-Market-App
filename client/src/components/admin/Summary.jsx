@@ -83,7 +83,7 @@ const Summary = () => {
       title: "Ordenes",
       color: "rgb(38, 198, 249)",
       bgColor: "rgba(38, 198, 249, 0.12)",
-      percentage: ordersPerc,
+      percentage: 110,
     },
     {
       icon: <FaChartBar />,
