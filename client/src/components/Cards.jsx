@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart } from "../slices/cartSlice";
+import { toast, ToastContainer } from "react-toastify";
 
 const Cards = (currentProduct) => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Cards = (currentProduct) => {
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
+    toast("Producto Añadido al Carrito");
     navigate("/cart");
   };
 

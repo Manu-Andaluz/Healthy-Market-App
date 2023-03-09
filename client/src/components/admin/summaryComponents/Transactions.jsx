@@ -35,7 +35,7 @@ const Transactions = () => {
             oders.map((order, index) => {
               return (
                 <Transaction key={index}>
-                  <p>{order.shipping.name}</p>
+                  <p>{order.shipping.userName}</p>
                   <p>${order.total.toLocaleString()}</p>
                   <p>{moment(order.createdAt).fromNow()}</p>
                 </Transaction>
@@ -53,6 +53,7 @@ const StyledTransaction = styled.div`
   background: rgb(48, 51, 78);
   color: rgba(234, 234, 255, 0.87);
   padding: 1rem;
+  margin-top: 1rem;
   border-radius: 5px;
 `;
 
