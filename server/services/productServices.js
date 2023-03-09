@@ -4,7 +4,7 @@ const cloudinary = require("../utils/cloudinarySetup.js");
 // get product
 
 const getProduct = async (name) => {
-  let allData = await Product.find();
+  let allData = await Product.find({ isAvaliable: true });
 
   if (name) {
     const products = allData.filter((a) =>
