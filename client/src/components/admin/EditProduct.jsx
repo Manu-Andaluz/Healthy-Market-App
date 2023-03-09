@@ -24,7 +24,7 @@ export default function EditProduct({ productId }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [details, setdetails] = useState("");
-  const [isAvaliable, SetIsAvaliable] = useState("");
+  const [isAvaliable, SetIsAvaliable] = useState(true);
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
