@@ -93,14 +93,15 @@ const LoginForm = () => {
               >
                 Iniciar Sesión
               </button>
-              <p className="mt-2 ">Todavía no tienes una cuenta?</p>
+              <p className="mt-2 ">¿Todavía no tienes una cuenta?</p>
               <Link
                 to="/register"
                 className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
               >
                 Crear Cuenta
               </Link>
-              <button onClick={handleGoogle}>Ingresa con Google</button>
+              <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline" 
+              onClick={handleGoogle}>Ingresa con Google</button>
             </div>
           </form>
         </div>

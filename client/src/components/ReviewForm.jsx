@@ -105,7 +105,7 @@ export default function ReviewForm(productId) {
               Comentario*
             </label>
             <textarea
-              className="border border-gray-200 rounded-lg mb-8 mx-8 w-1/3 h-28	pl-3 pt-2 whitespace-pre-line bg-gray-200 text-gray-700 focus:bg-white"
+              className="border border-gray-200 rounded-lg mb-8 mx-8 w-1/3 h-28	pl-3 pt-2 pr-3 pb-2 whitespace-pre-line bg-gray-200 text-gray-700 focus:bg-white"
               placeholder="Agregue el comentario..."
               type="text"
               value={input.comment}
