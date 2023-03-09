@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 import { Tooltip, Button } from "flowbite-react";
+import { auth, provider, singWithGoogle } from "../firebase";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -121,6 +122,12 @@ const RegisterForm = () => {
       navigate("/home");
     }
   }, [user._id, navigate]);
+
+  const handleGoogle = async (e) => {
+    e.preventDefault();
+    await dispatch(singWithGoogle());
+    window.location.reload();
+  };
 
   return (
     <div>
@@ -419,13 +426,18 @@ const RegisterForm = () => {
               >
                 Registrarse
               </button>
-              <Link
-                to="https://healthy-market-app-production.up.railway.app/users/google"
-                className="font-medium text-blue-600 dark:text-blue-700 hover:underline"
-              >
-                Registrarte con Google
-              </Link>
-              <p className="mt-2">Ya tienes una cuenta?</p>
+              <div class="google-btn">
+                <div class="google-icon-wrapper">
+                  <img
+                    class="google-icon"
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                  />
+                </div>
+                <p class="btn-text">
+                  <button onClick={handleGoogle}>Sign in with google</button>
+                </p>
+              </div>
+              <p className="mt-2">¿Ya tienes una cuenta?</p>
               <Link
                 to="/login"
                 className="font-medium text-blue-600 dark:text-blue-700 hover:underline"

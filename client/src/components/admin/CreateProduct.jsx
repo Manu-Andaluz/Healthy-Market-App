@@ -40,9 +40,9 @@ const CreateProduct = () => {
     if (createStatus === "success") {
       toast("Producto Creado");
     }
-  }, [createStatus]);
+  }, [createStatus, dispatch]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
       createProduct({
@@ -102,7 +102,6 @@ const CreateProduct = () => {
           onChange={(e) => setdetails(e.target.value)}
           required
         />
-
         <button
           onClick={handleSubmit}
           type="button"

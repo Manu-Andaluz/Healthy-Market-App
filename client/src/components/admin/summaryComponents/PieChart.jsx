@@ -19,26 +19,29 @@ const COLORS = [
 
 const PieCharts = () => {
   return (
-    <div style={{ width: "100%", height: 300 }}>
-      <ResponsiveContainer>
-        <PieChart>
-          <Pie
-            dataKey="value"
-            data={data}
-            innerRadius={60}
-            outerRadius={85}
-            fill="#82ca9d"
-          >
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-        </PieChart>
-      </ResponsiveContainer>
+    <div className="grid place-content-center mt-8">
+      <h2 className="mx-auto">Categorías más usadas en productos</h2>
+      <div style={{ width: "100%", height: 300 }}>
+        <ResponsiveContainer>
+          <PieChart>
+            <Pie
+              dataKey="value"
+              data={data}
+              innerRadius={60}
+              outerRadius={100}
+              fill="#82ca9d"
+            >
+              {data.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Tooltip />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };

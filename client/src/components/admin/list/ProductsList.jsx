@@ -3,33 +3,34 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { productsFetch, deleteProduct } from "../../../actions/productActions";
+import { allProducts, deleteProduct } from "../../../actions/productActions";
 import { useNavigate } from "react-router-dom";
 import EditProduct from "../EditProduct";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function ProductsList() {
-  const items = useSelector((state) => state.allProducts.allProducts);
+  const items = useSelector((state) => state.allProducts.productList);
   const { deleteStatus } = useSelector((state) => state.allProducts);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(productsFetch());
-    console.log("as");
+    dispatch(allProducts());
     if (deleteStatus === "success") {
       toast("Producto Eliminado");
     }
+    console.log("1");
   }, [deleteStatus, dispatch]);
 
   const rows =
-    items &&
+    Array.isArray(items) &&
     items.map((item) => {
       return {
         id: item._id,
         imageUrl: item.image.url,
         category: item.category,
         name: item.name,
-        details: item.details,
+        isAvaliable: item.isAvaliable,
         price: "$" + item.price.toLocaleString(),
       };
     });
@@ -48,11 +49,11 @@ export default function ProductsList() {
         );
       },
     },
-    { field: "name", headerName: "Name", width: 130 },
+    { field: "name", headerName: "Name", width: 200 },
     { field: "category", headerName: "Categoría", width: 130 },
     {
-      field: "details",
-      headerName: "Details",
+      field: "isAvaliable",
+      headerName: "Disponible",
       width: 130,
     },
     {
@@ -77,6 +78,7 @@ export default function ProductsList() {
             </button>
             <EditProduct productId={params.id} />
             <button
+              onClick={() => navigate(`/detail/${params.id}`)}
               type="button"
               className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             >

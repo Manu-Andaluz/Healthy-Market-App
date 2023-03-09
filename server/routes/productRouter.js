@@ -7,7 +7,8 @@ const {
   editProductController,
   deleteProductController,
   getProductByIdController,
-  createProductReviewController, 
+  createProductReviewController,
+  getAllProductsController,
 } = require("../controllers/productController.js");
 
 // GET ALL PRODUCTS
@@ -21,6 +22,10 @@ productRouter.get("/", getProductController);
 // FILER PRODUCTS BY CATEORY AND FILERBY
 
 productRouter.get("/category", getCategoryFilterController);
+
+// FILER PRODUCTS BY CATEORY AND FILERBY
+
+productRouter.get("/productList", getAllProductsController);
 
 // CREATE PRODUCT
 
@@ -39,7 +44,6 @@ productRouter.delete("/:id", deleteProductController);
 productRouter.get("/getProductById/:productId", getProductByIdController);
 
 // CREATE REVIEW
-productRouter.post('/reviews/:id', createProductReviewController);
-
+productRouter.post("/reviews/:id", createProductReviewController);
 
 module.exports = productRouter;

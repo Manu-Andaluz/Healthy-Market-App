@@ -7,6 +7,7 @@ const {
   deleteProduct,
   getProductById,
   createReview,
+  getAllProducts,
 } = require("../services/productServices");
 
 const { Product } = require("../models/Product");
@@ -138,6 +139,15 @@ const createProductReviewController = async (req, res) => {
   }
 };
 
+const getAllProductsController = async (req, res) => {
+  try {
+    const products = await getAllProducts();
+    res.send(products);
+  } catch (error) {
+    res.status(400).sed(error);
+  }
+};
+
 module.exports = {
   getProductController,
   // getProductsFilteredController,
@@ -147,4 +157,5 @@ module.exports = {
   deleteProductController,
   getProductByIdController,
   createProductReviewController,
+  getAllProductsController,
 };

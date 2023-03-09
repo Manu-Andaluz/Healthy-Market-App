@@ -9,10 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { editProduct } from "../../actions/productActions";
 import { toast, ToastContainer } from "react-toastify";
+import { allProducts } from "../../actions/productActions";
 
 export default function EditProduct({ productId }) {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.allProducts.allProducts);
+  const items = useSelector((state) => state.allProducts.productList);
   const { editStatus } = useSelector((state) => state.allProducts);
 
   const [currentProduct, setCurrentProduct] = useState({});
@@ -23,6 +24,7 @@ export default function EditProduct({ productId }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [details, setdetails] = useState("");
+  const [isAvaliable, SetIsAvaliable] = useState("");
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -47,7 +49,7 @@ export default function EditProduct({ productId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(
+    await dispatch(
       editProduct({
         productImg,
         product: {
@@ -56,9 +58,12 @@ export default function EditProduct({ productId }) {
           category,
           price,
           details,
+          isAvaliable,
         },
       })
     );
+
+    dispatch(allProducts());
   };
 
   const [open, setOpen] = useState(false);
@@ -75,17 +80,12 @@ export default function EditProduct({ productId }) {
     setPrice(selectedProduct.price);
     setName(selectedProduct.name);
     setcategory(selectedProduct.category);
+    SetIsAvaliable(selectedProduct.isAvaliable);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
-
-  useEffect(() => {
-    if (editStatus === "success") {
-      toast("Producto Editado");
-    }
-  }, [editStatus]);
 
   return (
     <div>
@@ -139,6 +139,15 @@ export default function EditProduct({ productId }) {
                 onChange={(e) => setdetails(e.target.value)}
                 required
               />
+
+              <select
+                onChange={(e) => SetIsAvaliable(e.target.value)}
+                value={isAvaliable}
+                required
+              >
+                <option value={true}>Disponible</option>
+                <option value={false}>No disponible</option>
+              </select>
 
               <PrimaryButton type="submit">
                 {"ad" === "pending" ? "Submitting" : "Submit"}

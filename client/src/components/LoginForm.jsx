@@ -93,14 +93,24 @@ const LoginForm = () => {
               >
                 Iniciar Sesión
               </button>
-              <p className="mt-2 ">Todavía no tienes una cuenta?</p>
+              <p className="mt-2 ">¿Todavía no tienes una cuenta?</p>
               <Link
                 to="/register"
                 className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
               >
                 Crear Cuenta
               </Link>
-              <button onClick={handleGoogle}>Ingresa con Google</button>
+              <div class="google-btn">
+                <div class="google-icon-wrapper">
+                  <img
+                    class="google-icon"
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                  />
+                </div>
+                <p class="btn-text">
+                  <button onClick={handleGoogle}>Sign in with google</button>
+                </p>
+              </div>
             </div>
           </form>
         </div>

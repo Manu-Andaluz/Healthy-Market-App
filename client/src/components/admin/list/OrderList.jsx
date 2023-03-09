@@ -42,18 +42,18 @@ export default function OrderList() {
     oders.map((order) => {
       return {
         id: order._id,
-        name: order.shipping.name,
-        adress: order.shipping.adress,
+        name: order.shipping.userName,
+        email: order.shipping.userEmail,
         total: "$" + order.total.toLocaleString(),
-        delivery_status: order.delivery_status,
-        payment_status: order.payment_status,
+        delivery_status: "pending",
+        payment_status: "paid",
         createdAt: order.createdAt,
       };
     });
 
   const columns = [
     { field: "name", headerName: "Nombre", width: 150 },
-    { field: "adress", headerName: "Dirección", width: 150 },
+    { field: "email", headerName: "Email", width: 250 },
     { field: "delivery_status", headerName: "Envío", width: 130 },
     { field: "payment_status", headerName: "Pago", width: 130 },
     { field: "total", headerName: "Total", width: 130 },
@@ -62,7 +62,7 @@ export default function OrderList() {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: 150,
+      width: 80,
       renderCell: (params) => {
         return (
           <Actions>
@@ -72,12 +72,6 @@ export default function OrderList() {
               className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             >
               Eliminar
-            </button>
-            <button
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            >
-              Editar
             </button>
           </Actions>
         );

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { findProductById } from "../actions/productActions";
 import { addToCart } from "../slices/cartSlice";
+import { clearDetail } from "../slices/productDetailSlice";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Star from "./Star";
@@ -18,6 +19,7 @@ const CardDetail = () => {
 
   useEffect(() => {
     dispatch(findProductById(productId));
+    return () => dispatch(clearDetail())
   }, [productId]);
 
   const handleOnClick = (item) => {
@@ -31,7 +33,7 @@ const CardDetail = () => {
       <div className="min-w-screen h-full flex items-center p-5 lg:p-10 overflow-hidden relative bg-gray-100">
         <div className="w-full max-w-6xl rounded bg-white shadow-xl p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left">
           <div className="md:flex items-center -mx-10">
-            <div className="absolute top-10 right-0 mr-10 z-1">
+            <div className="md:absolute md:top-10 md:right-8 z-400 ml-6">
               <Link to={`/reviews/${productId}`}>
                 <Star stars={productDet.productDetail.rating} />
               </Link>
@@ -41,7 +43,7 @@ const CardDetail = () => {
               <div className="relative">
                 <img
                   src={productDet?.productDetail?.image?.url}
-                  className="w-full relative z-10"
+                  className="w-full relative z-10 mt-4 md:mt-0"
                   alt=""
                 />
                 <div className="border-4 absolute top-10 bottom-10 left-10 right-10 z-0"></div>
@@ -57,7 +59,7 @@ const CardDetail = () => {
                   {productDet.productDetail.category}
                   <br />
                 </p>
-                
+
                 <p className="text-sm">
                   {productDet.productDetail.details}{" "}
                   <a
@@ -65,10 +67,10 @@ const CardDetail = () => {
                     className="opacity-50 text-gray-900 hover:opacity-100 inline-block text-xs leading-none border-b border-gray-900"
                   >
                     {" "}
-                   
+
                   </a>
                 </p>
-               
+
               </div>
               <div>
                 <div className="inline-block align-bottom mr-5">
