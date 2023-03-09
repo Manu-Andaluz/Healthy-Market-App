@@ -4,11 +4,10 @@ import { productsFetch } from "../actions/productActions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
-import Carousel from "./Carousel";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 import CardHome from "./CardsHome";
-//import Reviews from "./Reviews"
+import Carousel from "./Carousel";
 
 const Home = () => {
   const products = useSelector((state) => state.allProducts);
@@ -26,7 +25,9 @@ const Home = () => {
   return (
     <>
       <NavBar />
-      <Carousel />
+      <div className="hidden lg:block"> 
+        <Carousel />
+      </div>
       <CardHome products={products.allProducts} />
       <Footer />
     </>
