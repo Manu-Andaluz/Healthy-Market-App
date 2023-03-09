@@ -7,6 +7,7 @@ import {
   createProduct,
   deleteProduct,
   editProduct,
+  allProducts,
 } from "../actions/productActions";
 
 const initialState = {
@@ -93,13 +94,23 @@ const productSlice = createSlice({
     },
     [editProduct.fulfilled]: (state, action) => {
       state.editStatus = "success";
-      const updateProducts = state.items.map((product) =>
+      const updateProducts = state.allProducts.map((product) =>
         product._id === action.payload._id ? action.payload : product
       );
-      state.items = updateProducts;
+      state.allProducts = updateProducts;
     },
     [editProduct.rejected]: (state, action) => {
       state.editStatus = "rejected";
+    },
+    [allProducts.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [allProducts.fulfilled]: (state, action) => {
+      state.allProducts = action.payload;
+      state.status = "success";
+    },
+    [allProducts.rejected]: (state, action) => {
+      state.status = "rejected";
     },
   },
 });

@@ -3,12 +3,9 @@ import { FaUsers, FaChartBar, FaClipboard } from "react-icons/fa";
 import Widget from "./summaryComponents/Widget";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Chart from "./summaryComponents/Charts";
 import Transactions from "./summaryComponents/Transactions";
 import AllTimeData from "./summaryComponents/AllTimeData";
-import SimpleBarCharts from "./summaryComponents/BarChart";
 import PieCharts from "./summaryComponents/PieChart";
-import AreaCharts from "./summaryComponents/AreaCharts";
 
 const Summary = () => {
   const [users, setUsers] = useState();
@@ -32,7 +29,7 @@ const Summary = () => {
       res.data.sort(compare);
       setoOders(res.data);
       setOrdersPerc(
-        ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
+        ((res.data[0].total - res.data[1].total) / res.data[1].total) * 10
       );
     } catch (err) {
       console.log(err);
@@ -119,12 +116,10 @@ const Summary = () => {
             ))}
           </WidgetWrapper>
         </Overview>
-        <SimpleBarCharts />
-        <Chart />
+        <PieCharts />
       </MainStats>
       <SideStats>
         <AllTimeData />
-        <PieCharts />
         <Transactions />
       </SideStats>
     </div>

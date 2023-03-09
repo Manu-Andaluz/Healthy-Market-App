@@ -6,6 +6,7 @@ const {
   createUserAdmin,
   deleteUser,
   fireBase,
+  userStats,
 } = require("../services/userServices");
 const boom = require("@hapi/boom");
 const generateAuthToken = require("../utils/generateAuthToken");
@@ -106,6 +107,15 @@ const fireBaseController = async (req, res) => {
   }
 };
 
+const userStatsController = async (req, res) => {
+  try {
+    const stats = await userStats();
+    res.send(stats);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
 module.exports = {
   getUsersController,
   registerController,
@@ -114,4 +124,5 @@ module.exports = {
   createUserController,
   deleteUserController,
   fireBaseController,
+  userStatsController,
 };
