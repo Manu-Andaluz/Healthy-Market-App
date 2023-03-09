@@ -12,7 +12,7 @@ import {
 
 const initialState = {
   allProducts: [],
-  favouritesProducts: [],
+  productList: [],
   currentPage: 1,
   createStatus: null,
   deleteStatus: null,
@@ -106,7 +106,7 @@ const productSlice = createSlice({
       state.status = "pending";
     },
     [allProducts.fulfilled]: (state, action) => {
-      state.allProducts = action.payload;
+      state.productList = action.payload;
       state.status = "success";
     },
     [allProducts.rejected]: (state, action) => {

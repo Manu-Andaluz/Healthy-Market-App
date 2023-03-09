@@ -9,10 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { editProduct } from "../../actions/productActions";
 import { toast, ToastContainer } from "react-toastify";
+import { allProducts } from "../../actions/productActions";
 
 export default function EditProduct({ productId }) {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.allProducts.allProducts);
+  const items = useSelector((state) => state.allProducts.productList);
   const { editStatus } = useSelector((state) => state.allProducts);
 
   const [currentProduct, setCurrentProduct] = useState({});
@@ -23,7 +24,7 @@ export default function EditProduct({ productId }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [details, setdetails] = useState("");
-  const [isAvaliable, SetIsAvaliable] = useState(true);
+  const [isAvaliable, SetIsAvaliable] = useState("");
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -62,9 +63,7 @@ export default function EditProduct({ productId }) {
       })
     );
 
-    if (editStatus === "success") {
-      toast("Producto Editado");
-    }
+    dispatch(allProducts());
   };
 
   const [open, setOpen] = useState(false);
@@ -81,6 +80,7 @@ export default function EditProduct({ productId }) {
     setPrice(selectedProduct.price);
     setName(selectedProduct.name);
     setcategory(selectedProduct.category);
+    SetIsAvaliable(selectedProduct.isAvaliable);
   };
 
   const handleClose = () => {
