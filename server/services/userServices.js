@@ -109,6 +109,32 @@ const fireBase = async (name, age, email) => {
   return "user";
 };
 
+const userStats = async () => {
+  const previusMonth = moment()
+    .month(moment().month() - 1)
+    .set("date", 1)
+    .format("YYYY-MM-DD HH:mm:ss");
+
+  const users = await User.aggregate([
+    {
+      $match: { createdAt: { $gte: new Date(previusMonth) } },
+    },
+    {
+      $project: {
+        month: { $month: "$createdAt" },
+      },
+    },
+    {
+      $group: {
+        _id: "$month",
+        total: { $sum: 1 },
+      },
+    },
+  ]);
+
+  return users;
+};
+
 module.exports = {
   getAllUsers,
   createUser,
@@ -117,4 +143,5 @@ module.exports = {
   createUserAdmin,
   deleteUser,
   fireBase,
+  userStats,
 };

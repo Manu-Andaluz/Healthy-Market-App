@@ -23,6 +23,7 @@ export default function EditProduct({ productId }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [details, setdetails] = useState("");
+  const [isAvaliable, SetIsAvaliable] = useState(true);
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -47,7 +48,7 @@ export default function EditProduct({ productId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(
+    await dispatch(
       editProduct({
         productImg,
         product: {
@@ -56,9 +57,14 @@ export default function EditProduct({ productId }) {
           category,
           price,
           details,
+          isAvaliable,
         },
       })
     );
+
+    if (editStatus === "success") {
+      toast("Producto Editado");
+    }
   };
 
   const [open, setOpen] = useState(false);
@@ -80,12 +86,6 @@ export default function EditProduct({ productId }) {
   const handleClose = () => {
     setOpen(false);
   };
-
-  useEffect(() => {
-    if (editStatus === "success") {
-      toast("Producto Editado");
-    }
-  }, [editStatus]);
 
   return (
     <div>
@@ -139,6 +139,15 @@ export default function EditProduct({ productId }) {
                 onChange={(e) => setdetails(e.target.value)}
                 required
               />
+
+              <select
+                onChange={(e) => SetIsAvaliable(e.target.value)}
+                value={category}
+                required
+              >
+                <option value={true}>Disponible</option>
+                <option value={false}>No disponible</option>
+              </select>
 
               <PrimaryButton type="submit">
                 {"ad" === "pending" ? "Submitting" : "Submit"}

@@ -11,6 +11,7 @@ import {
 } from "../slices/cartSlice";
 import axios from "axios";
 import NavBar from "./NavBar";
+import { toast, ToastContainer } from "react-toastify";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -31,6 +32,7 @@ const Cart = () => {
   };
   const handleRemoveFromCart = (product) => {
     dispatch(removeFromCart(product));
+    toast("Producto Removido");
   };
   const handleClearCart = () => {
     dispatch(clearCart());
