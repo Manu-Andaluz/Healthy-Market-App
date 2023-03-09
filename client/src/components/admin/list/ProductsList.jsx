@@ -3,7 +3,7 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { productsFetch, deleteProduct } from "../../../actions/productActions";
+import { allProducts, deleteProduct } from "../../../actions/productActions";
 import { useNavigate } from "react-router-dom";
 import EditProduct from "../EditProduct";
 import { toast, ToastContainer } from "react-toastify";
@@ -15,7 +15,7 @@ export default function ProductsList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(productsFetch());
+    dispatch(allProducts());
     if (deleteStatus === "success") {
       toast("Producto Eliminado");
     }

@@ -109,3 +109,17 @@ export const editProduct = createAsyncThunk(
     }
   }
 );
+
+export const allProducts = createAsyncThunk(
+  "products/editProduct",
+  async () => {
+    try {
+      const response = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/products/productList`
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
