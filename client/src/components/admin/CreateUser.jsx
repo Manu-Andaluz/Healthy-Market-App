@@ -6,19 +6,10 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 
 const CreateUser = () => {
-  const dispatch = useDispatch();
-  const { createStatus } = useSelector((state) => state.allProducts);
-
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [nationality, setNationality] = useState("");
-
-  useEffect(() => {
-    if (createStatus === "success") {
-      toast("Producto Creado");
-    }
-  }, [createStatus]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,6 +36,7 @@ const CreateUser = () => {
           nationality,
         }
       );
+      toast("Usuario Creado");
       return res.data;
     } catch (error) {
       console.log(error);

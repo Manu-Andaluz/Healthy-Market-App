@@ -8,7 +8,7 @@ import AllTimeData from "./summaryComponents/AllTimeData";
 import PieCharts from "./summaryComponents/PieChart";
 
 const Summary = () => {
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState(15);
   const [usersPerc, setUserPerc] = useState(0);
   const [orders, setoOders] = useState();
   const [ordersPerc, setOrdersPerc] = useState(0);
@@ -38,14 +38,8 @@ const Summary = () => {
 
   async function fetchUsers() {
     try {
-      const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/users/stats`
-      );
-      res.data.sort(compare);
-      setUsers(res.data);
-      setUserPerc(
-        ((res.data[0].total - res.data[1].total) / res.data[1].total) * 100
-      );
+      setUsers(17);
+      setUserPerc(35);
     } catch (err) {
       console.log(err);
     }
@@ -75,7 +69,7 @@ const Summary = () => {
   const data = [
     {
       icon: <FaUsers />,
-      digits: users && users[0]?.total,
+      digits: users && users,
       isMoney: false,
       title: "Usuarios",
       color: "rgb(102, 108, 255)",
@@ -98,7 +92,7 @@ const Summary = () => {
       title: "Ganancias",
       color: "rgb(253, 181, 40)",
       bgColor: "rgba(253, 181, 40, 0.12)",
-      percentage: totalPerc,
+      percentage: 115,
     },
   ];
 
