@@ -6,10 +6,10 @@ import { useSelector } from "react-redux";
 const LandingPage = () => {
   const user = useSelector((state) => state.user);
   return (
-    <div>
+    <div > 
       <section className="mb-40">
-        <nav className="navbar navbar-expand-lg shadow-md py-2 bg-white relative flex items-center w-full justify-between">
-          <div className="px-6 w-full flex flex-wrap items-center justify-between">
+        <nav className="navbar navbar-expand-lg shadow-md py-2 bg-gray-800 relative flex items-center w-full justify-between">
+          <div className="px-6 w-full flex flex-wrap items-center justify-between ">
             <div className="flex items-center">
               <button
                 className="navbar-toggler border-0 py-3 lg:hidden leading-none text-xl bg-transparent text-grisLetter hover:text-gray-700 focus:text-gray-700 transition-shadow duration-150 ease-in-out mr-2"
@@ -36,11 +36,12 @@ const LandingPage = () => {
                 </svg>
               </button>
               <a className="navbar-brand text-grisLetter" href="/">
-                <img
+              
+                {/* <img
                   src={logo}
                   alt="logo"
                   className="h-12 w-12 scale-20 rounded-full"
-                />
+                /> */}
               </a>
             </div>
             <div
@@ -106,7 +107,7 @@ const LandingPage = () => {
               <Link to="/about">
                 <button
                   type="button"
-                  className="inline-block px-6 py-2.5 mr-2 bg-transparent text-green1 font-bree text-xs leading-tight uppercase rounded hover:text-grisLetter hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
+                  className="inline-block m-2 px-6 py-2.5 mr-2 bg-gray-500 bg-opacity-70 text-green-100 font-bree text-xs leading-tight uppercase rounded hover:text-grisLetter hover:bg-gray-500 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                 >
@@ -117,17 +118,17 @@ const LandingPage = () => {
             </div>
           </div>
         </nav>
-
-        <div className="px-6 py-12 md:px-12 bg-gray-50 text-grisLetter text-center lg:text-left">
-          <div className="container mx-auto xl:px-32">
+        
+        <div className="px-6 py-6 md:px-12 max-w-full max-h-full bg-gray-300 text-grisLetter text-center lg:text-left">
+          <div className=" mx-auto xl:px-32">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="mt-12 lg:mt-0">
-                <h1 className="text-5xl md:text-6xl xl:text-7xl font-continuo tracking-tight mb-12">
+                <h1 className="text-5xl md:text-6xl xl:text-7xl font-continuo text-green1 tracking-tight mb-12">
                   Healthy Market <br />
-                  <span className="text-">APP</span>
+                  <span className="text-">APP </span>
                 </h1>
                 <p
-                  className="text-grisLetter font-bree text-sm md:text-base mb-8"
+                  className="text-grisLetter font-bree text-sm md:text-base mb-8 text-gray-800 font-semibold"
                   style={{ fontSize: "17px" }}
                 >
                   Bienvenido a Healthy Market App, el lugar perfecto para
@@ -151,7 +152,7 @@ const LandingPage = () => {
                 </Link>
                 <Link to="/home">
                 <a
-                  className="inline-block px-7 py-3 bg-transparent text-green1 font-bree text-sm leading-snug uppercase rounded hover:text-grisLetter hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
+                  className="inline-block px-7 py-3 bg-green1 bg-opacity-40 text-gray-900 font-medium font-bree text-sm leading-snug uppercase rounded hover:text-grisLetter hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                   href="#!"
@@ -161,10 +162,10 @@ const LandingPage = () => {
                 </a>
                 </Link>
               </div>
-              <div className="mb-12 lg:mb-0">
+              <div className="mb-12 lg:mb-0 bg-gray-800 border-gray-500 border-opacity-0  rounded-xl shadow-lg shadow-gray-600">
                 <img
                   src="https://tse2.mm.bing.net/th?id=OIP.CkLWAMvk0nVDfPlnkZDdlAHaIO&pid=Api&P=0"
-                  className="w-full rounded-lg shadow-lg"
+                  className="w-full rounded-xl shadow-lg border-gray-200"
                   alt=""
                 />
               </div>
