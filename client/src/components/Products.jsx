@@ -18,7 +18,7 @@ const Products = () => {
   const currentPage = useSelector((state) => state.allProducts.currentPage);
   const [load, setLoad] = useState(true);
 
-  const [productsPerPage] = useState(10);
+  const [productsPerPage] = useState(12);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfTheFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProduct = products.slice(
