@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { findProductById } from "../actions/productActions";
 import { addToCart } from "../slices/cartSlice";
+import { clearDetail } from "../slices/productDetailSlice";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Star from "./Star";
@@ -18,6 +19,7 @@ const CardDetail = () => {
 
   useEffect(() => {
     dispatch(findProductById(productId));
+    return () => dispatch(clearDetail())
   }, [productId]);
 
   const handleOnClick = (item) => {
@@ -57,7 +59,7 @@ const CardDetail = () => {
                   {productDet.productDetail.category}
                   <br />
                 </p>
-                
+
                 <p className="text-sm">
                   {productDet.productDetail.details}{" "}
                   <a
@@ -65,10 +67,10 @@ const CardDetail = () => {
                     className="opacity-50 text-gray-900 hover:opacity-100 inline-block text-xs leading-none border-b border-gray-900"
                   >
                     {" "}
-                   
+
                   </a>
                 </p>
-               
+
               </div>
               <div>
                 <div className="inline-block align-bottom mr-5">
