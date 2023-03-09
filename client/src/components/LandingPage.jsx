@@ -138,7 +138,7 @@ const LandingPage = () => {
                   hacia una alimentación saludable? Regístrate hoy mismo en
                   Healthy Market App. ¡Te esperamos!
                 </p>
-                <Link to="/products">
+                <Link to="/home">
                   <a
                     className="inline-block px-7 py-3 mr-2 bg-green1 text-white font-bree text-sm leading-snug uppercase rounded shadow-md hover:bg-green2 hover:shadow-lg focus:bg-grisLetter focus:shadow-lg focus:outline-none focus:ring-0 active:bg-grisLetter active:shadow-lg transition duration-150 ease-in-out"
                     data-mdb-ripple="true"
@@ -149,7 +149,7 @@ const LandingPage = () => {
                     Ir a la tienda
                   </a>
                 </Link>
-                <Link to="/home">
+                <Link to="/products">
                   <a
                     className="inline-block px-7 py-3 bg-transparent text-green1 font-bree text-sm leading-snug uppercase rounded hover:text-grisLetter hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out"
                     data-mdb-ripple="true"
@@ -157,7 +157,7 @@ const LandingPage = () => {
                     href="#!"
                     role="button"
                   >
-                    Productos destacados
+                    Ver Productos
                   </a>
                 </Link>
               </div>

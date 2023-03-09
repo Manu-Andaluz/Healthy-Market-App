@@ -12,7 +12,7 @@ const About = () => {
             <h1 className="text-3xl lg:text-4xl font-continuo leading-9 text-green1 pb-4 ">
               Sobre nosotros
             </h1>
-            <p className="font-bree text-base leading-6 text-gray-600 ">
+            <p className="font-bree  text-base font-medium leading-6 text-gray-600 ">
               Creemos que comer saludable no debería ser una tarea difícil. Es
               por eso que creamos una aplicación que conecta a compradores con los mejores productos
               de comida saludable, permitiendo que una alimentación

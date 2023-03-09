@@ -42,7 +42,7 @@ const CardHome = ({ products }) => {
       <h4 className="grid place-content-center w-full my-10 font-bold text-3xl">
         Productos Destacados
       </h4>
-      <div className="text-base grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 px-5 mt-3">
+      <div className="m-6 text-base grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 px-5 mt-3">
         {filteredProducts.map((product) => {
           return (
             <div
