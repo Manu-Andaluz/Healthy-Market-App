@@ -425,7 +425,7 @@ const RegisterForm = () => {
               >
                 Registrarte con Google
               </Link>
-              <p className="mt-2">Ya tienes una cuenta?</p>
+              <p className="mt-2">¿Ya tienes una cuenta?</p>
               <Link
                 to="/login"
                 className="font-medium text-blue-600 dark:text-blue-700 hover:underline"
