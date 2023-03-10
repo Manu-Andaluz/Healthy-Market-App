@@ -14,14 +14,14 @@ const About = () => {
             </h1>
             <p className="font-bree  text-base font-medium leading-6 text-gray-600 ">
               Creemos que comer saludable no debería ser una tarea difícil. Es
-              por eso que creamos una aplicación que conecta a compradores con los mejores productos
-              de comida saludable, permitiendo que una alimentación
-              balanceada y nutritiva sea accesible y fácil de obtener. Nuestro
-              equipo está formado por estudiantes de la carrera Full Stack
-              Developer de SOY HENRY, estamos comprometidos en brindar una
-              solución efectiva para un estilo de vida más saludable. Nos
-              enfocamos en brindar una experiencia simple y fácil de usar en
-              nuestra plataforma, permitiendo que tanto los
+              por eso que creamos una aplicación que conecta a compradores con
+              los mejores productos de comida saludable, permitiendo que una
+              alimentación balanceada y nutritiva sea accesible y fácil de
+              obtener. Nuestro equipo está formado por estudiantes de la carrera
+              Full Stack Developer de SOY HENRY, estamos comprometidos en
+              brindar una solución efectiva para un estilo de vida más
+              saludable. Nos enfocamos en brindar una experiencia simple y fácil
+              de usar en nuestra plataforma, permitiendo que tanto los
               compradores se concentren en lo que realmente importa: la calidad
               y el sabor de la comida.
             </p>
@@ -50,67 +50,69 @@ const About = () => {
           <div className=" flex w-full lg:w-7/12 lg:pt-8">
             <div className="grid md:grid-cols-7 sm:grid-cols-2 grid-cols-1 lg:gap-4 shadow-lg bg-green-100 rounded-md">
               <div className="p-4 pb-6 flex justify-center flex-col items-center bg">
-              <Link to="https://www.linkedin.com/in/loreley-milazzo-448691238/">
-                <img
-                  className="md:block hidden rounded-full"
-                  src="https://avatars.githubusercontent.com/u/100098236?v=4"
-                  alt="Loreley featured Img"
-                />
-                <img
-                  className="md:hidden block rounded-full p-12"
-                  src="https://avatars.githubusercontent.com/u/100098236?v=4"
-                  alt="Loreley featured Img"
-                />
+                <Link to="https://www.linkedin.com/in/loreley-milazzo-448691238/">
+                  <img
+                    className="md:block hidden rounded-full"
+                    src="https://avatars.githubusercontent.com/u/100098236?v=4"
+                    alt="Loreley featured Img"
+                  />
+                  <img
+                    className="md:hidden block rounded-full p-12"
+                    src="https://avatars.githubusercontent.com/u/100098236?v=4"
+                    alt="Loreley featured Img"
+                  />
                 </Link>
                 <p className="font-bree text-xl leading-5 text-green1 mt-4">
                   Loreley
                 </p>
               </div>
               <div className="p-4 pb-6 flex justify-center flex-col items-center">
-                <img
-                  className="md:block hidden rounded-full"
-                  src="https://avatars.githubusercontent.com/u/109633041?v=4"
-                  alt="Manuel featured Img"
-                />
-                <img 
-                  className="md:hidden block rounded-full p-12"
-                  src="https://avatars.githubusercontent.com/u/109633041?v=4"
-                  alt="Manuel featured Img"
-                />
-                <p className="font-bree text-xl leading-5 text-green1 mt-4">
-                  Manuel
-                </p>
+                <Link to="https://www.linkedin.com/in/manuel-andaluz/">
+                  <img
+                    className="md:block hidden rounded-full"
+                    src="https://avatars.githubusercontent.com/u/109633041?v=4"
+                    alt="Manuel featured Img"
+                  />
+                  <img
+                    className="md:hidden block rounded-full p-12"
+                    src="https://avatars.githubusercontent.com/u/109633041?v=4"
+                    alt="Manuel featured Img"
+                  />
+                  <p className="font-bree text-xl leading-5 text-green1 mt-4">
+                    Manuel
+                  </p>
+                </Link>
               </div>
               <div className="p-4 pb-6 flex justify-center flex-col items-center">
                 <Link to="https://www.linkedin.com/in/gaston-geminiani-5a7687233/">
-                <img
-                  className="md:block hidden rounded-full"
-                  src="https://avatars.githubusercontent.com/u/109548432?v=4%22%3E"
-                  alt="Liam featued Img"
-                />
-                <img
-                  className="md:hidden block rounded-full p-12"
-                  src="https://avatars.githubusercontent.com/u/109548432?v=4%22%3E"
-                  alt="Gaston featued Img"
-                />
+                  <img
+                    className="md:block hidden rounded-full"
+                    src="https://avatars.githubusercontent.com/u/109548432?v=4%22%3E"
+                    alt="Liam featued Img"
+                  />
+                  <img
+                    className="md:hidden block rounded-full p-12"
+                    src="https://avatars.githubusercontent.com/u/109548432?v=4%22%3E"
+                    alt="Gaston featued Img"
+                  />
                 </Link>
                 <p className="font-bree text-xl leading-5 text-green1 mt-4">
                   Gaston
                 </p>
               </div>
               <div className="p-4 pb-6 flex justify-center flex-col items-center">
-              <Link to="https://www.linkedin.com/in/roc%C3%ADo-bel%C3%A9n-molina-99661b78/">
-                <img
-                  className="md:block hidden rounded-full"
-                  src="https://avatars.githubusercontent.com/u/110116045?v=4"
-                  alt="Rocio featured img"
-                />
-               
-                <img
-                  className="md:hidden block rounded-full p-12"
-                  src="https://avatars.githubusercontent.com/u/110116045?v=4"
-                  alt="Rocio featured img"
-                />
+                <Link to="https://www.linkedin.com/in/roc%C3%ADo-bel%C3%A9n-molina-99661b78/">
+                  <img
+                    className="md:block hidden rounded-full"
+                    src="https://avatars.githubusercontent.com/u/110116045?v=4"
+                    alt="Rocio featured img"
+                  />
+
+                  <img
+                    className="md:hidden block rounded-full p-12"
+                    src="https://avatars.githubusercontent.com/u/110116045?v=4"
+                    alt="Rocio featured img"
+                  />
                 </Link>
                 <p className="font-bree text-xl leading-5 text-green1 mt-4">
                   Rocio
@@ -134,16 +136,16 @@ const About = () => {
               </div>
               <div className="p-4 pb-6 flex justify-center flex-col items-center">
                 <Link to="https://www.linkedin.com/in/edgar-nah%C3%BA-favela-b3a639239/">
-                <img
-                  className="md:block hidden rounded-full"
-                  src="https://avatars.githubusercontent.com/u/93899648?v=4"
-                  alt="Nau featured img"
-                />
-                <img
-                  className="md:hidden block rounded-full p-12"
-                  src="https://avatars.githubusercontent.com/u/93899648?v=4"
-                  alt="Nau featured img"
-                />
+                  <img
+                    className="md:block hidden rounded-full"
+                    src="https://avatars.githubusercontent.com/u/93899648?v=4"
+                    alt="Nau featured img"
+                  />
+                  <img
+                    className="md:hidden block rounded-full p-12"
+                    src="https://avatars.githubusercontent.com/u/93899648?v=4"
+                    alt="Nau featured img"
+                  />
                 </Link>
                 <p className="font-bree text-xl leading-5 text-green1 mt-4">
                   Nahu
