@@ -25,8 +25,13 @@ const Cart = () => {
   }, [cart, dispatch]);
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
+    if (product.cartQuantity < product.stock) {
+      dispatch(addToCart(product));
+    } else {
+      toast("No hay más stock del producto");
+    }
   };
+
   const handleDecreaseCart = (product) => {
     dispatch(decreaseCart(product));
   };
