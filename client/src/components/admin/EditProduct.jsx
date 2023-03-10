@@ -23,6 +23,7 @@ export default function EditProduct({ productId }) {
   const [category, setcategory] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
   const [details, setdetails] = useState("");
   const [isAvaliable, SetIsAvaliable] = useState("");
 
@@ -57,6 +58,7 @@ export default function EditProduct({ productId }) {
           name,
           category,
           price,
+          stock,
           details,
           isAvaliable,
         },
@@ -78,6 +80,7 @@ export default function EditProduct({ productId }) {
     setProductImg("");
     setdetails(selectedProduct.details);
     setPrice(selectedProduct.price);
+    setStock(selectedProduct.stock);
     setName(selectedProduct.name);
     setcategory(selectedProduct.category);
     SetIsAvaliable(selectedProduct.isAvaliable);
@@ -130,6 +133,13 @@ export default function EditProduct({ productId }) {
                 placeholder="Price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+                required
+              />
+              <input
+                type="stock"
+                placeholder="Stock"
+                value={stock}
+                onChange={(e) => setStock(e.target.value)}
                 required
               />
               <input
