@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { productsFetch } from "../actions/productActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { addToCart } from "../slices/cartSlice";
+import { addToCart, getTotals } from "../slices/cartSlice";
 import { toast, ToastContainer } from "react-toastify";
 
 const CardHome = ({ products }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [randomIndexes, setRandomIndexes] = useState([]);
+  const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
-    dispatch(productsFetch());
-  }, [dispatch]);
+    dispatch(getTotals());
+  }, [cart, dispatch]);
 
   useEffect(() => {
-    
     const indexes = [];
     while (indexes.length < 4) {
       const index = Math.floor(Math.random() * products.length);
@@ -29,7 +28,6 @@ const CardHome = ({ products }) => {
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
-    navigate("/cart");
     toast("Producto Añadido al Carrito");
   };
 
@@ -59,21 +57,21 @@ const CardHome = ({ products }) => {
                 </div>
               </Link>
 
-                <h3 className="text-base font-bree text-gray-700 ">
-                  {product.name}
-                </h3>
-                <p className="text-lg font-bold text-gray-900">
-                  ${product.price}
-                </p>
-                <button
-                  onClick={() => handleOnClick(product)}
-                  className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded w-fit mx-auto"
-                >
-                  <i className="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
-                </button>
-              </div>
-            );
-          })}
+              <h3 className="text-base font-bree text-gray-700 ">
+                {product.name}
+              </h3>
+              <p className="text-lg font-bold text-gray-900">
+                ${product.price}
+              </p>
+              <button
+                onClick={() => handleOnClick(product)}
+                className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded w-fit mx-auto"
+              >
+                <i className="mdi mdi-cart -ml-2 mr-2"></i> AGREGAR AL CARRITO{" "}
+              </button>
+            </div>
+          );
+        })}
       </div>
     </>
   );
