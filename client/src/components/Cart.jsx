@@ -28,7 +28,7 @@ const Cart = () => {
     if (product.cartQuantity < product.stock) {
       dispatch(addToCart(product));
     } else {
-      toast("No hay más stock del producto");
+      toast.error("No hay más stock del producto");
     }
   };
 
