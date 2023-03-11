@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { productsFetch } from "../actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart, getTotals } from "../slices/cartSlice";
 import { toast, ToastContainer } from "react-toastify";
@@ -28,7 +26,7 @@ const CardHome = ({ products }) => {
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
-    toast("Producto Añadido al Carrito");
+    toast.success("Producto Añadido al Carrito");
   };
 
   const filteredProducts = products.filter((product, index) =>
