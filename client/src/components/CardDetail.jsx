@@ -25,7 +25,7 @@ const CardDetail = () => {
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
-    toast("Producto Añadido al Carrito");
+    toast.success("Producto Añadido al Carrito");
   };
   return (
     <div>

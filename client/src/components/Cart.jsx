@@ -37,7 +37,7 @@ const Cart = () => {
   };
   const handleRemoveFromCart = (product) => {
     dispatch(removeFromCart(product));
-    toast("Producto Removido");
+    toast.info("Producto Removido");
   };
   const handleClearCart = () => {
     dispatch(clearCart());
