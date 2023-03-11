@@ -36,7 +36,7 @@ const CreateUser = () => {
           nationality,
         }
       );
-      toast("Usuario Creado");
+      toast.success("Usuario Creado");
       return res.data;
     } catch (error) {
       console.log(error);

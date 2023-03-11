@@ -38,7 +38,7 @@ const CreateProduct = () => {
 
   useEffect(() => {
     if (createStatus === "success") {
-      toast("Producto Creado");
+      toast.success("Producto Creado");
     }
   }, [createStatus, dispatch]);
 
