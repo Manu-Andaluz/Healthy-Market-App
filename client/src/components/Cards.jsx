@@ -2,14 +2,12 @@ import React from "react";
 import { productsFetch } from "../actions/productActions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCart, getTotals } from "../slices/cartSlice";
 import { toast, ToastContainer } from "react-toastify";
 
 const Cards = (currentProduct) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
 
   useEffect(() => {

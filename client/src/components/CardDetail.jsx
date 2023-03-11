@@ -4,11 +4,11 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { findProductById } from "../actions/productActions";
-import { addToCart } from "../slices/cartSlice";
-import { clearDetail } from "../slices/productDetailSlice";
+import { addToCart, getTotals } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Star from "./Star";
+import { toast, ToastContainer } from "react-toastify";
 import Reviews from "./Reviews";
 
 const CardDetail = () => {
@@ -16,15 +16,16 @@ const CardDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const productDet = useSelector((state) => state.productDetail);
+  const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(findProductById(productId));
-    return () => dispatch(clearDetail())
-  }, [productId]);
+    dispatch(getTotals());
+  }, [productId, cart]);
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
-    navigate("/cart");
+    toast("Producto Añadido al Carrito");
   };
   return (
     <div>
@@ -67,10 +68,8 @@ const CardDetail = () => {
                     className="opacity-50 text-gray-900 hover:opacity-100 inline-block text-xs leading-none border-b border-gray-900"
                   >
                     {" "}
-
                   </a>
                 </p>
-
               </div>
               <div>
                 <div className="inline-block align-bottom mr-5">
