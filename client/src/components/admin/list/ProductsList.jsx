@@ -17,7 +17,7 @@ export default function ProductsList() {
   useEffect(() => {
     dispatch(allProducts());
     if (deleteStatus === "success") {
-      toast("Producto Eliminado");
+      toast.info("Producto Eliminado");
     }
     console.log("1");
   }, [deleteStatus, dispatch]);
