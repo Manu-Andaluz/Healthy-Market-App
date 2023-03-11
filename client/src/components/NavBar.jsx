@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logoutUser } from "../slices/userSlice";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { getTotals } from "../slices/cartSlice";
 
 export default function NavBar() {
   const user = useSelector((state) => state.user);

@@ -1,24 +1,25 @@
 import React from "react";
 import { productsFetch } from "../actions/productActions";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { addToCart } from "../slices/cartSlice";
+import { addToCart, getTotals } from "../slices/cartSlice";
 import { toast, ToastContainer } from "react-toastify";
 
 const Cards = (currentProduct) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(productsFetch());
-  }, []);
+    dispatch(getTotals());
+  }, [cart, dispatch]);
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
     toast("Producto Añadido al Carrito");
-    navigate("/cart");
   };
 
   return (
@@ -43,7 +44,7 @@ const Cards = (currentProduct) => {
               <h3 className="text-base font-bree text-gray-700">
                 {product.name}
               </h3>
-              < p className="text-sm font-bree text-gray-700">
+              <p className="text-sm font-bree text-gray-700">
                 {product.category}
               </p>
               <p className="text-lg font-bold text-gray-900">
