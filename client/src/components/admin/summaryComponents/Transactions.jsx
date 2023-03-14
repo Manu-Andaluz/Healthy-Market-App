@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import "moment/locale/es";
+import { setHeaders } from "../../../slices/apiSlice";
 
 const Transactions = () => {
   const [oders, setOrders] = useState([]);
@@ -11,7 +12,8 @@ const Transactions = () => {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/order`
+        `https://healthy-market-app-production.up.railway.app/order`,
+        setHeaders()
       );
       setOrders(res.data);
       setLoading(false);

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
+import { setHeaders } from "../../slices/apiSlice";
 
 const CreateUser = () => {
   const [name, setName] = useState("");
@@ -13,16 +14,6 @@ const CreateUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // dispatch(
-    //   createProduct({
-    //     name,
-    //     category,
-    //     price,
-    //     details,
-    //     stock,
-    //     image: productImg,
-    //   })
-    // );
   };
 
   const createUser = async () => {
@@ -34,7 +25,8 @@ const CreateUser = () => {
           surname,
           email,
           nationality,
-        }
+        },
+        setHeaders()
       );
       toast.success("Usuario Creado");
       return res.data;

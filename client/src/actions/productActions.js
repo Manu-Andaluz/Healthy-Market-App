@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { setHeaders } from "../slices/apiSlice";
 
 export const productsFetch = createAsyncThunk(
   "products/productsFetch",
@@ -72,7 +73,8 @@ export const createProduct = createAsyncThunk(
     try {
       const response = await axios.post(
         `https://healthy-market-app-production.up.railway.app/products`,
-        product
+        product,
+        setHeaders()
       );
       return response.data;
     } catch (error) {
@@ -86,7 +88,8 @@ export const deleteProduct = createAsyncThunk(
   async (productId) => {
     try {
       const response = await axios.delete(
-        `https://healthy-market-app-production.up.railway.app/products/${productId}`
+        `https://healthy-market-app-production.up.railway.app/products/${productId}`,
+        setHeaders()
       );
       return response.data;
     } catch (error) {
@@ -101,7 +104,8 @@ export const editProduct = createAsyncThunk(
     try {
       const response = await axios.put(
         `https://healthy-market-app-production.up.railway.app/products/editProduct/${values.product._id}`,
-        values
+        values,
+        setHeaders()
       );
       return response.data;
     } catch (error) {
@@ -115,7 +119,8 @@ export const allProducts = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/products/productList`
+        `https://healthy-market-app-production.up.railway.app/products/productList`,
+        setHeaders()
       );
       return response.data;
     } catch (error) {

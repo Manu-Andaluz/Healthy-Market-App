@@ -10,6 +10,7 @@ const {
   createProductReviewController,
   getAllProductsController,
 } = require("../controllers/productController.js");
+const { isAdmin, isUser } = require("../middleware/auth.js");
 
 // GET ALL PRODUCTS
 
@@ -25,19 +26,19 @@ productRouter.get("/category", getCategoryFilterController);
 
 // FILER PRODUCTS BY CATEORY AND FILERBY
 
-productRouter.get("/productList", getAllProductsController);
+productRouter.get("/productList", isAdmin, getAllProductsController);
 
 // CREATE PRODUCT
 
-productRouter.post("/", createProductController);
+productRouter.post("/", isAdmin, createProductController);
 
 // EDIT PRODUCT
 
-productRouter.put("/editProduct/:productId", editProductController);
+productRouter.put("/editProduct/:productId", isAdmin, editProductController);
 
 // DELETE PRODUCT
 
-productRouter.delete("/:id", deleteProductController);
+productRouter.delete("/:id", isAdmin, deleteProductController);
 
 // GET BY ID
 

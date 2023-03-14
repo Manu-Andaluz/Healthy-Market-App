@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { setHeaders } from "../../../slices/apiSlice";
 
 export default function UserList() {
   const [users, setUsers] = useState();
@@ -12,7 +13,8 @@ export default function UserList() {
   const fetchUsers = async () => {
     try {
       const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/users`
+        `https://healthy-market-app-production.up.railway.app/users`,
+        setHeaders()
       );
       setUsers(res.data);
       setLoading(false);
@@ -24,7 +26,8 @@ export default function UserList() {
   const deleteUser = async (userId) => {
     try {
       const res = await axios.delete(
-        `https://healthy-market-app-production.up.railway.app/users/${userId}`
+        `https://healthy-market-app-production.up.railway.app/users/${userId}`,
+        setHeaders()
       );
       const newList = users.filter((item) => item._id !== res.data._id);
       setUsers(newList);

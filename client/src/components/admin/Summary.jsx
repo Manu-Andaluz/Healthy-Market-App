@@ -6,6 +6,7 @@ import axios from "axios";
 import Transactions from "./summaryComponents/Transactions";
 import AllTimeData from "./summaryComponents/AllTimeData";
 import PieCharts from "./summaryComponents/PieChart";
+import { setHeaders } from "../../slices/apiSlice";
 
 const Summary = () => {
   const [users, setUsers] = useState(15);
@@ -24,7 +25,8 @@ const Summary = () => {
   async function fetchOrders() {
     try {
       const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/order`
+        `https://healthy-market-app-production.up.railway.app/order`,
+        setHeaders()
       );
       res.data.sort(compare);
       setoOders(res.data);
@@ -48,7 +50,8 @@ const Summary = () => {
   async function fetchTotal() {
     try {
       const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/order/income`
+        `https://healthy-market-app-production.up.railway.app/order/income`,
+        setHeaders()
       );
       res.data.sort(compare);
       setTotal(res.data);
