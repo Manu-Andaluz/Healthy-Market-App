@@ -1,6 +1,7 @@
 const { User } = require("../models/User");
 const bcrypt = require("bcrypt");
 const generateAuthToken = require("../utils/generateAuthToken");
+const { collection, addDoc, db } = require("../utils/firebase");
 
 const getAllUsers = async () => {
   const user = await User.find();
@@ -99,14 +100,27 @@ const deleteUser = async (userId) => {
   }
 };
 
-const fireBase = async (name, age, email) => {
-  // const user = await addDoc(collection(db, "users"), {
-  //   name,
-  //   age,
-  //   email,
-  // });
+const fireBase = async (name, email, id) => {
+  let mongoUser = await User.findOne({ email: email });
 
-  return "user";
+  if (!mongoUser) {
+    const fullName = name.split(" ");
+
+    const user = await addDoc(collection(db, "users"), {
+      id,
+      name: fullName[0],
+      surname: fullName[1],
+      email,
+    });
+    const newUser = new User({
+      name: fullName[0],
+      surname: fullName[1],
+      nationality: "es",
+      email,
+    });
+    await newUser.save();
+    return user;
+  }
 };
 
 const userStats = async () => {
