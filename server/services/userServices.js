@@ -2,6 +2,7 @@ const { User } = require("../models/User");
 const bcrypt = require("bcrypt");
 const generateAuthToken = require("../utils/generateAuthToken");
 const { collection, addDoc, db } = require("../utils/firebase");
+const moment = require("moment");
 
 const getAllUsers = async () => {
   const user = await User.find();
@@ -125,24 +126,13 @@ const fireBase = async (name, email, id) => {
 
 const userStats = async () => {
   const previusMonth = moment()
-    .month(moment().month() - 1)
+    .month(moment().month())
     .set("date", 1)
     .format("YYYY-MM-DD HH:mm:ss");
 
   const users = await User.aggregate([
     {
       $match: { createdAt: { $gte: new Date(previusMonth) } },
-    },
-    {
-      $project: {
-        month: { $month: "$createdAt" },
-      },
-    },
-    {
-      $group: {
-        _id: "$month",
-        total: { $sum: 1 },
-      },
     },
   ]);
 

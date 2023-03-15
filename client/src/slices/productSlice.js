@@ -9,6 +9,8 @@ import {
   editProduct,
   allProducts,
 } from "../actions/productActions";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialState = {
   allProducts: [],
@@ -71,6 +73,7 @@ const productSlice = createSlice({
       state.status = "succeeded";
       state.createStatus = "success";
       state.allProducts.push(action.payload);
+      toast.success("Producto Creado");
     },
     [createProduct.rejected]: (state, action) => {
       state.status = "failed";
@@ -79,12 +82,13 @@ const productSlice = createSlice({
       state.deleteStatus = "pending";
     },
     [deleteProduct.fulfilled]: (state, action) => {
-      state.deleteStatus = "success";
       const newList = state.allProducts.filter(
         (item) => item._id !== action.payload._id
       );
       state.allProducts = newList;
+      state.deleteStatus = "success";
       state.status = "success";
+      toast.info("Producto Eliminado");
     },
     [deleteProduct.rejected]: (state, action) => {
       state.deleteStatus = "rejecteds";

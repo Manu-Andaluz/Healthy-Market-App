@@ -6,6 +6,7 @@ const {
   createOrder,
   getOrderIncome,
   getAllTimeOrder,
+  getWeekIncome,
   deleteOrder,
 } = require("../services/orderService");
 dotenv.config();
@@ -63,10 +64,21 @@ const deleteOrderController = async (req, res) => {
   }
 };
 
+const getWeekIncomeController = async (req, res) => {
+  try {
+    const orders = await getWeekIncome();
+    res.send(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+};
+
 module.exports = {
   createOrderController,
   getAllOrderController,
   getOrderIncomeController,
   getAllTimeOrderController,
+  getWeekIncomeController,
   deleteOrderController,
 };

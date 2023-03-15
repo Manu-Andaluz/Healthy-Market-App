@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { PrimaryButton } from "./CommonStyled";
 import { createProduct } from "../../actions/productActions";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
@@ -19,7 +17,6 @@ const CreateProduct = () => {
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
-
     TransformFileData(file);
   };
 
@@ -36,12 +33,6 @@ const CreateProduct = () => {
     }
   };
 
-  useEffect(() => {
-    if (createStatus === "success") {
-      toast.success("Producto Creado");
-    }
-  }, [createStatus, dispatch]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
@@ -54,6 +45,12 @@ const CreateProduct = () => {
         image: productImg,
       })
     );
+    setProductImg("");
+    setName("");
+    setcategory("");
+    setPrice("");
+    setdetails("");
+    setStock("");
   };
 
   return (

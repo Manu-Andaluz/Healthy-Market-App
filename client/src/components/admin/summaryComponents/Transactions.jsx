@@ -12,7 +12,7 @@ const Transactions = () => {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/order`,
+        `https://healthy-market-app-production.up.railway.app/order/weekIncome`,
         setHeaders()
       );
       setOrders(res.data);
@@ -32,7 +32,7 @@ const Transactions = () => {
         <p>Cargando transacciones ...</p>
       ) : (
         <>
-          <h3>Ultimas transacciones </h3>
+          <h3>Transacciones en los últimos 7 días </h3>
           {oders &&
             oders.map((order, index) => {
               return (
@@ -61,11 +61,12 @@ const StyledTransaction = styled.div`
 
 const Transaction = styled.div`
   display: flex;
+  width: 100%;
+  justify-content: space-between;
   font-size: 14px;
   margin-top: 1rem;
   background: rgba(38, 198, 249, 0.12);
   padding: 1rem;
-  justify-content: space-between;
   &:nth-child(even) {
     background: rgba(102, 108, 255, 0.12);
   }

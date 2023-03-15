@@ -72,25 +72,13 @@ const createOrder = async (cart, userName, userEmail) => {
 
 const getOrderIncome = async () => {
   const previusMonth = moment()
-    .month(moment().month() - 1)
+    .month(moment().month())
     .set("date", 1)
     .format("YYYY-MM-DD HH:mm:ss");
 
   const orders = await Order.aggregate([
     {
       $match: { createdAt: { $gte: new Date(previusMonth) } },
-    },
-    {
-      $project: {
-        month: { $month: "$createdAt" },
-        sales: "$total",
-      },
-    },
-    {
-      $group: {
-        _id: "$month",
-        total: { $sum: "$sales" },
-      },
     },
   ]);
   return orders;
@@ -120,10 +108,23 @@ const deleteOrder = async (orderId) => {
   }
 };
 
+const getWeekIncome = async () => {
+  const date = new Date();
+  date.setDate(date.getDate() - 7);
+
+  const orders = await Order.aggregate([
+    {
+      $match: { createdAt: { $gte: date } },
+    },
+  ]);
+  return orders;
+};
+
 module.exports = {
   getAllOrders,
   createOrder,
   getOrderIncome,
   getAllTimeOrder,
+  getWeekIncome,
   deleteOrder,
 };

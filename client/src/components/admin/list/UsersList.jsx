@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setHeaders } from "../../../slices/apiSlice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function UserList() {
   const [users, setUsers] = useState();
@@ -31,6 +33,7 @@ export default function UserList() {
       );
       const newList = users.filter((item) => item._id !== res.data._id);
       setUsers(newList);
+      toast.info("Usuario Eliminado");
     } catch (error) {
       console.log(error);
     }

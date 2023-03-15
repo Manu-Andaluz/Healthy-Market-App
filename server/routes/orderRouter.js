@@ -4,6 +4,7 @@ const {
   getAllOrderController,
   getOrderIncomeController,
   getAllTimeOrderController,
+  getWeekIncomeController,
   deleteOrderController,
 } = require("../controllers/orderController.js");
 const { isAdmin, isUser } = require("../middleware/auth.js");
@@ -14,7 +15,9 @@ oderRouter.get("/", isAdmin, getAllOrderController);
 
 // GET ORDERS LAST MONTH
 
-oderRouter.get("/income", isAdmin, getOrderIncomeController);
+oderRouter.get("/income", getOrderIncomeController);
+
+oderRouter.get("/weekIncome", getWeekIncomeController);
 
 // GET ORDERS ALL TIME
 
