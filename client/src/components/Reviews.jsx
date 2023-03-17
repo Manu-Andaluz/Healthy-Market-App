@@ -18,8 +18,6 @@ const Reviews = () => {
 
   return (
     <div className="reviews">
-
-
       <Link
         to={`/detail/${productId}`}
         className="bg-green2 hover:bg-green1 text-white font-bold py-1 px-3 mx-6 my-6 rounded-full inline-flex items-center"
@@ -38,7 +36,6 @@ const Reviews = () => {
           />
         </svg>
       </Link>
-
 
       <div></div>
       <div className="flex items-center mb-4 space-x-4 mx-8 my-8 px-8">
@@ -62,7 +59,18 @@ const Reviews = () => {
               </h3>
               <h3 className="text-sm py-3 px-4">
                 Puntuación: {review.rating}{" "}
-                <FaStar className="inline-block mr-1 text-yellow-500" />
+                {(() => {
+                  const arr = [];
+                  for (let i = 0; i < review.rating; i++) {
+                    arr.push(
+                      <FaStar
+                        key={i}
+                        className="inline-block mr-1 text-yellow-500"
+                      />
+                    );
+                  }
+                  return arr;
+                })()}
               </h3>
               <p className="text-sm py-3 px-4"> "{review.comment}"</p>
             </div>
