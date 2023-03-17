@@ -63,7 +63,8 @@ const loginController = async (req, res) => {
     welcome(email);
     res.status(200).send(token);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.log(error.message);
+    res.status(400).json(error);
   }
 };
 

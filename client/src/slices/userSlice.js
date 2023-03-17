@@ -8,6 +8,8 @@ const initialState = {
   email: "",
   _id: "",
   isAdmin: false,
+  loginStatus: "",
+  loginError: "",
 };
 
 const userSlice = createSlice({
@@ -68,7 +70,7 @@ const userSlice = createSlice({
       };
     });
     builder.addCase(loginUser.pending, (state, action) => {
-      return { ...state };
+      return { ...state, loginStatus: "pending" };
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       if (action.payload) {
@@ -86,6 +88,8 @@ const userSlice = createSlice({
     builder.addCase(loginUser.rejected, (state, action) => {
       return {
         ...state,
+        loginStatus: "rejected",
+        loginError: "Mail o Contraseña incorrecto",
       };
     });
     builder.addCase(singWithGoogle.pending, (state, action) => {

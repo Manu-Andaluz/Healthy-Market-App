@@ -91,8 +91,11 @@ const LoginForm = () => {
                 className=" bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded"
                 onClick={handleOnClick}
               >
-                Iniciar Sesión
+                {user.loginStatus === "pending" ? "Enviando..." : "Login"}
               </button>
+              {user.loginStatus === "rejected" ? (
+                <p className="text-red-600">{user.loginError}</p>
+              ) : null}
               <p className="mt-2 ">¿Todavía no tienes una cuenta?</p>
               <Link
                 to="/register"

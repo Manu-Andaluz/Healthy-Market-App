@@ -61,8 +61,8 @@ const loginUser = async (email, password) => {
 
   var validatePassword = bcrypt.compare(password, user.password);
 
-  if (!validatePassword) {
-    return "User or Password is incorrect";
+  if (validatePassword) {
+    throw new Error("User or Password is incorrect");
   }
 
   const token = generateAuthToken(user);
