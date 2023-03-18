@@ -55,7 +55,11 @@ const getCategoryFiltered = async (categoryValue, filterBy, name) => {
       return products;
     }
     case "cheapper-products": {
-      const products = allProduct.sort((a, b) => a.price - b.price);
+      const products = allProduct.sort(
+        (a, b) =>
+          (a.discountPrice ? a.discountPrice : a.price) -
+          (b.discountPrice ? b.discountPrice : b.price)
+      );
       if (name) {
         const productFilterByName = products.filter((a) =>
           a.name.toLowerCase().includes(name.toLowerCase())
@@ -65,7 +69,11 @@ const getCategoryFiltered = async (categoryValue, filterBy, name) => {
       return products;
     }
     case "expensive-products": {
-      const products = allProduct.sort((a, b) => b.price - a.price);
+      const products = allProduct.sort(
+        (a, b) =>
+          (b.discountPrice ? b.discountPrice : b.price) -
+          (a.discountPrice ? a.discountPrice : a.price)
+      );
       if (name) {
         const productFilterByName = products.filter((a) =>
           a.name.toLowerCase().includes(name.toLowerCase())
