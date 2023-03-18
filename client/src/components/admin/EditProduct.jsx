@@ -6,15 +6,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import styled from "styled-components";
 import { PrimaryButton } from "./CommonStyled";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { editProduct } from "../../actions/productActions";
-import { toast, ToastContainer } from "react-toastify";
 import { allProducts } from "../../actions/productActions";
 
 export default function EditProduct({ productId }) {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.allProducts.productList);
-  const { editStatus } = useSelector((state) => state.allProducts);
 
   const [currentProduct, setCurrentProduct] = useState({});
   const [previusImg, setPreviusImg] = useState("");

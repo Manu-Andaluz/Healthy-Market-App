@@ -1,23 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { logoutUser } from "../slices/userSlice";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
-import { getTotals } from "../slices/cartSlice";
+import LogoutModal from "./LogoutModal";
 
 export default function NavBar() {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [navbarHeight, setNavbarHeight] = useState("auto");
   let activeStyle = {
     color: "#03C988",
-  };
-
-  const handleLogout = () => {
-    dispatch(logoutUser());
   };
 
   const toggleMenu = () => {
@@ -183,16 +175,16 @@ export default function NavBar() {
                 Admin
               </p>
             </NavLink>
-            <button onClick={handleLogout}>
+            <button>
               <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100  text-gray-900 font-bold  rounded-xl transition duration-200 text-base">
-                Cerrar Sesión
+                <LogoutModal />
               </p>
             </button>
           </div>
         ) : (
-          <button onClick={handleLogout}>
+          <button>
             <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100  text-gray-900 font-bold  rounded-xl transition duration-200 text-base">
-              Cerrar Sesión
+              <LogoutModal />
             </p>
           </button>
         )

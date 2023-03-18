@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import NavBar from "./NavBar";
@@ -8,7 +7,6 @@ import { loginUser } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { auth, provider, singWithGoogle } from "../firebase";
-import { loadUser } from "../slices/userSlice";
 
 const LoginForm = () => {
   const user = useSelector((state) => state.user);
@@ -108,6 +106,7 @@ const LoginForm = () => {
                   <img
                     class="google-icon"
                     src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                    alt="google-button"
                   />
                 </div>
                 <p class="btn-text">
