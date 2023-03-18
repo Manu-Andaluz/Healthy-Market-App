@@ -16,6 +16,20 @@ export const productsFetch = createAsyncThunk(
   }
 );
 
+export const salesProducts = createAsyncThunk(
+  "products/productsFetch",
+  async () => {
+    try {
+      const response = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/products/saleProducts`
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 export const searchProducts = createAsyncThunk(
   "products/search",
   async (query) => {

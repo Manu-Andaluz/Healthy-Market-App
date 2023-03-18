@@ -202,6 +202,13 @@ const getAllProducts = async () => {
   return allData;
 };
 
+const getSales = async () => {
+  const salesProducts = await Product.find({
+    discountPrice: { $exists: true },
+  });
+  return salesProducts;
+};
+
 module.exports = {
   getProduct,
   // getProductsFiltered,
@@ -212,4 +219,5 @@ module.exports = {
   getProductById,
   createReview,
   getAllProducts,
+  getSales,
 };

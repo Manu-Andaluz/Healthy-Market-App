@@ -8,6 +8,7 @@ const {
   getProductById,
   createReview,
   getAllProducts,
+  getSales,
 } = require("../services/productServices");
 
 const { Product } = require("../models/Product");
@@ -148,6 +149,16 @@ const getAllProductsController = async (req, res) => {
   }
 };
 
+const getSalesProductsController = async (req, res) => {
+  try {
+    const products = await getSales();
+    res.send(products);
+  } catch (error) {
+    console.log(error);
+    res.status(404).send("Product not found");
+  }
+};
+
 module.exports = {
   getProductController,
   // getProductsFilteredController,
@@ -158,4 +169,5 @@ module.exports = {
   getProductByIdController,
   createProductReviewController,
   getAllProductsController,
+  getSalesProductsController,
 };

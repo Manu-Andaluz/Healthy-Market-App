@@ -9,6 +9,7 @@ const {
   getProductByIdController,
   createProductReviewController,
   getAllProductsController,
+  getSalesProductsController,
 } = require("../controllers/productController.js");
 const { isAdmin, isUser } = require("../middleware/auth.js");
 
@@ -23,6 +24,10 @@ productRouter.get("/", getProductController);
 // FILER PRODUCTS BY CATEORY AND FILERBY
 
 productRouter.get("/category", getCategoryFilterController);
+
+// PRODUCTS ON SALE
+
+productRouter.get("/saleProducts", getSalesProductsController);
 
 // FILER PRODUCTS BY CATEORY AND FILERBY
 

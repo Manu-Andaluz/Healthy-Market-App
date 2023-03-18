@@ -8,6 +8,7 @@ import {
   deleteProduct,
   editProduct,
   allProducts,
+  salesProducts,
 } from "../actions/productActions";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 const initialState = {
   allProducts: [],
   productList: [],
+  salesProducts: [],
   currentPage: 1,
   createStatus: null,
   deleteStatus: null,
@@ -44,6 +46,16 @@ const productSlice = createSlice({
       state.status = "success";
     },
     [productsFetch.rejected]: (state, action) => {
+      state.status = "rejected";
+    },
+    [salesProducts.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [salesProducts.fulfilled]: (state, action) => {
+      state.salesProducts = action.payload;
+      state.status = "success";
+    },
+    [salesProducts.rejected]: (state, action) => {
       state.status = "rejected";
     },
     [searchProducts.pending]: (state, action) => {
