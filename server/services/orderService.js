@@ -24,7 +24,7 @@ const createOrder = async (cart, userName, userEmail) => {
       description: product.details,
       category_id: product.category,
       quantity: product.cartQuantity,
-      unit_price: product.price,
+      unit_price: product.discountPrice ? product.discountPrice : product.price,
     };
   });
 

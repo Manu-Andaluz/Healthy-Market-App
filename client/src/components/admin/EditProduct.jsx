@@ -24,6 +24,7 @@ export default function EditProduct({ productId }) {
   const [stock, setStock] = useState("");
   const [details, setdetails] = useState("");
   const [isAvaliable, SetIsAvaliable] = useState("");
+  const [discountPrice, setDiscountPrice] = useState("");
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -59,6 +60,7 @@ export default function EditProduct({ productId }) {
           stock,
           details,
           isAvaliable,
+          discountPrice,
         },
       })
     );
@@ -82,6 +84,7 @@ export default function EditProduct({ productId }) {
     setName(selectedProduct.name);
     setcategory(selectedProduct.category);
     SetIsAvaliable(selectedProduct.isAvaliable);
+    setDiscountPrice(selectedProduct.discountPrice);
   };
 
   const handleClose = () => {
@@ -131,6 +134,13 @@ export default function EditProduct({ productId }) {
                 placeholder="Price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+                required
+              />
+              <input
+                type="discountPrice"
+                placeholder="Precio Descuento"
+                value={discountPrice}
+                onChange={(e) => setDiscountPrice(e.target.value)}
                 required
               />
               <input
