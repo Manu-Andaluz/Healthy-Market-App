@@ -66,6 +66,7 @@ const Filter = () => {
           <option value="alfabetic-Z-A">Orden (Z-A)</option>
           <option value="cheapper-products">Menor precio</option>
           <option value="expensive-products">Mayor precio</option>
+          <option value="sales">Productos en Descuentos</option>
         </select>
 
         <select

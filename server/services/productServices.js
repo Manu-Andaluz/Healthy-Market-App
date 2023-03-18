@@ -74,6 +74,12 @@ const getCategoryFiltered = async (categoryValue, filterBy, name) => {
       }
       return products;
     }
+    case "sales": {
+      const salesProducts = await Product.find({
+        discountPrice: { $exists: true },
+      });
+      return salesProducts;
+    }
     default: {
       if (name) {
         const productFilterByName = allProduct.filter((a) =>
