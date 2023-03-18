@@ -83,9 +83,23 @@ const getCategoryFiltered = async (categoryValue, filterBy, name) => {
       return products;
     }
     case "sales": {
-      const salesProducts = await Product.find({
+      let salesProducts = await Product.find({
         discountPrice: { $exists: true },
       });
+
+      if (categoryValue !== "categoria") {
+        salesProducts = salesProducts.filter(
+          (product) =>
+            product.category.toLowerCase() == categoryValue.toLowerCase()
+        );
+      }
+      if (name) {
+        const productFilterByName = salesProducts.filter((a) =>
+          a.name.toLowerCase().includes(name.toLowerCase())
+        );
+        return productFilterByName;
+      }
+
       return salesProducts;
     }
     default: {
