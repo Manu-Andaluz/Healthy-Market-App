@@ -49,6 +49,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/loginSuccess" element={<LoginSuccess />} />
           <Route path="/detail/:productId" element={<CardDetail />} />
+          <Route path="/reviews/:productId" element={<Reviews />} />
           <Route path="*" element={<Error />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/reviewform" element={<ReviewForm />} />
@@ -67,11 +68,8 @@ function App() {
               <Route index element={<OrderList />} />
             </Route>
           </Route>
-          <Route path="/detail/:productId" element={<CardDetail />} />
           <Route path="*" element={<Error />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/reviewform" element={<ReviewForm />} />
-          <Route path="/reviews/:productId" element={<Reviews />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         </Routes>
       </BrowserRouter>
