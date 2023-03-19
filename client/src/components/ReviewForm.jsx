@@ -38,7 +38,7 @@ export default function ReviewForm({ productId }) {
         position: toast.POSITION.BOTTOM_CENTER,
       });
     }
-    dispatch(reviewProducts({ reviews: input, productId: productId }));
+    await dispatch(reviewProducts({ reviews: input, productId: productId }));
     toast.success("¡Tu calificación ha sido enviada!", {
       position: toast.POSITION.BOTTOM_CENTER,
     });
