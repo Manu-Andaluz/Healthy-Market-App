@@ -110,7 +110,9 @@ const Cart = () => {
                           </div>
                           <div className="flex flex-col justify-between ml-4 flex-grow">
                             <span className="font-bold text-sm">
-                              {product.name}
+                              <Link to={`/detail/${product._id}`}>
+                                {product.name}
+                              </Link>
                             </span>
                             <span className="text-red-500 text-xs">
                               {product.category}

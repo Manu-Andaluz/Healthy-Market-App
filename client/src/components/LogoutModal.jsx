@@ -5,13 +5,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import styled from "styled-components";
 import { logoutUser } from "../slices/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 export default function LogoutModal() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const usuario = useSelector((state) => state.user);
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -35,9 +36,10 @@ export default function LogoutModal() {
         fullWidth={true}
         maxWidth={"md"}
       >
-        <DialogTitle>Terminar tu sesión</DialogTitle>
+        <DialogTitle>Aviso de sesión</DialogTitle>
         <DialogContent>
           <StyledEditProduct>
+            <h2 className="flex mx-auto">{usuario && usuario.name}</h2>
             <h2>Estas seguro que quieres cerrar tu sesión ?</h2>
             <button
               onClick={handleLogout}
@@ -49,7 +51,7 @@ export default function LogoutModal() {
           </StyledEditProduct>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Cancelar</Button>
         </DialogActions>
       </Dialog>
     </div>
