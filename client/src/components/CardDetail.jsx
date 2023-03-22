@@ -77,7 +77,7 @@ const CardDetail = () => {
                 <div className="inline-block align-bottom mr-5">
                   {productDet.productDetail.discountPrice ? (
                     <>
-                      <p className="font-bold text-5xl leading-none align-baseline text-gray-900">
+                      <p className="font-bold text-4xl leading-none align-baseline text-gray-900">
                         <del>${productDet.productDetail.price}</del>
                       </p>
                       <p className="font-bold text-5xl leading-none align-baseline text-green-500">
