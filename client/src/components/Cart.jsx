@@ -28,7 +28,9 @@ const Cart = () => {
     if (product.cartQuantity < product.stock) {
       dispatch(addToCart(product));
     } else {
-      toast.error("No hay más stock del producto");
+      toast.error("No hay más stock del producto", {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
     }
   };
 
@@ -37,7 +39,9 @@ const Cart = () => {
   };
   const handleRemoveFromCart = (product) => {
     dispatch(removeFromCart(product));
-    toast.info("Producto Removido");
+    toast.info("Producto Removido", {
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
   };
   const handleClearCart = () => {
     dispatch(clearCart());

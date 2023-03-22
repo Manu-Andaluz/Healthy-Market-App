@@ -140,8 +140,6 @@ export default function EditProduct({ productId }) {
                 type="discountPrice"
                 placeholder="Precio Descuento"
                 value={discountPrice}
-                onChange={(e) => setDiscountPrice(e.target.value)}
-                required
               />
               <input
                 type="stock"

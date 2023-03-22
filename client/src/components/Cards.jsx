@@ -17,7 +17,9 @@ const Cards = (currentProduct) => {
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
-    toast.success("Producto Añadido al Carrito");
+    toast.success("Producto Añadido al Carrito", {
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
   };
 
   return (
