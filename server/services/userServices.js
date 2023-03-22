@@ -102,10 +102,9 @@ const deleteUser = async (userId) => {
 
 const fireBase = async (name, email, id) => {
   let mongoUser = await User.findOne({ email: email });
-
+  console.log(mongoUser);
   if (!mongoUser) {
     const fullName = name.split(" ");
-
     const user = await addDoc(collection(db, "users"), {
       id,
       name: fullName[0],
@@ -118,6 +117,7 @@ const fireBase = async (name, email, id) => {
       nationality: "es",
       email,
     });
+    console.log(user);
     await newUser.save();
     return user;
   }
