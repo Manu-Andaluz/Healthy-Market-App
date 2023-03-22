@@ -36,7 +36,6 @@ async function welcome(email) {
       html: "<p>Te damos la bienvenida a nuestra tienda de productos saludables, dónde podrás agregar productos a tu carrito y realizar tu compra con cualquier medio de pago. </p>",
     });
     console.log(info.messageId);
-    console.log("Mail service working");
   } catch (error) {
     console.log(error.message);
   }

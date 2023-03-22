@@ -98,12 +98,9 @@ const deleteUserController = async (req, res) => {
 };
 
 const fireBaseController = async (req, res) => {
-  console.log("fireBaseController - 1");
   const user = req.body;
   try {
-    console.log(user);
     const newUser = await fireBase(user.displayName, user.email, user.uid);
-    console.log(newUser);
     res.status(200).send(newUser);
   } catch (error) {
     console.log(error);
