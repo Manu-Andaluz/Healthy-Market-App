@@ -101,8 +101,9 @@ const deleteUser = async (userId) => {
 };
 
 const fireBase = async (name, email, id) => {
+  console.log("firebase - 1");
   let mongoUser = await User.findOne({ email: email });
-  console.log(mongoUser);
+  console.log("firebase - 2", mongoUser);
   if (!mongoUser) {
     const fullName = name.split(" ");
     const user = await addDoc(collection(db, "users"), {
@@ -111,13 +112,13 @@ const fireBase = async (name, email, id) => {
       surname: fullName[1],
       email,
     });
+    console.log(user);
     const newUser = new User({
       name: fullName[0],
       surname: fullName[1],
       nationality: "es",
       email,
     });
-    console.log(user);
     await newUser.save();
     return user;
   }
