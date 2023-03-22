@@ -232,7 +232,7 @@ const getAllProducts = async () => {
 
 const getSales = async () => {
   const salesProducts = await Product.find({
-    discountPrice: { $exists: true },
+    discountPrice: { $gt: 0 },
   });
   return salesProducts;
 };

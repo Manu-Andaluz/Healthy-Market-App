@@ -60,7 +60,7 @@ export default function EditProduct({ productId }) {
           stock,
           details,
           isAvaliable,
-          discountPrice,
+          discountPrice: discountPrice === 0 ? false : discountPrice,
         },
       })
     );

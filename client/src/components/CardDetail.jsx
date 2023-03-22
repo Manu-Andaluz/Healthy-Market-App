@@ -73,9 +73,20 @@ const CardDetail = () => {
               </div>
               <div>
                 <div className="inline-block align-bottom mr-5">
-                  <span className="font-bold text-5xl leading-none align-baseline">
-                    ${productDet.productDetail.price}
-                  </span>
+                  {productDet.productDetail.discountPrice ? (
+                    <>
+                      <p className="font-bold text-5xl leading-none align-baseline text-gray-900">
+                        <del>${productDet.productDetail.price}</del>
+                      </p>
+                      <p className="font-bold text-5xl leading-none align-baseline text-green-500">
+                        ${productDet.productDetail.discountPrice}
+                      </p>{" "}
+                    </>
+                  ) : (
+                    <span className="font-bold text-5xl leading-none align-baseline">
+                      ${productDet.productDetail.price}
+                    </span>
+                  )}
                   {/* <span className="text-2xl leading-none align-baseline">.99</span> */}
                 </div>
                 <div className="inline-block align-bottom">
