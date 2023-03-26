@@ -82,6 +82,7 @@ const userSlice = createSlice({
           email: user.email,
           _id: user._id,
           isAdmin: user.isAdmin,
+          loginStatus: "completed",
         };
       } else return state;
     });
