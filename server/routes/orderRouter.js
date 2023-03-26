@@ -15,9 +15,9 @@ oderRouter.get("/", isAdmin, getAllOrderController);
 
 // GET ORDERS LAST MONTH
 
-oderRouter.get("/income", getOrderIncomeController);
+oderRouter.get("/income", isAdmin, getOrderIncomeController);
 
-oderRouter.get("/weekIncome", getWeekIncomeController);
+oderRouter.get("/weekIncome", isAdmin, getWeekIncomeController);
 
 // GET ORDERS ALL TIME
 

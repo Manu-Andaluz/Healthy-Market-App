@@ -56,7 +56,7 @@ const createUser = async (
 const loginUser = async (email, password) => {
   const user = await User.findOne({ email });
   if (!user) {
-    return "User is not registered";
+    throw new Error("User is not registered");
   }
   var validatePassword = await bcrypt.compare(password, user.password);
 

@@ -26,13 +26,10 @@ export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (user, { rejectWithValue }) => {
     try {
-      const token = await axios.post(
-        "https://healthy-market-app-production.up.railway.app/users/loggin",
-        {
-          email: user.email,
-          password: user.password,
-        }
-      );
+      const token = await axios.post("http://localhost:5000/users/loggin", {
+        email: user.email,
+        password: user.password,
+      });
       localStorage.setItem("token", token.data);
       return token.data;
     } catch (error) {
