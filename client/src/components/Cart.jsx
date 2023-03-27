@@ -77,22 +77,22 @@ const Cart = () => {
         <div className="bg-gray-100">
           <div className="container mx-auto mt-10">
             <div className="flex flex-col md:flex-row justify-between shadow-md my-10">
-              <div className="w-3/4 bg-white px-10 py-10">
-                <div className="flex justify-between border-b pb-8">
+              <div className="lg:w-3/4 sm:w-10/12 bg-white px-10 py-10">
+                <div className="lg:flex justify-between border-b pb-8">
                   <h1 className="font-semibold text-2xl">Carrito de compras</h1>
                   <h2 className="font-semibold text-2xl">Items</h2>
                 </div>
                 <div className="flex mt-10 mb-5">
-                  <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
+                  <h3 className="font-semibold text-gray-600 text-xs uppercase lg:w-2/5 ">
                     Detalle de producto
                   </h3>
-                  <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+                  <h3 className="font-semibold text-center text-gray-600 text-xs uppercase lg:w-1/5 sm:w-10/12">
                     Cantidad
                   </h3>
-                  <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+                  <h3 className="font-semibold text-center text-gray-600 text-xs uppercase lg:w-1/5 sm:w-10/12">
                     Precio unitario
                   </h3>
-                  <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">
+                  <h3 className="font-semibold text-center text-gray-600 text-xs uppercase lg:w-1/5 sm:w-10/12">
                     Total
                   </h3>
                 </div>
@@ -104,7 +104,7 @@ const Cart = () => {
                       : product.price;
                     return (
                       <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
-                        <div className="flex w-2/5">
+                        <div className="lg:flex sm:grid w-2/5">
                           <div className="w-20">
                             <img
                               className="h-24"
@@ -112,20 +112,20 @@ const Cart = () => {
                               alt=""
                             />
                           </div>
-                          <div className="flex flex-col justify-between ml-4 flex-grow">
+                          <div className="lg:flex sm:grid  lg:flex-col justify-between ml-4 flex-grow">
                             <span className="font-bold text-sm">
                               <Link to={`/detail/${product._id}`}>
                                 {product.name}
                               </Link>
                             </span>
-                            <span className="text-red-500 text-xs">
+                            <span className="text-red-500 text-xs hidden lg:block">
                               {product.category}
                             </span>
                             <button
                               onClick={() => handleRemoveFromCart(product)}
-                              className="font-semibold hover:text-red-500 text-gray-500 text-xs"
+                              className="font-semibold hover:text-red-500 text-gray-500 text-xs block"
                             >
-                              Remove
+                              Remover
                             </button>
                           </div>
                         </div>
@@ -185,9 +185,9 @@ const Cart = () => {
                 </Link>
               </div>
 
-              <div id="summary" className="w-1/4 px-8 py-10">
-                <h1 className="font-semibold text-2xl border-b pb-8">
-                  Resumen de la Orden
+              <div id="summary" className="lg:w-1/4 sm:w-10/12 px-8 py-10">
+                <h1 className="font-semibold text-2xl border-b pb-8 sm:w-10/12">
+                  Orden
                 </h1>
                 <div className="flex justify-between mt-10 mb-5">
                   <span className="font-semibold text-sm uppercase">items</span>

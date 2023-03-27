@@ -25,9 +25,7 @@ const Home = () => {
   return (
     <>
       <NavBar />
-      <div className="hidden lg:block">
-        <Carousel />
-      </div>
+      <Carousel />
       <CardHome products={products} />
       <Footer />
     </>

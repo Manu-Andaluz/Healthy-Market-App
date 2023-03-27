@@ -37,7 +37,7 @@ const Products = () => {
   }
 
   return (
-    <div className="h-screen relative flex flex-col">
+    <div className="relative flex flex-col">
       <NavBar />
       <div className="grow">
         <h4 className="grid place-content-center w-full my-10 font-bold text-3xl">

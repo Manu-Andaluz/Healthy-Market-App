@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LogoutModal from "./LogoutModal";
@@ -37,7 +37,7 @@ export default function NavBar() {
             onClick={toggleMenu}
           >
             <svg
-              className="block h-4 w-4 fill-current"
+              className="block h-6 w-6 fill-current"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -69,7 +69,7 @@ export default function NavBar() {
       <ul
         // absolute mt-0  left-1/2 text-white transform translate-y-1/9 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-7 bg-gray-800 py-2
         className={`${
-          isMenuOpen ? "block" : "hidden"
+          isMenuOpen ? "grid h-96" : "hidden"
         } absolute mt-0 top-1/2 left-1/2 text-white transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-6 bg-gray-800 py-2  `}
       >
         <li>
@@ -80,7 +80,7 @@ export default function NavBar() {
             <p className="text-lg font-bold ">Inicio</p>
           </NavLink>
         </li>
-        <li className="text-gray-300">
+        <li className="text-gray-300 hidden lg:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -104,7 +104,7 @@ export default function NavBar() {
             <p className="text-lg font-bold ">Productos</p>
           </NavLink>
         </li>
-        <li className="text-gray-300">
+        <li className="text-gray-300 hidden lg:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -128,7 +128,7 @@ export default function NavBar() {
             <p className="text-lg font-bold ">Sobre Nosotros</p>
           </NavLink>
         </li>
-        <li className="text-gray-300">
+        <li className="text-gray-300 hidden lg:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
