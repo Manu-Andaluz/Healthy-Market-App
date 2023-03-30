@@ -28,6 +28,7 @@ import CreateUser from "./components/admin/CreateUser";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import LoginSuccess from "./components/LogginSuccess";
 import OrdersDashboard from "./components/admin/Oders";
+import OrderSucces from "./components/OrderSucces";
 
 function App() {
   const dispatch = useDispatch();
@@ -68,9 +69,10 @@ function App() {
               <Route index element={<OrderList />} />
             </Route>
           </Route>
-          <Route path="*" element={<Error />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="/orderSuccess" element={<OrderSucces />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>

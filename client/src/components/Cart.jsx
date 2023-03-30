@@ -205,7 +205,7 @@ const Cart = () => {
                       onClick={() => {
                         axios
                           .post(
-                            "https://healthy-market-app-production.up.railway.app/order",
+                            "https://healthy-market-app-production.up.railway.app/order/mercadoPago",
                             {
                               cart: cart.cartItems,
                               userName: user.name,

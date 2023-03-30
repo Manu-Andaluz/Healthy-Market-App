@@ -1,4 +1,4 @@
-const oderRouter = require("express").Router();
+const orderRoute = require("express").Router();
 const {
   createOrderController,
   getAllOrderController,
@@ -6,27 +6,31 @@ const {
   getAllTimeOrderController,
   getWeekIncomeController,
   deleteOrderController,
+  successOrderController
 } = require("../controllers/orderController.js");
 const { isAdmin, isUser } = require("../middleware/auth.js");
 
 // GET ALL ORDERS
 
-oderRouter.get("/", isAdmin, getAllOrderController);
+orderRoute.get("/", isAdmin, getAllOrderController);
 
 // GET ORDERS LAST MONTH
 
-oderRouter.get("/income", isAdmin, getOrderIncomeController);
+orderRoute.get("/income", isAdmin, getOrderIncomeController);
 
-oderRouter.get("/weekIncome", isAdmin, getWeekIncomeController);
+orderRoute.get("/weekIncome", isAdmin, getWeekIncomeController);
 
 // GET ORDERS ALL TIME
 
-oderRouter.get("/allTimeIncome", isAdmin, getAllTimeOrderController);
+orderRoute.get("/allTimeIncome", isAdmin, getAllTimeOrderController);
+
+orderRoute.post('/orderSuccess', successOrderController)
 
 // CREATE ORDER ( MERCADO PAGO )
 
-oderRouter.post("/", createOrderController);
+orderRoute.post("/mercadoPago", createOrderController);
 
-oderRouter.delete("/:orderId", isAdmin, deleteOrderController);
 
-module.exports = oderRouter;
+orderRoute.delete("/:orderId", isAdmin, deleteOrderController);
+
+module.exports = orderRoute;

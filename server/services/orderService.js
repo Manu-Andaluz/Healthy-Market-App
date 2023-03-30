@@ -31,7 +31,7 @@ const createOrder = async (cart, userName, userEmail) => {
   let preference = {
     items: itemArray,
     back_urls: {
-      success: "https://healthy-market-app.vercel.app/home",
+      success: "https://healthy-market-app.vercel.app/orderSuccess",
       failure: "https://healthy-market-app.vercel.app/cart",
       pending: "",
     },
@@ -53,22 +53,50 @@ const createOrder = async (cart, userName, userEmail) => {
       initialValue
     );
 
-    const order = new Order({
-      products: products,
-      userId: userEmail,
-      shipping: {
-        userName,
-        userEmail,
-      },
-      subTotal: sumWithInitial,
-      total: sumWithInitial,
-    });
-
-    order.save();
-
     return { response };
   });
 };
+
+const orderSuccess = async (cart, userName, userEmail) => {
+  const itemArray = await cart.map((product) => {
+    return {
+      id: product._id,
+      title: product.name,
+      currency_id: "ARS",
+      picture_url: product.image.url,
+      description: product.details,
+      category_id: product.category,
+      quantity: product.cartQuantity,
+      unit_price: product.discountPrice ? product.discountPrice : product.price,
+    };
+  });
+
+  const products = itemArray.map((product) => ({
+    productId: product.id,
+    quantity: product.quantity,
+  }));
+  const data = itemArray.map(
+    (product) => product.unit_price * product.quantity
+  );
+  const initialValue = 0;
+  const sumWithInitial = data.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialValue
+  );
+
+  const order = new Order({
+    products: products,
+    userId: userEmail,
+    shipping: {
+      userName,
+      userEmail,
+    },
+    subTotal: sumWithInitial,
+    total: sumWithInitial,
+  });
+
+  order.save();
+}
 
 const getOrderIncome = async () => {
   const previusMonth = moment()
@@ -127,4 +155,5 @@ module.exports = {
   getAllTimeOrder,
   getWeekIncome,
   deleteOrder,
+  orderSuccess
 };
