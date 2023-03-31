@@ -79,7 +79,7 @@ const Cart = () => {
             <div className="flex flex-col md:flex-row justify-between shadow-md my-10">
               <div className="lg:w-3/4 sm:w-10/12 bg-white px-10 py-10">
                 <div className="grid justify-between">
-                  <h1 className="font-semibold text-2xl">Carrito de compras</h1>
+                  <h1 className="font-semibold text-2xl">Carrito de Compras</h1>
                 </div>
                 <div className="flex mt-10 mb-5">
                   <h3 className="font-semibold text-gray-600 text-xs uppercase lg:w-2/5 ">
@@ -102,7 +102,7 @@ const Cart = () => {
                       ? product.discountPrice
                       : product.price;
                     return (
-                      <div className={`flex items-center hover:bg-gray-100 -mx-8 px-6 py-5 border-zinc-300 border-b ${index === 0 && "border-t"}`} key={index}>
+                      <div className={`flex items-center hover:bg-gray-100 -mx-8 px-6 py-5 border-zinc-200 border-b ${index === 0 && "border-t"}`} key={index}>
                         <div className="lg:flex sm:grid w-2/5">
                           <div className="w-20">
                             <img
@@ -185,7 +185,7 @@ const Cart = () => {
               </div>
 
               <div id="summary" className="lg:w-1/4 sm:w-10/12 px-8 py-10">
-                <h1 className="font-semibold text-2xl border-b pb-8 sm:w-10/12">
+                <h1 className="font-semibold text-2xl border-b border-zinc-200 pb-8 sm:w-10/12">
                   Orden
                 </h1>
                 <div className="flex justify-between mt-10 mb-5">
@@ -194,7 +194,7 @@ const Cart = () => {
                     {cart.cartTotalQuantity}
                   </span>
                 </div>
-                <div className="border-t mt-8">
+                <div className="border-t border-zinc-200 mt-8">
                   <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                     <span>Total </span>
                     <span>${cart.cartTotalAmount}</span>
