@@ -78,9 +78,8 @@ const Cart = () => {
           <div className="container mx-auto mt-10">
             <div className="flex flex-col md:flex-row justify-between shadow-md my-10">
               <div className="lg:w-3/4 sm:w-10/12 bg-white px-10 py-10">
-                <div className="lg:flex justify-between border-b pb-8">
+                <div className="grid justify-between">
                   <h1 className="font-semibold text-2xl">Carrito de compras</h1>
-                  <h2 className="font-semibold text-2xl">Items</h2>
                 </div>
                 <div className="flex mt-10 mb-5">
                   <h3 className="font-semibold text-gray-600 text-xs uppercase lg:w-2/5 ">
@@ -98,12 +97,12 @@ const Cart = () => {
                 </div>
 
                 {cart.cartItems &&
-                  cart.cartItems.map((product) => {
+                  cart.cartItems.map((product, index) => {
                     const price = product.discountPrice
                       ? product.discountPrice
                       : product.price;
                     return (
-                      <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+                      <div className={`flex items-center hover:bg-gray-100 -mx-8 px-6 py-5 border-zinc-300 border-b ${index === 0 && "border-t"}`} key={index}>
                         <div className="lg:flex sm:grid w-2/5">
                           <div className="w-20">
                             <img
