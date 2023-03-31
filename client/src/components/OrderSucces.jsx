@@ -23,7 +23,7 @@ export default function OrderSucces (){
        <div className='grid gap-7 place-content-center h-screen text-center'>
         <img className='w-40 mx-auto' src={succes} alt="success" />
         <h4 className='text-3xl'>Felicitaciones !!</h4>
-        <p className='text-xl'>Tu pago fue aprobado con exito, esperamos que vuelva pronto ...</p>
+        <p className='text-xl'>Tu pago fue aprobado con éxito, esperamos que vuelva pronto ...</p>
         <Link to="/home"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-52 mx-auto">
   Volver
 </button></Link>
