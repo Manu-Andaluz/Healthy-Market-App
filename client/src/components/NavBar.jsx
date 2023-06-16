@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LogoutModal from "./LogoutModal";
-import leaf from "../pictures/leaf-svgrepo-com.svg"
+import leaf from "../pictures/leaf-svgrepo-com.svg";
 
 export default function NavBar() {
   const user = useSelector((state) => state.user);
@@ -28,7 +28,13 @@ export default function NavBar() {
           className="text-2xl text-white font-bold leading-none flex items-center"
           href="#"
         >
-          Healthy Market <img className="ml-5" src={leaf} alt="leaf" style={{width:"2rem"}}/>
+          Healthy Market{" "}
+          <img
+            className="ml-5"
+            src={leaf}
+            alt="leaf"
+            style={{ width: "2rem" }}
+          />
         </p>
       </NavLink>
       <div className="lg:hidden">
