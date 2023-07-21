@@ -29,6 +29,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import LoginSuccess from "./components/LogginSuccess";
 import OrdersDashboard from "./components/admin/Oders";
 import OrderSucces from "./components/OrderSucces";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,6 +76,7 @@ function App() {
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
+      <Analytics />
     </div>
   );
 }
