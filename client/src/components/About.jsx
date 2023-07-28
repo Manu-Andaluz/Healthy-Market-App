@@ -46,6 +46,14 @@ const About = () => {
               nuestro proyecto final esperando que disfruten del resultado tanto
               como nosotros disfrutamos del proceso.
             </p>
+            <div className="my-5">
+              <a
+                className="text-3xl lg:text-4xl font-continuo leading-9 text-green1 pb-4"
+                href="https://github.com/Manu-Andaluz/Healthy-Market-App"
+              >
+                Repositorio GitHub
+              </a>
+            </div>
           </div>
           <div className=" flex w-full lg:w-7/12 lg:pt-8">
             <div className="grid md:grid-cols-7 sm:grid-cols-2 grid-cols-1 lg:gap-4 shadow-lg bg-green-100 rounded-md">
