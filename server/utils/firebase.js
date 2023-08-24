@@ -25,4 +25,4 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 // Get a list of cities from your database
-module.exports = { auth, provider };
+module.exports = { auth, provider, collection, addDoc, getDocs, db };

@@ -11,6 +11,7 @@ const orderSchema = new mongoose.Schema(
     ],
     total: { type: Number, required: true },
     subTotal: { type: Number, required: true },
+    status: { type: String },
     shipping: { type: Object, required: true },
   },
   { timestamps: true }

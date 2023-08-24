@@ -1,23 +1,16 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { logoutUser } from "../slices/userSlice";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
-import { getTotals } from "../slices/cartSlice";
+import LogoutModal from "./LogoutModal";
+import leaf from "../pictures/leaf-svgrepo-com.svg";
 
 export default function NavBar() {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [navbarHeight, setNavbarHeight] = useState("auto");
   let activeStyle = {
     color: "#03C988",
-  };
-
-  const handleLogout = () => {
-    dispatch(logoutUser());
   };
 
   const toggleMenu = () => {
@@ -35,7 +28,13 @@ export default function NavBar() {
           className="text-2xl text-white font-bold leading-none flex items-center"
           href="#"
         >
-          Healthy Market 🌿
+          Healthy Market{" "}
+          <img
+            className="ml-5"
+            src={leaf}
+            alt="leaf"
+            style={{ width: "2rem" }}
+          />
         </p>
       </NavLink>
       <div className="lg:hidden">
@@ -45,7 +44,7 @@ export default function NavBar() {
             onClick={toggleMenu}
           >
             <svg
-              className="block h-4 w-4 fill-current"
+              className="block h-6 w-6 fill-current"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -77,7 +76,7 @@ export default function NavBar() {
       <ul
         // absolute mt-0  left-1/2 text-white transform translate-y-1/9 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-7 bg-gray-800 py-2
         className={`${
-          isMenuOpen ? "block" : "hidden"
+          isMenuOpen ? "grid h-96" : "hidden"
         } absolute mt-0 top-1/2 left-1/2 text-white transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-6 bg-gray-800 py-2  `}
       >
         <li>
@@ -88,7 +87,7 @@ export default function NavBar() {
             <p className="text-lg font-bold ">Inicio</p>
           </NavLink>
         </li>
-        <li className="text-gray-300">
+        <li className="text-gray-300 hidden lg:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -112,7 +111,7 @@ export default function NavBar() {
             <p className="text-lg font-bold ">Productos</p>
           </NavLink>
         </li>
-        <li className="text-gray-300">
+        <li className="text-gray-300 hidden lg:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -136,7 +135,7 @@ export default function NavBar() {
             <p className="text-lg font-bold ">Sobre Nosotros</p>
           </NavLink>
         </li>
-        <li className="text-gray-300">
+        <li className="text-gray-300 hidden lg:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -183,16 +182,16 @@ export default function NavBar() {
                 Admin
               </p>
             </NavLink>
-            <button onClick={handleLogout}>
+            <button>
               <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100  text-gray-900 font-bold  rounded-xl transition duration-200 text-base">
-                Cerrar Sesión
+                <LogoutModal />
               </p>
             </button>
           </div>
         ) : (
-          <button onClick={handleLogout}>
+          <button>
             <p className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100  text-gray-900 font-bold  rounded-xl transition duration-200 text-base">
-              Cerrar Sesión
+              <LogoutModal />
             </p>
           </button>
         )

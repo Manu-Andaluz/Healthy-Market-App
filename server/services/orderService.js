@@ -24,14 +24,14 @@ const createOrder = async (cart, userName, userEmail) => {
       description: product.details,
       category_id: product.category,
       quantity: product.cartQuantity,
-      unit_price: product.price,
+      unit_price: product.discountPrice ? product.discountPrice : product.price,
     };
   });
 
   let preference = {
     items: itemArray,
     back_urls: {
-      success: "https://healthy-market-app.vercel.app/home",
+      success: "https://healthy-market-app.vercel.app/orderSuccess",
       failure: "https://healthy-market-app.vercel.app/cart",
       pending: "",
     },
@@ -53,44 +53,60 @@ const createOrder = async (cart, userName, userEmail) => {
       initialValue
     );
 
-    const order = new Order({
-      products: products,
-      userId: userEmail,
-      shipping: {
-        userName,
-        userEmail,
-      },
-      subTotal: sumWithInitial,
-      total: sumWithInitial,
-    });
-
-    order.save();
-
     return { response };
   });
 };
 
+const orderSuccess = async (cart, userName, userEmail) => {
+  const itemArray = await cart.map((product) => {
+    return {
+      id: product._id,
+      title: product.name,
+      currency_id: "ARS",
+      picture_url: product.image.url,
+      description: product.details,
+      category_id: product.category,
+      quantity: product.cartQuantity,
+      unit_price: product.discountPrice ? product.discountPrice : product.price,
+    };
+  });
+
+  const products = itemArray.map((product) => ({
+    productId: product.id,
+    quantity: product.quantity,
+  }));
+  const data = itemArray.map(
+    (product) => product.unit_price * product.quantity
+  );
+  const initialValue = 0;
+  const sumWithInitial = data.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialValue
+  );
+
+  const order = new Order({
+    products: products,
+    userId: userEmail,
+    shipping: {
+      userName,
+      userEmail,
+    },
+    subTotal: sumWithInitial,
+    total: sumWithInitial,
+  });
+
+  order.save();
+}
+
 const getOrderIncome = async () => {
   const previusMonth = moment()
-    .month(moment().month() - 1)
+    .month(moment().month())
     .set("date", 1)
     .format("YYYY-MM-DD HH:mm:ss");
 
   const orders = await Order.aggregate([
     {
       $match: { createdAt: { $gte: new Date(previusMonth) } },
-    },
-    {
-      $project: {
-        month: { $month: "$createdAt" },
-        sales: "$total",
-      },
-    },
-    {
-      $group: {
-        _id: "$month",
-        total: { $sum: "$sales" },
-      },
     },
   ]);
   return orders;
@@ -120,10 +136,24 @@ const deleteOrder = async (orderId) => {
   }
 };
 
+const getWeekIncome = async () => {
+  const date = new Date();
+  date.setDate(date.getDate() - 7);
+
+  const orders = await Order.aggregate([
+    {
+      $match: { createdAt: { $gte: date } },
+    },
+  ]);
+  return orders;
+};
+
 module.exports = {
   getAllOrders,
   createOrder,
   getOrderIncome,
   getAllTimeOrder,
+  getWeekIncome,
   deleteOrder,
+  orderSuccess
 };

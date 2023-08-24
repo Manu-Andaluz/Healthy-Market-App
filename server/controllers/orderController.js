@@ -6,7 +6,9 @@ const {
   createOrder,
   getOrderIncome,
   getAllTimeOrder,
+  getWeekIncome,
   deleteOrder,
+  orderSuccess
 } = require("../services/orderService");
 dotenv.config();
 // Agrega credenciales
@@ -24,6 +26,20 @@ const createOrderController = async (req, res) => {
     res.status(400).send(error);
   }
 };
+
+const successOrderController = async (req,res) => {
+  console.log('1')
+  const { cart, userName, userEmail } = req.body;
+  console.log('asd')
+  try {
+console.log('asd')
+    const newOrder = await orderSuccess(cart, userName, userEmail);
+    res.send(newOrder);
+  } catch (error) {
+    console.log('error', error)
+    res.status(400).send(error);
+  }
+}
 
 const getAllOrderController = async (req, res) => {
   try {
@@ -63,10 +79,22 @@ const deleteOrderController = async (req, res) => {
   }
 };
 
+const getWeekIncomeController = async (req, res) => {
+  try {
+    const orders = await getWeekIncome();
+    res.send(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+};
+
 module.exports = {
   createOrderController,
   getAllOrderController,
   getOrderIncomeController,
   getAllTimeOrderController,
+  getWeekIncomeController,
   deleteOrderController,
+  successOrderController
 };

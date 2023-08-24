@@ -1,6 +1,8 @@
 const { User } = require("../models/User");
 const bcrypt = require("bcrypt");
 const generateAuthToken = require("../utils/generateAuthToken");
+const { collection, addDoc, db } = require("../utils/firebase");
+const moment = require("moment");
 
 const getAllUsers = async () => {
   const user = await User.find();
@@ -54,13 +56,12 @@ const createUser = async (
 const loginUser = async (email, password) => {
   const user = await User.findOne({ email });
   if (!user) {
-    return "User is not registered";
+    throw new Error("User is not registered");
   }
-
-  var validatePassword = bcrypt.compare(password, user.password);
+  var validatePassword = await bcrypt.compare(password, user.password);
 
   if (!validatePassword) {
-    return "User or Password is incorrect";
+    throw new Error("User or Password is incorrect");
   }
 
   const token = generateAuthToken(user);
@@ -99,36 +100,36 @@ const deleteUser = async (userId) => {
   }
 };
 
-const fireBase = async (name, age, email) => {
-  // const user = await addDoc(collection(db, "users"), {
-  //   name,
-  //   age,
-  //   email,
-  // });
-
-  return "user";
+const fireBase = async (name, email, id) => {
+  let mongoUser = await User.findOne({ email: email });
+  if (!mongoUser) {
+    const fullName = name.split(" ");
+    const user = await addDoc(collection(db, "users"), {
+      id,
+      name: fullName[0],
+      surname: fullName[1],
+      email,
+    });
+    const newUser = new User({
+      name: fullName[0],
+      surname: fullName[1],
+      nationality: "es",
+      email,
+    });
+    await newUser.save();
+    return user;
+  }
 };
 
 const userStats = async () => {
   const previusMonth = moment()
-    .month(moment().month() - 1)
+    .month(moment().month())
     .set("date", 1)
     .format("YYYY-MM-DD HH:mm:ss");
 
   const users = await User.aggregate([
     {
       $match: { createdAt: { $gte: new Date(previusMonth) } },
-    },
-    {
-      $project: {
-        month: { $month: "$createdAt" },
-      },
-    },
-    {
-      $group: {
-        _id: "$month",
-        total: { $sum: 1 },
-      },
     },
   ]);
 

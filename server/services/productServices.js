@@ -55,7 +55,11 @@ const getCategoryFiltered = async (categoryValue, filterBy, name) => {
       return products;
     }
     case "cheapper-products": {
-      const products = allProduct.sort((a, b) => a.price - b.price);
+      const products = allProduct.sort(
+        (a, b) =>
+          (a.discountPrice ? a.discountPrice : a.price) -
+          (b.discountPrice ? b.discountPrice : b.price)
+      );
       if (name) {
         const productFilterByName = products.filter((a) =>
           a.name.toLowerCase().includes(name.toLowerCase())
@@ -65,7 +69,11 @@ const getCategoryFiltered = async (categoryValue, filterBy, name) => {
       return products;
     }
     case "expensive-products": {
-      const products = allProduct.sort((a, b) => b.price - a.price);
+      const products = allProduct.sort(
+        (a, b) =>
+          (b.discountPrice ? b.discountPrice : b.price) -
+          (a.discountPrice ? a.discountPrice : a.price)
+      );
       if (name) {
         const productFilterByName = products.filter((a) =>
           a.name.toLowerCase().includes(name.toLowerCase())
@@ -73,6 +81,26 @@ const getCategoryFiltered = async (categoryValue, filterBy, name) => {
         return productFilterByName;
       }
       return products;
+    }
+    case "sales": {
+      let salesProducts = await Product.find({
+        discountPrice: { $exists: true },
+      });
+
+      if (categoryValue !== "categoria") {
+        salesProducts = salesProducts.filter(
+          (product) =>
+            product.category.toLowerCase() == categoryValue.toLowerCase()
+        );
+      }
+      if (name) {
+        const productFilterByName = salesProducts.filter((a) =>
+          a.name.toLowerCase().includes(name.toLowerCase())
+        );
+        return productFilterByName;
+      }
+
+      return salesProducts;
     }
     default: {
       if (name) {
@@ -202,6 +230,13 @@ const getAllProducts = async () => {
   return allData;
 };
 
+const getSales = async () => {
+  const salesProducts = await Product.find({
+    discountPrice: { $gt: 0 },
+  });
+  return salesProducts;
+};
+
 module.exports = {
   getProduct,
   // getProductsFiltered,
@@ -212,4 +247,5 @@ module.exports = {
   getProductById,
   createReview,
   getAllProducts,
+  getSales,
 };

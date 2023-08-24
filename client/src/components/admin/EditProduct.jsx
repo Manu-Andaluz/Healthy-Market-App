@@ -6,15 +6,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import styled from "styled-components";
 import { PrimaryButton } from "./CommonStyled";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { editProduct } from "../../actions/productActions";
-import { toast, ToastContainer } from "react-toastify";
 import { allProducts } from "../../actions/productActions";
 
 export default function EditProduct({ productId }) {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.allProducts.productList);
-  const { editStatus } = useSelector((state) => state.allProducts);
 
   const [currentProduct, setCurrentProduct] = useState({});
   const [previusImg, setPreviusImg] = useState("");
@@ -26,6 +24,7 @@ export default function EditProduct({ productId }) {
   const [stock, setStock] = useState("");
   const [details, setdetails] = useState("");
   const [isAvaliable, SetIsAvaliable] = useState("");
+  const [discountPrice, setDiscountPrice] = useState("");
 
   const handleProductImageUpload = (e) => {
     const file = e.target.files[0];
@@ -61,6 +60,7 @@ export default function EditProduct({ productId }) {
           stock,
           details,
           isAvaliable,
+          discountPrice: discountPrice === 0 ? false : discountPrice,
         },
       })
     );
@@ -84,6 +84,7 @@ export default function EditProduct({ productId }) {
     setName(selectedProduct.name);
     setcategory(selectedProduct.category);
     SetIsAvaliable(selectedProduct.isAvaliable);
+    setDiscountPrice(selectedProduct.discountPrice);
   };
 
   const handleClose = () => {
@@ -134,6 +135,11 @@ export default function EditProduct({ productId }) {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 required
+              />
+              <input
+                type="discountPrice"
+                placeholder="Precio Descuento"
+                value={discountPrice}
               />
               <input
                 type="stock"

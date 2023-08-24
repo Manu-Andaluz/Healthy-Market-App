@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { setHeaders } from "../../../slices/apiSlice";
 
 const AllTimeData = () => {
   const [products, setProducts] = useState(0);
@@ -25,7 +26,8 @@ const AllTimeData = () => {
   const fetchOrders = async () => {
     try {
       const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/order`
+        `https://healthy-market-app-production.up.railway.app/order`,
+        setHeaders()
       );
       setOrders(res.data.length);
     } catch (error) {
@@ -47,7 +49,8 @@ const AllTimeData = () => {
   const fetchIncome = async () => {
     try {
       const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/order/allTimeIncome`
+        `https://healthy-market-app-production.up.railway.app/order/allTimeIncome`,
+        setHeaders()
       );
       setIncome(res.data[0]);
       setLoading(false);

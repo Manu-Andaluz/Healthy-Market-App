@@ -2,20 +2,13 @@ import React from "react";
 import { PieChart, ResponsiveContainer, Pie, Tooltip, Cell } from "recharts";
 
 const data = [
-  { name: "Vegano", value: 2400 },
-  { name: "Alamacén", value: 4567 },
-  { name: "Gluten-Free", value: 1398 },
-  { name: "Vegetariano", value: 1200 },
+  { name: "Vegano", value: 5 },
+  { name: "Alamacén", value: 15 },
+  { name: "Gluten-Free", value: 5 },
+  { name: "Vegetariano", value: 4 },
 ];
 
-const COLORS = [
-  "#ce93d8",
-  "#5c6bc0",
-  "#b39ddb",
-  "#4dd0e1",
-  "#f48fb1",
-  "#d500f9",
-];
+const COLORS = ["#8A2BE2", "#A52A2A", "#0000FF", "#FF8C00"];
 
 const PieCharts = () => {
   return (

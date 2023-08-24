@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 
 const ReviewDetail = () => {
   const { productId, reviewIndex } = useParams();
-  const allProducts = useSelector(state => state.allProducts);
-  const product = allProducts.allProducts.find(p => p._id === productId);
+  const allProducts = useSelector((state) => state.allProducts);
+  const product = allProducts.allProducts.find((p) => p._id === productId);
   const review = product.reviews[reviewIndex];
 
   return (

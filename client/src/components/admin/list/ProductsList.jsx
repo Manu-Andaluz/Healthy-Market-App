@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { allProducts, deleteProduct } from "../../../actions/productActions";
 import { useNavigate } from "react-router-dom";
 import EditProduct from "../EditProduct";
-import { toast, ToastContainer } from "react-toastify";
 
 export default function ProductsList() {
   const items = useSelector((state) => state.allProducts.productList);
@@ -16,10 +15,6 @@ export default function ProductsList() {
 
   useEffect(() => {
     dispatch(allProducts());
-    if (deleteStatus === "success") {
-      toast.info("Producto Eliminado");
-    }
-    console.log("1");
   }, [deleteStatus, dispatch]);
 
   const rows =

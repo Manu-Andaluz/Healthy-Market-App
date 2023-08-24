@@ -46,11 +46,22 @@ const About = () => {
               nuestro proyecto final esperando que disfruten del resultado tanto
               como nosotros disfrutamos del proceso.
             </p>
+            <div className="my-5">
+              <a
+                className="text-3xl lg:text-4xl font-continuo leading-9 text-green1 pb-4"
+                href="https://github.com/Manu-Andaluz/Healthy-Market-App"
+              >
+                Repositorio GitHub
+              </a>
+            </div>
           </div>
           <div className=" flex w-full lg:w-7/12 lg:pt-8">
             <div className="grid md:grid-cols-7 sm:grid-cols-2 grid-cols-1 lg:gap-4 shadow-lg bg-green-100 rounded-md">
               <div className="p-4 pb-6 flex justify-center flex-col items-center bg">
-                <Link to="https://www.linkedin.com/in/loreley-milazzo-448691238/">
+                <Link
+                  to="https://www.linkedin.com/in/loreley-milazzo-448691238/"
+                  target="_blank"
+                >
                   <img
                     className="md:block hidden rounded-full"
                     src="https://avatars.githubusercontent.com/u/100098236?v=4"
@@ -67,7 +78,10 @@ const About = () => {
                 </p>
               </div>
               <div className="p-4 pb-6 flex justify-center flex-col items-center">
-                <Link to="https://www.linkedin.com/in/manuel-andaluz/">
+                <Link
+                  to="https://www.linkedin.com/in/manuel-andaluz/"
+                  target="_blank"
+                >
                   <img
                     className="md:block hidden rounded-full"
                     src="https://avatars.githubusercontent.com/u/109633041?v=4"
@@ -78,13 +92,16 @@ const About = () => {
                     src="https://avatars.githubusercontent.com/u/109633041?v=4"
                     alt="Manuel featured Img"
                   />
-                  <p className="font-bree text-xl leading-5 text-green1 mt-4">
-                    Manuel
-                  </p>
                 </Link>
+                <p className="font-bree text-xl leading-5 text-green1 mt-4">
+                  Manuel
+                </p>
               </div>
               <div className="p-4 pb-6 flex justify-center flex-col items-center">
-                <Link to="https://www.linkedin.com/in/gaston-geminiani-5a7687233/">
+                <Link
+                  to="https://www.linkedin.com/in/gaston-geminiani-5a7687233/"
+                  target="_blank"
+                >
                   <img
                     className="md:block hidden rounded-full"
                     src="https://avatars.githubusercontent.com/u/109548432?v=4%22%3E"
@@ -101,7 +118,10 @@ const About = () => {
                 </p>
               </div>
               <div className="p-4 pb-6 flex justify-center flex-col items-center">
-                <Link to="https://www.linkedin.com/in/roc%C3%ADo-bel%C3%A9n-molina-99661b78/">
+                <Link
+                  to="https://www.linkedin.com/in/roc%C3%ADo-bel%C3%A9n-molina-99661b78/"
+                  target="_blank"
+                >
                   <img
                     className="md:block hidden rounded-full"
                     src="https://avatars.githubusercontent.com/u/110116045?v=4"
@@ -120,22 +140,10 @@ const About = () => {
               </div>
 
               <div className="p-4 pb-6 flex justify-center flex-col items-center">
-                <img
-                  className="md:block hidden rounded-full"
-                  src="https://avatars.githubusercontent.com/u/90361432?v=4"
-                  alt="Juan featured img"
-                />
-                <img
-                  className="md:hidden block rounded-full p-12"
-                  src="https://avatars.githubusercontent.com/u/90361432?v=4"
-                  alt="Juan featured img"
-                />
-                <p className="font-bree text-xl leading-5 text-green1 mt-4">
-                  Juan
-                </p>
-              </div>
-              <div className="p-4 pb-6 flex justify-center flex-col items-center">
-                <Link to="https://www.linkedin.com/in/edgar-nah%C3%BA-favela-b3a639239/">
+                <Link
+                  to="https://www.linkedin.com/in/edgar-nah%C3%BA-favela-b3a639239/"
+                  target="_blank"
+                >
                   <img
                     className="md:block hidden rounded-full"
                     src="https://avatars.githubusercontent.com/u/93899648?v=4"

@@ -25,8 +25,11 @@ import EditProduct from "./components/admin/EditProduct";
 import { toast, ToastContainer } from "react-toastify";
 import UserDashboard from "./components/admin/Users";
 import CreateUser from "./components/admin/CreateUser";
-import PrivacyPolicy from "./components/PrivacyPolicy"
+import PrivacyPolicy from "./components/PrivacyPolicy";
 import LoginSuccess from "./components/LogginSuccess";
+import OrdersDashboard from "./components/admin/Oders";
+import OrderSucces from "./components/OrderSucces";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +51,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/loginSuccess" element={<LoginSuccess />} />
           <Route path="/detail/:productId" element={<CardDetail />} />
+          <Route path="/reviews/:productId" element={<Reviews />} />
           <Route path="*" element={<Error />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/reviewform" element={<ReviewForm />} />
@@ -62,19 +66,17 @@ function App() {
               <Route index element={<UserList />} />
               <Route path="create-user" element={<CreateUser />} />
             </Route>
-            <Route path="orders" element={<OrderList />}>
+            <Route path="orders" element={<OrdersDashboard />}>
               <Route index element={<OrderList />} />
-              <Route path="create-order" element={<CreateProduct />} />
             </Route>
           </Route>
-          <Route path="/detail/:productId" element={<CardDetail />} />
-          <Route path="*" element={<Error />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/reviewform" element={<ReviewForm />} />
-          <Route path="/reviews/:productId" element={<Reviews />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="/orderSuccess" element={<OrderSucces />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
+      <Analytics />
     </div>
   );
 }

@@ -22,17 +22,25 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-export const loginUser = createAsyncThunk("user/loginUser", async (user) => {
-  const token = await axios.post(
-    "https://healthy-market-app-production.up.railway.app/users/loggin",
-    {
-      email: user.email,
-      password: user.password,
+export const loginUser = createAsyncThunk(
+  "user/loginUser",
+  async (user, { rejectWithValue }) => {
+    try {
+      const token = await axios.post(
+        "https://healthy-market-app-production.up.railway.app/users/loggin",
+        {
+          email: user.email,
+          password: user.password,
+        }
+      );
+      localStorage.setItem("token", token.data);
+      return token.data;
+    } catch (error) {
+      console.log(error.response);
+      return rejectWithValue(error.response.data);
     }
-  );
-  localStorage.setItem("token", token.data);
-  return token.data;
-});
+  }
+);
 
 export const fetchGoogleToken = createAsyncThunk(
   "user/loginUserGoogle",

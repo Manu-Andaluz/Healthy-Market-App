@@ -3,6 +3,9 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { setHeaders } from "../../../slices/apiSlice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function OrderList() {
   const [oders, setOrders] = useState();
@@ -12,7 +15,8 @@ export default function OrderList() {
   const fetchOrders = async () => {
     try {
       const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/order`
+        `https://healthy-market-app-production.up.railway.app/order`,
+        setHeaders()
       );
       setOrders(res.data);
       setLoading(false);
@@ -24,10 +28,12 @@ export default function OrderList() {
   const deleteOrder = async (orderId) => {
     try {
       const res = await axios.delete(
-        `https://healthy-market-app-production.up.railway.app/order/${orderId}`
+        `https://healthy-market-app-production.up.railway.app/order/${orderId}`,
+        setHeaders()
       );
       const newList = oders.filter((item) => item._id !== res.data._id);
       setOrders(newList);
+      toast.info("Orden Eliminada");
     } catch (error) {
       console.log(error);
     }

@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { reviewProducts } from "../actions/productActions";
+import { findProductById, reviewProducts } from "../actions/productActions";
 import ReactStars from "react-rating-stars-component";
+import { toast } from "react-toastify";
 
-
-export default function ReviewForm(productId) {
+export default function ReviewForm({ productId }) {
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.user);
-
-  // useEffect(() => {
-  //     dispatch(reviewProducts())
-  // }, [dispatch])
-
-  // const [rating, setRating] = useState(0);
-  // const handleRating = (rate) => {
-  //     setRating(rate)
-
-  //   }
 
   const ratingChanged = (newRating) => {
     setInput({ ...input, rating: newRating });
@@ -25,63 +15,38 @@ export default function ReviewForm(productId) {
   const [input, setInput] = useState({
     comment: "",
     rating: 0,
-    name: "",
+    name: usuario && usuario?.name,
   });
 
-  const [errors, setErrors] = useState({});
-
-  function validate(input) {
-    let errors = {};
-    if(input.name){
-        errors.name = "Debes iniciar sesión para comentar"
-    } else if (!input.rating) {
-      errors.rating = "Debes puntuar este producto";
-    } else if (!input.comment) {
-      errors.comment = "Debe completar este campo";
-    } else if (input.comment.length > 50) {
-      errors.comment = "No debe superar los 50 caracteres";
-    } else if (input.comment.length < 10) {
-      errors.comment = "Debe superar los 10 caracteres ";
-    }
-
-    return errors;
-  }
   function handleChange(e) {
     setInput({
       ...input,
       name: usuario.name,
       [e.target.name]: e.target.value,
     });
-    setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
   }
 
-
-
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!input.name) return alert("Debes iniciar sesión para comentar")
-    if (input.comment === "" && input.rating === 0)
-      return alert("Debe llenar este campo");
-    dispatch(reviewProducts({ reviews: input, productId: productId.element }));
-    alert("¡Tu calificación ha sido enviada!");
-    setInput({
-      comment: "",
-      rating: 0,
-      name: "",
-       });
-  }
-
-  
+    if (!usuario.name) {
+      return toast.warning("Debes iniciar sesión para comentar", {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    }
+    if (input.comment === "" && input.rating === 0) {
+      return toast.warning("Debe llenar este campo", {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+    }
+    await dispatch(reviewProducts({ reviews: input, productId: productId }));
+    toast.success("¡Tu calificación ha sido enviada!", {
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
+    window.location.reload();
+  };
 
   return (
     <div className="">
-      {/* <NavBar/> */}
-      
       <div className="grid text-center h-1/2 content-center gap-5 items-center mt-5 pb-11">
         <h3 className="text-3xl font-bold">Califique nuestro producto</h3>
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold">
@@ -112,7 +77,6 @@ export default function ReviewForm(productId) {
               name="comment"
               onChange={handleChange}
             />
-            {errors.comment && <p className="e">{errors.comment}</p>}
           </div>
           <div className="pt-3">
             <button

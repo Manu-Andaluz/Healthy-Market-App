@@ -9,15 +9,16 @@ const {
   fireBaseController,
   userStatsController,
 } = require("../controllers/userController");
+const { isAdmin, isUser } = require("../middleware/auth.js");
 
 const userRouter = Router();
 
 userRouter.get("/", getUsersController);
-userRouter.get("/stats", userStatsController);
+userRouter.get("/stats", isAdmin, userStatsController);
 userRouter.post("/register", registerController);
-userRouter.post("/createUser", createUserController);
+userRouter.post("/createUser", isAdmin, createUserController);
 userRouter.post("/loggin", loginController);
 userRouter.post("/google", fireBaseController);
-userRouter.delete("/:userId", deleteUserController);
+userRouter.delete("/:userId", isAdmin, deleteUserController);
 
 module.exports = userRouter;

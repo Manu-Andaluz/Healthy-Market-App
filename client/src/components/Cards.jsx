@@ -17,7 +17,9 @@ const Cards = (currentProduct) => {
 
   const handleOnClick = (item) => {
     dispatch(addToCart(item));
-    toast.success("Producto Añadido al Carrito");
+    toast.success("Producto Añadido al Carrito", {
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
   };
 
   return (
@@ -45,9 +47,20 @@ const Cards = (currentProduct) => {
               <p className="text-sm font-bree text-gray-700">
                 {product.category}
               </p>
-              <p className="text-lg font-bold text-gray-900">
-                ${product.price}
-              </p>
+              {product.discountPrice ? (
+                <div className="flex gap-5">
+                  <p className="text-lg font-bold text-gray-900">
+                    <del>${product.price}</del>
+                  </p>
+                  <p className="text-lg font-bold text-green-500">
+                    ${product.discountPrice}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-lg font-bold text-gray-900">
+                  ${product.price}
+                </p>
+              )}
               <button
                 onClick={() => handleOnClick(product)}
                 className=" bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded w-fit mx-auto"

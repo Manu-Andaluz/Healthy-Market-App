@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCm_pfc9WZYcUJ-hkxc9mhUK0NknqzLEqM",
@@ -28,6 +29,10 @@ const singWithGoogle = createAsyncThunk(
     const credential = await GoogleAuthProvider.credentialFromResult(result);
     let token = result.user.accessToken;
     localStorage.setItem("token", token);
+    axios.post(
+      "https://healthy-market-app-production.up.railway.app/users/google",
+      result.user
+    );
   }
 );
 

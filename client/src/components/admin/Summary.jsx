@@ -6,11 +6,12 @@ import axios from "axios";
 import Transactions from "./summaryComponents/Transactions";
 import AllTimeData from "./summaryComponents/AllTimeData";
 import PieCharts from "./summaryComponents/PieChart";
+import { setHeaders } from "../../slices/apiSlice";
 
 const Summary = () => {
   const [users, setUsers] = useState(15);
   const [usersPerc, setUserPerc] = useState(0);
-  const [orders, setoOders] = useState();
+  const [orders, setOders] = useState();
   const [ordersPerc, setOrdersPerc] = useState(0);
   const [total, setTotal] = useState();
   const [totalPerc, setTotalPerc] = useState(0);
@@ -24,13 +25,10 @@ const Summary = () => {
   async function fetchOrders() {
     try {
       const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/order`
+        `https://healthy-market-app-production.up.railway.app/order/income`,
+        setHeaders()
       );
-      res.data.sort(compare);
-      setoOders(res.data);
-      setOrdersPerc(
-        ((res.data[0].total - res.data[1].total) / res.data[1].total) * 10
-      );
+      setOders(res.data.length);
     } catch (err) {
       console.log(err);
     }
@@ -38,8 +36,11 @@ const Summary = () => {
 
   async function fetchUsers() {
     try {
-      setUsers(17);
-      setUserPerc(35);
+      const res = await axios.get(
+        `https://healthy-market-app-production.up.railway.app/users/income`,
+        setHeaders()
+      );
+      setUsers(res.data.length);
     } catch (err) {
       console.log(err);
     }
@@ -48,7 +49,8 @@ const Summary = () => {
   async function fetchTotal() {
     try {
       const res = await axios.get(
-        `https://healthy-market-app-production.up.railway.app/order/income`
+        `https://healthy-market-app-production.up.railway.app/order/income`,
+        setHeaders()
       );
       res.data.sort(compare);
       setTotal(res.data);
@@ -74,16 +76,14 @@ const Summary = () => {
       title: "Usuarios",
       color: "rgb(102, 108, 255)",
       bgColor: "rgba(102, 108, 255, 0.12)",
-      percentage: usersPerc,
     },
     {
       icon: <FaClipboard />,
-      digits: orders && orders[0]?.total,
+      digits: orders && orders,
       isMoney: false,
       title: "Ordenes",
       color: "rgb(38, 198, 249)",
       bgColor: "rgba(38, 198, 249, 0.12)",
-      percentage: 110,
     },
     {
       icon: <FaChartBar />,
@@ -92,7 +92,6 @@ const Summary = () => {
       title: "Ganancias",
       color: "rgb(253, 181, 40)",
       bgColor: "rgba(253, 181, 40, 0.12)",
-      percentage: 115,
     },
   ];
 
@@ -101,7 +100,7 @@ const Summary = () => {
       <MainStats>
         <Overview>
           <Title>
-            <h2>Overview</h2>
+            <h2>Resumen</h2>
             <p>Estadísticas del último mes</p>
           </Title>
           <WidgetWrapper>
@@ -110,11 +109,11 @@ const Summary = () => {
             ))}
           </WidgetWrapper>
         </Overview>
-        <PieCharts />
+        <Transactions />
       </MainStats>
       <SideStats>
         <AllTimeData />
-        <Transactions />
+        <PieCharts />
       </SideStats>
     </div>
   );
