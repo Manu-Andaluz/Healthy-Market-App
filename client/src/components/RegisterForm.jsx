@@ -78,7 +78,6 @@ const RegisterForm = () => {
     } else if (!form.password) {
       errors.password = "Ingresar una contraseña";
     }
-
     return errors;
   };
 
